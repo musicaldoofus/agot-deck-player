@@ -1,13 +1,11 @@
-const getFromAPI = ({type, id, format = '.json'} = {}) => {
-	console.log(type, id, format);
+//documentation --> https://thronesdb.com/api/doc
+import sampleDeck from './sampleDeck';
+
+const getFromAPI = ({type, id, format = '.json'} = {}) => { //allow  default format to be json
+	if (type === 'cards') return sampleDeck;
 	const rootUrl = 'https://thronesdb.com/api';
 	const scope = type === 'card' ? 'public' : 'oauth2';
 	const reqUrl = `${rootUrl}/${scope}/${type}/${id}${format}`;
-	if (type === 'cards') return [
-		'01001',
-		'01142',
-		'03046',
-	];
 	return new Promise((resolve, reject) => {
 		const xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {

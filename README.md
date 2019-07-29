@@ -1,68 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Deck player
+## For A Game of Thrones Living Card Game, 2nd edition
 
-## Available Scripts
+***Note: this project, its Github page, and any associated artifacts or files are in no way connected to or in partnership with Fantasy Flight Games.
 
-In the project directory, you can run:
+Demo can be found [here]().
 
-### `npm start`
+### API methods from [thronesdb](thronesdb.com)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- GET card
+- GET decklist
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Summary of components
 
-### `npm test`
+***Atoms
+*Definition: stateless, functional components with singular purpose and/or display
+- Card
+- TokenButton
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+***Molecules
+*Definition: collection of atoms or function(s) that govern a simple purpose and/or display
+- CardList
+- HUD
 
-### `npm run build`
+***Organisms
+*Definition: collection of molecules or stateful classes that govern how information should be displayed and events handled
+- GameBoard
+- BoardArea
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+***Pages
+*Definition: sets of Routes and components to display
+- Root
+- Play
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Dev notes - example structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Root(routes)
+.> Page({title: 'Play'})
+..> GameBoard({deckList})
+...> HUD
+....> TokenButton
+...> BoardArea({label: 'plot deck'})
+....> CardList({cards: GameBoard.deck.plotCardList.active})
+.....> Card(props)
+.....> Card(props)
+...> BoardArea({label: 'used plot cards'})
+....> CardList({cards: GameBoard.deck.plotCardList.inactive})
+.....> Card(props)
+.....> Card(props)
+...> BoardArea({label: 'hand'})
+....> CardList({cards: GameBoard.deck.currentHand})
+.....> Card(props)
+.....> Card(props)
+...> BoardArea({label: 'characters'})
+....> CardList({cards: GameBoard.deck.inPlay.characters})
+.....> Card(props)
+.....> Card(props)
+...> BoardArea({label: 'locations'})
+....> CardList({cards: GameBoard.deck.inPlay.locations})
+.....> Card(props)
+.....> Card(props)
 
-### `npm run eject`
+### Dev notes - basic play setup actions
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Get deck
+`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Get individual card (e.g., for displaying a faction or agenda card)
+`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Shuffle deck
+`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Dev notes - basic user actions
 
-## Learn More
+View a play area (locations, characters) in full screen
+`(BoardArea) => (handleFullscreenToggle) => (BoardArea.setState({isFullscreen: !state.isFullscreen})) => (BoardArea.render())
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Kneel a card (default click option for all cards in a CardList - simply update className and status in Card props)
+`(CardList) => (Card({code})) => (onClick(Card.props.code)) => (CardList.handleKneelCard(Card.props.code)) => (CardList.setState({})) => (CardList.render())
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+View a single card in fullscreen (not sure which design is best for this - may have to handle this via button on card as default onClick is to kneel)
+`(CardList) => (Card({code})) => (Card.handleFullscreenToggle(Card.props.code)) => (CardList.handleFullscreenToggle(Card.props.code)) => (CardList.setState({focusCard})) => (CardList.render()) => (CardViewer(Card.props.code)) => (Card(card.props.code, key={card.props.code+'inCardViewer'})) => (onClick) => (handleDismiss)
 
-### Code Splitting
+Add a token (poison marker, gold, etc.) to a card (needs updating based on component structure)
+`(GameBoard) => (TokenButton(tokenType)) => (TokenButton.onClick(tokenType)) => (CardList.handleClickToken(tokenType)) => (CardList.handleTokenAction(tokenType, tokenAction, tokenTarget)) => (CardList.handlePushToken(cardCode, tokenType)) => (CardList.setState({cards: this.state.cards[code].props.tokens[tokenType].concat(token)})) => (CardList.render())
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Draw an individual card
+`(DrawDeck) => (DrawDeck.handleDrawCard) => (DrawDeck.setState({viewCard})) => (DrawDeck.render()) => (CardViewer(cardCode)) => (Card(cardCode)) => (Card.onClick) => (CardViewer.handleDismiss)
 
-### Analyzing the Bundle Size
+View cards in hand
+`(GameBoard) => (GameBoard.handleDisplayHandCards()) => (GameBoard.setState({fullscreenArea: }))
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Discard a card from hand
+`(BoardArea) => (CardList({cards: cardsFromDeck.
 
-### Making a Progressive Web App
+View Discard deck
+`(DiscardDeck) => (DiscardDeck.onClick) => (DiscardDeck.setState({isFullscreen})) => (DiscardDeck.render()) => (CardList({cards: DiscardDeck.props.cards}))
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+`(DiscardDeck) => (ViewMoreButton) => (setVisibleCards) => see more cards in list
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+`(HandCardsButton) => (onClick) => view hand
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
+`(CardList) => (ViewMoreButton) => (setVisibleCards) => see more cards in list
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+`(BoardArea) => (ViewMoreButton) => (setVisibleCards) => 
+
+*For future - not using until mobile-ready in React Native
+`(DrawDeck) => (onLongPress) => draw multiple cards (i.e. long press on deck => (accept num from user) => return cards)
+
+### Credits
+
+thronesdb.com
+theironthrone.net
