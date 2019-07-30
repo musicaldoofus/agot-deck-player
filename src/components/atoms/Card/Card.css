@@ -5,3 +5,6 @@
 .card.knelt {
 	transform: rotate(-0.25turn);
 }
+.card > img {
+	max-width: 100%;
+}

@@ -34,25 +34,6 @@ class GameBoard extends Component {
 			<div className="game-board">
 				<HUD/>
 				<PlotDeck cards={this.props.deck.plotCards.active}/>
-				<CharacterArea cards={this.props.deck.inPlay.characters}/>
-				<BoardArea label="locations">
-					<CardList expanded cards={this.props.deck.inPlay.locations}/>
-				</BoardArea>
-				<BoardArea label="hand">
-					<CardList cards={this.props.deck.currentHand}/>
-				</BoardArea>
-				<BoardArea label="faction card">
-					<CardList singular cards={this.props.deck.factionCard}/>
-				</BoardArea>
-				<BoardArea label="draw deck">
-					<CardList cards={this.props.deck.currentDrawDeck}/>
-				</BoardArea>
-				<BoardArea label="discard pile">
-					<CardList cards={this.props.deck.currentDiscardPile}/>
-				</BoardArea>
-				<BoardArea label="dead pile">
-					<CardList cards={this.props.deck.currentDeadPile}/>
-				</BoardArea>
 			</div>
 		);
 	}

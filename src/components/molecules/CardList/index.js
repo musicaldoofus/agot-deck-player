@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toCard } from '../../atoms/Card';
 import getFromAPI from '../../../utils/getFromAPI';
 import CardBack from '../../../media/img/card-back.png';
+import deepClone from '../../../utils/deepClone';
 import './CardList.css';
 
 /*
@@ -14,15 +15,30 @@ Definition for CardList
 class CardList extends Component {
 	constructor(props) {
 		super(props);
-		console.log('constructor', props);
+		const cards = Array.isArray(this.props.cards) ? this.props.cards : Array.from({length: 1}, (_) => this.props.cards);
 		this.state = {
-			cards: Array.isArray(this.props.cards) ? this.props.cards : Array.from({length: 1}, (_) => this.props.cards)
+			visibleCards: this.updateVisibleParams(0)
 		};
 	}
 	
+	componentDidUpdate(...props) {
+		console.log('props', props);
+	}
+	
+	updateVisibleParams(startInd) {
+		return deepClone(this.props.cards).splice(startInd, startInd + this.props.visibleLength);
+	}
+	
+	handleUpdateVisibleCards(startInd) {
+		console.log('handleUpdateVisibleCards');
+		this.setState({
+			visibleCards: this.updateVisibleParams(startInd)
+		});
+	}
+	
 	render() {
-		console.log('render <CardList>', this.state.cards);
-		const cardList = this.state.cards.map((cardProps, ind) => toCard({cardProps, ind, onClick: this.props.onClick}));
+		const cardList = this.props.cards.map((cardProps, ind) => toCard({cardProps, ind, onClick: this.props.onClick}));
+		console.log('render <CardList>', cardList, this.props);
 		return (
 			<div className={`card-list${this.props.classNames ? ' ' + this.props.classNames : ''}`}>
 				{cardList}
