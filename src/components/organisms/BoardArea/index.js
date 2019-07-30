@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import './BoardArea.css';
 
-/*
-accepts props: 
-{
-	label: '',
-	children: {},
-	...rest
-}
-*/
-
 class BoardArea extends Component {
 	constructor(props) {
 		super(props);

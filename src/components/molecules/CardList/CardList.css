@@ -1,4 +1,22 @@
-/*CardGroup.css*/
+/*CardList.css*/
+.card-list-container {
+	width: 596px;
+
+margin: 24px;
+
+height: 316px;
+}
 .card-list {
+display: flex;
+
+flex-direction: row;
+
+max-width: 100%;
+
+flex-wrap: wrap;
+}
+.card > img {
+
+    width: 120px;
 
 }

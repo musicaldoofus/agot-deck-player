@@ -1,4 +1,7 @@
 /*Card.css*/
 .card {
-
+	transition: all ease 0.2s;
+}
+.card.knelt {
+	transform: rotate(-0.25turn);
 }

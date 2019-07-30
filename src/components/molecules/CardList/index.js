@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
 import { toCard } from '../../atoms/Card';
 import getFromAPI from '../../../utils/getFromAPI';
+import CardBack from '../../../media/img/card-back.png';
 import './CardList.css';
 
-const CardList = ({cards, onClick, classNames}) => {
-	// console.log('render <CardList>', cards);
-	cards = Array.isArray(cards) ? cards : Array.from(1, (_) => cards); //handle potential single Card objects being passed instead of a list
-	const cardList = cards.map((cardProps, ind) => toCard({cardProps, ind, onClick: onClick}));
-	return (
-		<div className={`card-list${classNames ? ' ' + classNames : ''}`}>
-			{cardList}
-		</div>
-	);
+/*
+Definition for CardList
+- should only be used when multiple cards can be shown (even if only a single card is passed in props)
+- may be shown as child of Overlay i.e. <Overlay><CardList></Overlay>
+- must be simplistic with few dependencies
+*/
+
+class CardList extends Component {
+	constructor(props) {
+		super(props);
+		console.log('constructor', props);
+		this.state = {
+			cards: Array.isArray(this.props.cards) ? this.props.cards : Array.from({length: 1}, (_) => this.props.cards)
+		};
+	}
+	
+	render() {
+		console.log('render <CardList>', this.state.cards);
+		const cardList = this.state.cards.map((cardProps, ind) => toCard({cardProps, ind, onClick: this.props.onClick}));
+		return (
+			<div className={`card-list${this.props.classNames ? ' ' + this.props.classNames : ''}`}>
+				{cardList}
+			</div>
+		);
+	}
 }
 
 //this class is designed for (listOfCodesToQuery) => (manipulatedDisplayOfAPIResults)

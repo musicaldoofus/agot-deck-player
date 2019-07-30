@@ -1,12 +1,14 @@
 import React from 'react';
+import CardBack from '../../../media/img/card-back.png';
 import './Card.css';
 
-const Card = (c) => {
-	const toCardPage = `https://thronesdb.com/card/${c.code}`;
+const Card = (props) => {
+	const { code, url, onClick, name, image_url, cardStatus, classNames } = props;
+	console.log(code, url, onClick, name, image_url, cardStatus, classNames);
 	return (
-		<div className="card">
-			<img alt={c.name} src={c.image_url}/>
-			<a href={toCardPage} target="_blank" rel="noopener noreferrer">Card page</a>
+		<div onClick={() => onClick(props)} className={`card ${cardStatus}${classNames ? ' ' + classNames : ''}`}>
+			<img alt={name} src={cardStatus === 'knelt' ? CardBack : image_url}/>
+			<a href={url} target="_blank" rel="noopener noreferrer">Card page</a>
 		</div>
 	);
 }
