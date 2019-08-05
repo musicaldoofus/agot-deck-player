@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import HUD from '../../molecules/HUD';
-import PlotDeck from '../../organisms/PlotDeck';
-import CharacterArea from '../../organisms/CharacterArea';
+import PlotDeck from '../PlotDeck';
+import PlotDeckUsed from '../PlotDeckUsed';
+import CharacterArea from '../CharacterArea';
 import deepClone from '../../../helpers/deepClone';
 import './GameBoard.css';
 
@@ -17,8 +18,6 @@ class GameBoard extends Component {
 	}
 	
 	handleUpdatePlotDeck(card, action = 'play') {
-		// console.log(card, action);
-		//remove plot card from state list
 		const plotDeckCards = this.state.plotDeckCards.filter(c => c.code !== card.code);
 		const plotDeckCardsUsed = this.state.plotDeckCardsUsed.concat(card);
 		this.setState({plotDeckCards, plotDeckCardsUsed});
@@ -30,6 +29,9 @@ class GameBoard extends Component {
 				<HUD/>
 				<CharacterArea
 					cards={this.state.characterAreaCards}
+				/>
+				<PlotDeckUsed
+					cards={this.state.plotDeckCardsUsed}
 				/>
 				<PlotDeck
 					cards={this.state.plotDeckCards}
