@@ -40,7 +40,6 @@
 .card-option-buttons {
 	display: flex;
 	flex-direction: column;
-	flex-grow: 1;
 }
 #right-side-controls {
 	width: 48px;
@@ -55,4 +54,7 @@
 }
 #left-side-controls {
 	
+}
+.card-data img {
+	max-width: 16px;
 }

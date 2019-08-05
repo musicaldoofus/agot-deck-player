@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
 import AreaCardList from '../../molecules/PureCardList'
 import './CharacterArea.css';
+	
+const BoardArea = ({cards, areaType, label}) =>  {
+	return (
+			<AreaCardList
+				areaType={areaType}
+				cards={cards}
+				viewerLimit={areaType === 'plot' ? 3 : 5}
+				colSize={areaType === 'plot' ? 240 : 120}
+				label={label}
+			/>
+	);
+};
 
-class CharacterArea extends Component {
-	constructor(props) {
-		super(props);
-		this.handleCardOnClick = this.handleCardOnClick.bind(this);
-		// this.handleToggleFullscreen = this.handleToggleFullscreen.bind(this);
-	}
-	
-	// handleToggleFullscreen() {
-		// this.setState({
-			// isFullscreen: !this.state.isFullscreen,
-		// });
-	// }
-	
-	handleCardOnClick(card) {
-		// console.log(card);
-	}
-	
-	render() {
-		const cards = this.props.cards.map(c => c);
-		return (
-			<div className="board-area character-area">
-				<AreaCardList
-					cards={cards}
-					onCardClick={this.handleCardOnClick}
-					viewerLimit={5}
-					colSize={120}
-					label="Tap a character for card actions"
-				/>
-			</div>
-		)
-	}
-}
+const CharacterArea = ({cards}) => (
+	<BoardArea
+		cards={cards}
+		areaType="character"
+		label="Select a character to take action"
+	/>
+);
+
+const LocationArea = ({cards}) => (
+	<BoardArea
+		cards={cards}
+		areaType="location"
+		label="Select a location to take action"
+	/>
+);
 
 export default CharacterArea;
+export { LocationArea };

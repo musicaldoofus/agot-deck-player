@@ -271,7 +271,44 @@ const sampleDeck = {
 			inactive: []
 		},
 		locations: {
-			active: [],
+			active: [
+				{
+					ci: 2,
+					claim: null,
+					code: "14042",
+					cost: 2,
+					deck_limit: 3,
+					designer: null,
+					faction_code: "neutral",
+					faction_name: "Neutral",
+					flavor: "\"A refuge where neither wolves nor lions come prowling.\" <cite>Lem Lemoncloak</cite>",
+					illustrator: "Zach Graves",
+					image_url: "http://lcg-cdn.fantasyflightgames.com/got2nd/GT52_42.jpg",
+					income: null,
+					initiative: null,
+					is_intrigue: false,
+					is_loyal: false,
+					is_military: false,
+					is_multiple: false,
+					is_power: false,
+					is_unique: true,
+					label: "The Hollow Hill",
+					name: "The Hollow Hill",
+					octgn_id: "6cc24db7-8041-4693-b4e6-b4d9efbd3737",
+					pack_code: "FotS",
+					pack_name: "Fury of the Storm",
+					position: 42,
+					quantity: 3,
+					reserve: null,
+					si: -1,
+					strength: null,
+					text: "<b>Dominance Action:</b> If you control no loyal characters, kneel The Hollow Hill to search the top 10 cards of your deck for a non-loyal character, reveal it, and add it to your hand. Shuffle your deck.",
+					traits: "Brotherhood. Westeros.",
+					type_code: "location",
+					type_name: "Location",
+					url: "https://thronesdb.com/card/14042"
+				}
+			],
 			inactive: []
 		}
 	},

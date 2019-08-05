@@ -23,9 +23,9 @@
   grid-row: 2 / 4;
   /* position: relative; */
 }
-.board-area.locations {
+.board-area.location-area {
   grid-column: 3 / 4;
-  grid-row: 4 / 7;
+  grid-row: 5 / 7;
 }
 .board-area.hand {
   grid-column: 6 / 6;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HUD from '../../molecules/HUD';
 import PlotDeck from '../PlotDeck';
 import PlotDeckUsed from '../PlotDeckUsed';
-import CharacterArea from '../CharacterArea';
+import CharacterArea, { LocationArea } from '../CharacterArea';
 import deepClone from '../../../helpers/deepClone';
 import './GameBoard.css';
 
@@ -12,7 +12,8 @@ class GameBoard extends Component {
 		this.state = {
 			characterAreaCards: deepClone(this.props.deck.inPlay.characters.active),
 			plotDeckCards: deepClone(this.props.deck.plotCards.active),
-			plotDeckCardsUsed: deepClone(this.props.deck.plotCards.inactive)
+			plotDeckCardsUsed: deepClone(this.props.deck.plotCards.inactive),
+			locationAreaCards: deepClone(this.props.deck.inPlay.locations.active)
 		};
 		this.handleUpdatePlotDeck = this.handleUpdatePlotDeck.bind(this);
 	}
@@ -29,6 +30,9 @@ class GameBoard extends Component {
 				<HUD/>
 				<CharacterArea
 					cards={this.state.characterAreaCards}
+				/>
+				<LocationArea
+					cards={this.state.locationAreaCards}
 				/>
 				<PlotDeckUsed
 					cards={this.state.plotDeckCardsUsed}

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Card, { toCard } from '../../atoms/Card';
+import Card, { toCard, CardDetails } from '../../atoms/Card';
 import Overlay from '../../molecules/Overlay';
 import './PureCardList.css';
 
@@ -18,7 +18,6 @@ class CardListViewer extends Component {
 	}
 	
 	render() {
-		console.log('this.props', this.props);
 		const viewerStyle = {
 			gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`,
 			marginLeft: `${-this.props.colSize * this.state.ind}px`
@@ -84,15 +83,19 @@ class OverlayCardList extends Component {
 				</div>
 				{this.state.focusCard ?(
 					<Fragment>
-						<div style={{display: 'flex'}}>
+						<div style={{display: 'grid', gridTemplateColumns: '3fr 2fr'}}>
 							<Card
 								className="focus-card"
 								{...cardProps}
 							/>
 							<div className="card-option-buttons">
-								<button onClick={this.handleUnfocusCard}>&larr; Back to list</button>
-								{cardOptionButtons}
+								<div className="card-option-buttons">
+									<button onClick={this.handleUnfocusCard}>&larr; Back to list</button>
+									{cardOptionButtons}
+								</div>
+								<CardDetails {...cardProps}/>
 							</div>
+							
 						</div>
 					</Fragment>
 					) : (
@@ -112,10 +115,13 @@ class AreaCardList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isFullscreen: false
+			isFullscreen: false,
+			cardStatusList: this.props.cards
 		};
 		this.handleFullscreen = this.handleFullscreen.bind(this);
 		this.handleDismissOverlay = this.handleDismissOverlay.bind(this);
+		this.handleClickCard = this.handleClickCard.bind(this);
+		this.withStatus = this.withStatus.bind(this);
 	}
 	
 	handleFullscreen() {
@@ -127,18 +133,41 @@ class AreaCardList extends Component {
 		this.setState({isFullscreen: false});
 	}
 	
+	handleClickCard(card, ind) {
+		// console.log('got', card, ind);
+		const updatedStatus = this.state.cardStatusList[card.cardIndex] === 'knelt' ? 'standing' : 'knelt';
+		// console.log('updatedStat', updatedStatus);
+		const updatedStatusList = this.state.cardStatusList.slice();
+		console.log('updatedStatusList', updatedStatusList);
+		updatedStatusList[ind].cardStatus = updatedStatus;
+		this.setState({cardStatusList: updatedStatusList});
+	}
+	
+	withStatus(card, i) {
+		if (this.state.cardStatusList.length === 0) return;
+		return Object.assign({}, card, {cardStatus: this.state.cardStatusList[i], cardIndex: i});
+	}
+	
 	render() {
 		const gridStyle = {gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`};
 		const props = this.props;
+		const cards = this.props.cards.map(this.withStatus);
 		return (
-			<div className="card-list area">
-				{this.state.isFullscreen &&
-					<OverlayCardList
+			<div className={`board-area ${this.props.areaType}-area`}>
+				<div className="card-list area">
+					{this.state.isFullscreen &&
+						<OverlayCardList
+							{...props}
+							onDismiss={this.handleDismissOverlay}
+						/>
+					}
+					<CardListViewer
+						handleFullscreen={this.handleFullscreen}
+						onCardClick={this.handleClickCard}
+						cards={cards}
 						{...props}
-						onDismiss={this.handleDismissOverlay}
 					/>
-				}
-				<CardListViewer handleFullscreen={this.handleFullscreen} {...props}/>
+				</div>
 			</div>
 		);
 	}

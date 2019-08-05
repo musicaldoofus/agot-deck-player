@@ -1,5 +1,5 @@
 import React from 'react';
-import CardBack from '../../../media/img/card-back.png';
+import CardBack from '../../../media/card-back.png';
 import './CardPileBtn.css';
 
 const CardPileBtn = ({onClick, imgSrc}) => {
