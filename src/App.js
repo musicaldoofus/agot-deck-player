@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router-dom';
-import getFromAPI from './utils/getFromAPI';
+import getFromAPI from './helpers/getFromAPI';
 import Root from './components/pages/Root';
 import Play from './components/pages/Play';
 import './App.css';

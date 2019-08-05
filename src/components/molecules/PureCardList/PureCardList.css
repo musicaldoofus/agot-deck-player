@@ -1,0 +1,33 @@
+/*PureCardList.css*/
+.card-list.area {
+	/* display: grid; */
+}
+.card-list {
+	height: 100%;
+	transition: all ease 0.4s;
+}
+.viewer-btn {
+	height: 100%;
+	width: 40px;
+	position: absolute;
+}
+.viewer-btn.right {
+	right: 0;
+}
+.viewer-btn.left {
+	left: 0;
+}	
+.card-list-viewer {
+    display: grid;
+	height: 100%;
+	overflow: hidden;
+	transition: all ease 0.4s;
+}
+.expand-btn {
+	
+}
+.dismiss-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

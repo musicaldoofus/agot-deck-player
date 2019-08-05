@@ -2,6 +2,7 @@
 .card-pile-btn {
 	width: 100%;
 	height: 100%;
+	cursor: pointer;
 }
 .card-pile-btn > img {
 	max-height: 100%;

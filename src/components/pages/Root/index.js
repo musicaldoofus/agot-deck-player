@@ -12,7 +12,7 @@ class Root extends Component {
 	}
 	
 	componentDidMount() {
-		console.log('mounted <Root>', this.props);
+		// console.log('mounted <Root>', this.props);
 	}
 	
 	render() {

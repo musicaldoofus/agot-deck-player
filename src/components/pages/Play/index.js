@@ -5,8 +5,6 @@ import './Play.css';
 
 class Play extends Component {
 	render() {
-		console.log('render <Play>');
-		console.log(this.props);
 		return (
 			<Page title="Play">
 				<GameBoard deck={this.props.deck}/>
