@@ -6,6 +6,7 @@ import './Card.css';
 
 const Card = (props) => {
 	const { ind, onClick, name, image_url, cardStatus, className } = props;
+	console.log('<Card>', props);
 	return (
 		<div onClick={onClick ? () => onClick(props, ind) : () => {}} className={`card${cardStatus ? ' ' + cardStatus : ''}${className ? ' ' + className : ''}`}>
 			<img alt={name} src={image_url}/>
@@ -26,9 +27,9 @@ const CardDetails = ({faction_name, is_loyal, cost, strength, type_name, is_intr
 					<b>{type_name}.</b>
 					Cost: {cost}.
 					STR: {strength}
-					{is_intrigue && <img src={intrigueIcon}/>}
-					{is_power && <img src={powerIcon}/>}
-					{is_military && <img src={militaryIcon}/>}
+					{is_intrigue && <img alt="This character card includes an intrigue icon" src={intrigueIcon}/>}
+					{is_power && <img alt="This character card includes a power icon" src={powerIcon}/>}
+					{is_military && <img alt="This character card includes a military icon" src={militaryIcon}/>}
 				</p>
 			</div>
 			{traits && traits.length > 0 &&

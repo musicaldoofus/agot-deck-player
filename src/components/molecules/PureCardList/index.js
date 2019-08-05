@@ -3,7 +3,9 @@ import Card, { toCard, CardDetails } from '../../atoms/Card';
 import Overlay from '../../molecules/Overlay';
 import './PureCardList.css';
 
-const PureCardList = ({cards, onCardClick}) => cards.map((c, i) => toCard({cardProps: c, ind: i, onClick: onCardClick}));
+const PureCardList = ({cards, onCardClick}) => {
+	return cards.map((c, i) => toCard({cardProps: c, ind: i, onClick: onCardClick}));
+}
 
 class CardListViewer extends Component {
 	constructor(props) {
@@ -22,7 +24,6 @@ class CardListViewer extends Component {
 			gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`,
 			marginLeft: `${-this.props.colSize * this.state.ind}px`
 		};
-		const props = this.props;
 		return (
 			<div className="card-list-viewer">
 				{this.state.ind > 0 && 
@@ -31,7 +32,7 @@ class CardListViewer extends Component {
 					</div>
 				}
 				<div id="card-list" className="card-list" style={viewerStyle}>
-					<PureCardList {...props}/>
+					<PureCardList cards={this.props.cards} onCardClick={this.props.onCardClick}/>
 				</div>
 				<div id="right-side-controls" className="pull-right">
 					{this.props.handleFullscreen &&
@@ -116,7 +117,7 @@ class AreaCardList extends Component {
 		super(props);
 		this.state = {
 			isFullscreen: false,
-			cardStatusList: this.props.cards
+			cardStatusList: this.props.cards.map(c => 'standing')
 		};
 		this.handleFullscreen = this.handleFullscreen.bind(this);
 		this.handleDismissOverlay = this.handleDismissOverlay.bind(this);
@@ -125,7 +126,6 @@ class AreaCardList extends Component {
 	}
 	
 	handleFullscreen() {
-		console.log('handleFullscreen');
 		this.setState({isFullscreen: true});
 	}
 	
@@ -134,24 +134,20 @@ class AreaCardList extends Component {
 	}
 	
 	handleClickCard(card, ind) {
-		// console.log('got', card, ind);
 		const updatedStatus = this.state.cardStatusList[card.cardIndex] === 'knelt' ? 'standing' : 'knelt';
-		// console.log('updatedStat', updatedStatus);
 		const updatedStatusList = this.state.cardStatusList.slice();
-		console.log('updatedStatusList', updatedStatusList);
-		updatedStatusList[ind].cardStatus = updatedStatus;
+		updatedStatusList[ind] = updatedStatus;
 		this.setState({cardStatusList: updatedStatusList});
 	}
 	
 	withStatus(card, i) {
-		if (this.state.cardStatusList.length === 0) return;
 		return Object.assign({}, card, {cardStatus: this.state.cardStatusList[i], cardIndex: i});
 	}
 	
 	render() {
-		const gridStyle = {gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`};
 		const props = this.props;
 		const cards = this.props.cards.map(this.withStatus);
+		// console.log('cards', cards); //not passing to CardListViewer for some reason
 		return (
 			<div className={`board-area ${this.props.areaType}-area`}>
 				<div className="card-list area">
@@ -162,10 +158,11 @@ class AreaCardList extends Component {
 						/>
 					}
 					<CardListViewer
-						handleFullscreen={this.handleFullscreen}
-						onCardClick={this.handleClickCard}
 						cards={cards}
-						{...props}
+						onCardClick={this.handleClickCard}
+						handleFullscreen={this.handleFullscreen}
+						colSize={120}
+						viewerLimit={5}
 					/>
 				</div>
 			</div>

@@ -31,3 +31,9 @@ p {
 .btn {
 	cursor: pointer;
 }
+.pull-top {
+	position: absolute;
+	top: 0;
+	margin-left: 50%;
+	transform: translateX(-50%);
+}

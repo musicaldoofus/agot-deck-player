@@ -10,10 +10,10 @@ class GameBoard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			characterAreaCards: deepClone(this.props.deck.inPlay.characters.active),
+			characterAreaCards: deepClone(this.props.deck.inPlay.characters),
 			plotDeckCards: deepClone(this.props.deck.plotCards.active),
 			plotDeckCardsUsed: deepClone(this.props.deck.plotCards.inactive),
-			locationAreaCards: deepClone(this.props.deck.inPlay.locations.active)
+			locationAreaCards: deepClone(this.props.deck.inPlay.locations)
 		};
 		this.handleUpdatePlotDeck = this.handleUpdatePlotDeck.bind(this);
 	}

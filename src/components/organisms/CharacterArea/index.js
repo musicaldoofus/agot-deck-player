@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AreaCardList from '../../molecules/PureCardList'
 import './CharacterArea.css';
 	
@@ -14,19 +14,19 @@ const BoardArea = ({cards, areaType, label}) =>  {
 	);
 };
 
-const CharacterArea = ({cards}) => (
+const CharacterArea = (props) => (
 	<BoardArea
-		cards={cards}
 		areaType="character"
 		label="Select a character to take action"
+		{...props}
 	/>
 );
 
-const LocationArea = ({cards}) => (
+const LocationArea = (props) => (
 	<BoardArea
-		cards={cards}
 		areaType="location"
 		label="Select a location to take action"
+		{...props}
 	/>
 );
 
