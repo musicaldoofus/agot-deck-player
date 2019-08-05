@@ -17,4 +17,6 @@
 	border: 2px solid #fff;
 	width: 96%;
 	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
 }

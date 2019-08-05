@@ -18,10 +18,13 @@
 	left: 0;
 }	
 .card-list-viewer {
-    display: grid;
 	height: 100%;
 	overflow: hidden;
 	transition: all ease 0.4s;
+	position: relative;
+}
+.card-list {
+    display: grid;
 }
 .expand-btn {
 	
@@ -30,4 +33,26 @@
 	position: absolute;
 	top: 0;
 	right: 0;
+}
+.area > .card-list-viewer > .card-list > .card {
+	max-height: 120px;
+}
+.card-option-buttons {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+#right-side-controls {
+	width: 48px;
+	display: flex;
+	flex-direction: column;
+}
+#right-side-controls > .btn.viewer-btn.right {
+    height: auto;
+    flex-grow: 5;
+    position: relative;
+    width: 100%;
+}
+#left-side-controls {
+	
 }

@@ -6,21 +6,25 @@ class CharacterArea extends Component {
 	constructor(props) {
 		super(props);
 		this.handleCardOnClick = this.handleCardOnClick.bind(this);
+		// this.handleToggleFullscreen = this.handleToggleFullscreen.bind(this);
 	}
+	
+	// handleToggleFullscreen() {
+		// this.setState({
+			// isFullscreen: !this.state.isFullscreen,
+		// });
+	// }
 	
 	handleCardOnClick(card) {
 		// console.log(card);
 	}
 	
-	handleDismissOverlay() {
-		
-	}
-	
 	render() {
+		const cards = this.props.cards.map(c => c);
 		return (
 			<div className="board-area character-area">
 				<AreaCardList
-					cards={this.props.cards}
+					cards={cards}
 					onCardClick={this.handleCardOnClick}
 					viewerLimit={5}
 					colSize={120}

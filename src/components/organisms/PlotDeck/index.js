@@ -11,6 +11,7 @@ class PlotDeck extends Component {
 		};
 		this.handleToggleFullscreen = this.handleToggleFullscreen.bind(this);
 		this.handleSelectCard = this.handleSelectCard.bind(this);
+		this.handleRemoveCard = this.handleRemoveCard.bind(this);
 	}
 	
 	handleToggleFullscreen() {
@@ -20,10 +21,25 @@ class PlotDeck extends Component {
 	}
 	
 	handleSelectCard(c) {
+		this.setState({isFullscreen: false});
+		this.props.onSelectCard(c);
+	}
+	
+	handleRemoveCard(c) {
 		// console.log('got', c);
 	}
 		
 	render() {
+		const cardOptions = [
+			{
+				label: 'Select Plot card',
+				optionCallback: this.handleSelectCard
+			},
+			{
+				label: 'Remove this Plot card',
+				optionCallback: this.handleRemoveCard
+			}
+		];
 		return (
 			<div className="board-area plot-deck">
 				{this.state.isFullscreen && 
@@ -33,6 +49,7 @@ class PlotDeck extends Component {
 						onSelectCard={this.handleSelectCard}
 						label="Select a Plot card from your Plot deck to play"
 						viewerLimit={3}
+						cardOptions={cardOptions}
 					/>
 				}
 				<CardPileBtn

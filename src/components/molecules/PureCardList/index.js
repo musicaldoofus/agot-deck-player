@@ -14,24 +14,34 @@ class CardListViewer extends Component {
 	}
 	
 	handleIndexUpdate(amt) {
-		this.setState({ind: this.state.ind + amt}, () => console.log(this.state));
+		this.setState({ind: this.state.ind + amt});
 	}
 	
 	render() {
+		console.log('this.props', this.props);
 		const viewerStyle = {
 			gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`,
 			marginLeft: `${-this.props.colSize * this.state.ind}px`
 		};
 		const props = this.props;
 		return (
-			<div className="card-list-viewer" style={viewerStyle}>
+			<div className="card-list-viewer">
 				{this.state.ind > 0 && 
-					<button className="btn viewer-btn left" onClick={() => this.handleIndexUpdate(-1)}>&larr;</button>
+					<div id="left-side-controls">
+						<button className="btn viewer-btn left" onClick={() => this.handleIndexUpdate(-1)}>&larr;</button>
+					</div>
 				}
-				<PureCardList {...props}/>
-				{this.props.cards.length >= this.props.viewerLimit && this.state.ind < (this.props.cards.length - 1) && 
-					<button className="btn viewer-btn right" onClick={() => this.handleIndexUpdate(1)}>&rarr;</button>
-				}
+				<div id="card-list" className="card-list" style={viewerStyle}>
+					<PureCardList {...props}/>
+				</div>
+				<div id="right-side-controls" className="pull-right">
+					{this.props.handleFullscreen &&
+						<button onClick={this.props.handleFullscreen}>Expand</button>
+					}
+					{this.props.cards.length >= this.props.viewerLimit && this.state.ind < (this.props.cards.length - 1) && 
+						<button className="btn viewer-btn right" onClick={() => this.handleIndexUpdate(1)}>&rarr;</button>
+					}
+				</div>
 			</div>
 		);
 	}
@@ -57,13 +67,16 @@ class OverlayCardList extends Component {
 	}
 	
 	handleFocusCard(focusCard) {
-		this.setState({focusCard}, () => console.log(this.state));
+		this.setState({focusCard});
 	}
 	
 	render() {
-		const props = this.props;
-		const cardProps = this.state.focusCard ? this.state.focusCard : null;
-		const cardOptionButtons = this.props.cardOptions ? this.props.cardOptions.map((o, i) => <button key={i} onClick={o.optionCallback}>{o.label}</button>) : null;
+		const props = this.props; //allow passthrough props to child component
+		const cardProps = this.state.focusCard ? this.state.focusCard : null; //allow passthrough props to child component
+		const cardOptionButtons = this.props.cardOptions ?
+			this.props.cardOptions.map(
+				(o, i) => <button key={i} onClick={() => o.optionCallback(cardProps)}>{o.label}</button>)
+			: null;
 		return (
 			<Overlay>
 				<div className="overlay-label">
@@ -71,12 +84,16 @@ class OverlayCardList extends Component {
 				</div>
 				{this.state.focusCard ?(
 					<Fragment>
-						<button onClick={this.handleUnfocusCard}>Back</button>
-						<Card
-							className="focus-card"
-							{...cardProps}
-						/>
-						{cardOptionButtons}
+						<div style={{display: 'flex'}}>
+							<Card
+								className="focus-card"
+								{...cardProps}
+							/>
+							<div className="card-option-buttons">
+								<button onClick={this.handleUnfocusCard}>&larr; Back to list</button>
+								{cardOptionButtons}
+							</div>
+						</div>
 					</Fragment>
 					) : (
 					<CardListViewer
@@ -102,6 +119,7 @@ class AreaCardList extends Component {
 	}
 	
 	handleFullscreen() {
+		console.log('handleFullscreen');
 		this.setState({isFullscreen: true});
 	}
 	
@@ -113,17 +131,14 @@ class AreaCardList extends Component {
 		const gridStyle = {gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`};
 		const props = this.props;
 		return (
-			<div className="card-list area" style={gridStyle}>
+			<div className="card-list area">
 				{this.state.isFullscreen &&
 					<OverlayCardList
 						{...props}
 						onDismiss={this.handleDismissOverlay}
 					/>
 				}
-				<CardListViewer {...props}/>
-				<div>
-					<button onClick={this.handleFullscreen}>Expand</button>
-				</div>
+				<CardListViewer handleFullscreen={this.handleFullscreen} {...props}/>
 			</div>
 		);
 	}
