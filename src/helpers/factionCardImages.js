@@ -12,7 +12,7 @@ const factionCardImages = {
 	tyrell: tyrellFaction,
 	targaryen: targaryenFaction,
 	stark: starkFaction,
-	nights: nightsWatchFaction,
+	thenightswatch: nightsWatchFaction,
 	martell: martellFaction,
 	lannister: lannisterFaction,
 	greyjoy: greyjoyFaction

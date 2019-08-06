@@ -11,6 +11,7 @@ Conditionally display an agenda card (optional second item in cards list prop)
 class FactionArea extends Component {
 	constructor(props) {
 		super(props);
+		console.log('FactionArea', props);
 		this.state = {
 			isFullscreen: false
 		};

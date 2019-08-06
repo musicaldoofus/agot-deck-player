@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router-dom';
-import getFromAPI from './helpers/getFromAPI';
 import Root from './components/pages/Root';
 import Play from './components/pages/Play';
 import './App.css';
@@ -17,23 +16,28 @@ const withBrowserRouter = (routes) => (
 	</Router>
 );
 
-const App = () => {
-	const cards = getFromAPI({type: 'cards', id: 0});
-	const routes = (
-		<Switch>
-			<Route
-				exact
-				path="/"
-				render={(props) => <Root {...props}/>}
-			/>
-			<Route
-				path="/play"
-				render={(props) => <Play deck={cards} {...props}/>}
-			/>
-		</Switch>
-	);
-	if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes);
-	else return withBrowserRouter(routes);
+class App extends Component {
+	constructor() {
+		super();
+	}
+	
+	render() {
+		const routes = (
+			<Switch>
+				<Route
+					exact
+					path="/"
+					component={Root}
+				/>
+				<Route
+					path="/play"
+					component={Play}
+				/>
+			</Switch>
+		);
+		if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes);
+		else return withBrowserRouter(routes);
+	}
 }
 
 export default App;

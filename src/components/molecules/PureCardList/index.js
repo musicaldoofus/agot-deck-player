@@ -21,6 +21,7 @@ class CardListViewer extends Component {
 	}
 	
 	render() {
+		// console.log('<CardListViewer> render', this.props);
 		const viewerStyle = {
 			gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`,
 			marginLeft: `${-this.props.colSize * this.state.ind}px`

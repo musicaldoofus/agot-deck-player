@@ -11,9 +11,9 @@ class Root extends Component {
 		};
 	}
 	
-	componentDidMount() {
+	// componentDidMount() {
 		// console.log('mounted <Root>', this.props);
-	}
+	// }
 	
 	render() {
 		return (

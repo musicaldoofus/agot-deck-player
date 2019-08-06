@@ -12,20 +12,24 @@ import './GameBoard.css';
 class GameBoard extends Component {
 	constructor(props) {
 		super(props);
-		const deck = deepClone(this.props.deck);
+		console.log('GB', props.deck.cardList);
 		this.state = {
-			faction: this.props.deck.faction,
-			agendaCard: deck.agendaCard,
-			characterAreaCards: deck.inPlay.characters,
-			plotDeckCards: deck.plotCards.active,
-			plotDeckCardsUsed: deck.plotCards.inactive,
-			locationAreaCards: deck.inPlay.locations,
-			drawDeckCards: deck.drawDeckCards,
-			discardPileCards: deck.discardPile
+			faction: this.props.deck.faction_code,
+			agendaCard: this.props.deck.agendas[0], //app is only handling single agenda for MVP
+			characterAreaCards: [],
+			plotDeckCards: this.props.deck.cardList.plot,
+			plotDeckCardsUsed: [],
+			locationAreaCards: [],
+			drawDeckCards: [],
+			discardPileCards: []
 		};
+		console.log(this.state);
 		this.handleUpdatePlotDeck = this.handleUpdatePlotDeck.bind(this);
 		this.handleUpdateDiscardPile = this.handleUpdateDiscardPile.bind(this);
-		this.updateOrientation = this.updateOrientation.bind(this);
+	}
+	
+	componentDidUpdate(prevProps, prevState) {
+		console.log('GameBoard didUpdate()', this.props);
 	}
 	
 	handleUpdatePlotDeck(card, action = 'play') {
@@ -40,22 +44,12 @@ class GameBoard extends Component {
 		
 	}
 	
-	updateOrientation(e) {
-		// console.log(e);
-		const orientation = isPortrait() ? 'portrait' : 'landscape';
-		this.setState({orientation});
-	}
-	
-	componentDidMount() {
-		window.addEventListener('resize deviceorientation', this.updateOrientation);
-	}
-	
 	render() {
 		return (
 			<div className={`game-board ${this.state.orientation}`}>
 				<HUD/>
 				<FactionArea
-					faction={this.props.deck.faction}
+					faction={this.state.faction}
 					agenda={this.state.agendaCard ? this.state.agendaCard : null}
 				/>
 				<CharacterArea
