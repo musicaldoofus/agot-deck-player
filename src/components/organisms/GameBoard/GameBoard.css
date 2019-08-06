@@ -54,3 +54,19 @@
 	top: 0;
 	right: 0;
 }
+
+/*portrait*/
+
+@media (orientation: portrait) {
+	.focus-card-container {
+		grid-template-columns: 1fr;
+		overflow-y: scroll;
+	}
+	.overlay .card {
+		margin: auto;
+		height: 100%;
+	}
+	.overlay .card-list-viewer > .card-list {
+		grid-template-columns: 1fr !important;
+	}
+}

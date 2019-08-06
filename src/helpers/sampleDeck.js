@@ -342,9 +342,9 @@ const sampleDeck = {
 		],
 	},
 	currentHand: [],
-	currentDrawDeck: [],
-	currentDeadPile: [],
-	currentDiscardPile: []
+	drawDeck: [],
+	deadPile: [],
+	discardPile: []
 }
 
 export default sampleDeck;
