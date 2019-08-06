@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f601605bf836853e3e28cccedd23db9c",
+    "revision": "f7bf8f57a83ea1589848535234622818",
     "url": "/agot-deck-player/index.html"
   },
   {
-    "revision": "e5f375f8b8d7efdcc2e6",
-    "url": "/agot-deck-player/static/css/main.0760feea.chunk.css"
+    "revision": "bebc94c7e274188df4fc",
+    "url": "/agot-deck-player/static/css/main.b04d8459.chunk.css"
   },
   {
     "revision": "18cb88ed918049c06788",
     "url": "/agot-deck-player/static/js/2.b59667b2.chunk.js"
   },
   {
-    "revision": "e5f375f8b8d7efdcc2e6",
-    "url": "/agot-deck-player/static/js/main.e477d9ba.chunk.js"
+    "revision": "bebc94c7e274188df4fc",
+    "url": "/agot-deck-player/static/js/main.57efa745.chunk.js"
   },
   {
     "revision": "88cdf32a727b3cc42089",
