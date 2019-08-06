@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import Card, { toCard, CardDetails } from '../../atoms/Card';
+import React, { Component } from 'react';
+import Card, { toCard } from '../../atoms/Card';
+import CardDetails from '../../atoms/CardDetails';
 import Overlay from '../../molecules/Overlay';
 import './PureCardList.css';
 
@@ -47,6 +48,27 @@ class CardListViewer extends Component {
 	}
 }
 
+const FocusCard = ({cardProps, cardOptions, handleUnfocusCard}) => {
+	const cardOptionButtons = cardOptions ?
+		cardOptions.map(
+			(o, i) => <button key={i} onClick={() => o.optionCallback(cardProps)}>{o.label}</button>)
+		: null;
+	return (
+		<div className="focus-card-container">
+			<Card
+				{...cardProps}
+			/>
+			<div className="card-option-buttons">
+				<div className="card-option-buttons">
+					<button onClick={handleUnfocusCard}>&larr; Back to list</button>
+					{cardOptionButtons}
+				</div>
+				<CardDetails {...cardProps}/>
+			</div>
+		</div>
+	);
+}
+
 class OverlayCardList extends Component {
 	constructor(props) {
 		super(props);
@@ -73,32 +95,21 @@ class OverlayCardList extends Component {
 	render() {
 		const props = this.props; //allow passthrough props to child component
 		const cardProps = this.state.focusCard ? this.state.focusCard : null; //allow passthrough props to child component
-		const cardOptionButtons = this.props.cardOptions ?
-			this.props.cardOptions.map(
-				(o, i) => <button key={i} onClick={() => o.optionCallback(cardProps)}>{o.label}</button>)
-			: null;
+		// const cardOptionButtons = this.props.cardOptions ?
+			// this.props.cardOptions.map(
+				// (o, i) => <button key={i} onClick={() => o.optionCallback(cardProps)}>{o.label}</button>)
+			// : null;
 		return (
 			<Overlay>
 				<div className="overlay-label">
 					<h3>{this.props.label}</h3>
 				</div>
-				{this.state.focusCard ?(
-					<Fragment>
-						<div style={{display: 'grid', gridTemplateColumns: '3fr 2fr'}}>
-							<Card
-								className="focus-card"
-								{...cardProps}
-							/>
-							<div className="card-option-buttons">
-								<div className="card-option-buttons">
-									<button onClick={this.handleUnfocusCard}>&larr; Back to list</button>
-									{cardOptionButtons}
-								</div>
-								<CardDetails {...cardProps}/>
-							</div>
-							
-						</div>
-					</Fragment>
+				{this.state.focusCard ? (
+					<FocusCard
+						cardProps={cardProps}
+						cardOptions={this.props.cardOptions}
+						handleUnfocusCard={this.handleUnfocusCard}
+					/>
 					) : (
 					<CardListViewer
 						{...props}
@@ -147,7 +158,6 @@ class AreaCardList extends Component {
 	render() {
 		const props = this.props;
 		const cards = this.props.cards.map(this.withStatus);
-		// console.log('cards', cards); //not passing to CardListViewer for some reason
 		return (
 			<div className={`board-area ${this.props.areaType}-area`}>
 				<div className="card-list area">

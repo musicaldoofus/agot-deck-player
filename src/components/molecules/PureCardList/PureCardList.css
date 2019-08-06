@@ -58,3 +58,7 @@
 .card-data img {
 	max-width: 16px;
 }
+.focus-card-container {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
