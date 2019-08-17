@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router-dom';
 import Root from './components/pages/Root';
+import Get from './components/pages/Get';
 import Play from './components/pages/Play';
 import './App.css';
 
@@ -23,6 +24,10 @@ const App = () => {
 				exact
 				path="/"
 				component={Root}
+			/>
+			<Route
+				path="/get"
+				component={Get}
 			/>
 			<Route
 				path="/play"

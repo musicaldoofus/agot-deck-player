@@ -51,20 +51,6 @@ class GameBoard extends Component {
 	}
 	
 	handlePutCardInArea(cardList, source, action) {
-		// let gameTargets = {
-			// character: {
-				// play: 'characterAreaCards',
-				// discard: 'discardPileCards'
-			// },
-			// event: 'discardPileCards',
-			// location: {
-				// play: 'locationAreaCards',
-				// discard: 'discardPileCards'
-			// }
-		// };
-		// const type = cardList[0].type_code; //extend to allow multiple cards to be processed in same action
-		// const handCards = this.state.handCards
-			// .filter(hKey => hKey.cardKey !== cardList.cardKey);
 		this.setState({
 			
 		}, () => this.props.handleGameStateUpdate(this.state));

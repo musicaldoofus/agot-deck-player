@@ -19,6 +19,7 @@ class Root extends Component {
 		return (
 			<Page title="Play">
 				<h1>Root</h1>
+				<Link to="/get">Get decks</Link>
 				<Link to="/play">Play</Link>
 			</Page>
 		);
