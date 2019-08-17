@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router-dom';
 import Root from './components/pages/Root';
 import Play from './components/pages/Play';
@@ -16,28 +16,22 @@ const withBrowserRouter = (routes) => (
 	</Router>
 );
 
-class App extends Component {
-	constructor() {
-		super();
-	}
-	
-	render() {
-		const routes = (
-			<Switch>
-				<Route
-					exact
-					path="/"
-					component={Root}
-				/>
-				<Route
-					path="/play"
-					component={Play}
-				/>
-			</Switch>
-		);
-		if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes);
-		else return withBrowserRouter(routes);
-	}
+const App = () => {
+	const routes = (
+		<Switch>
+			<Route
+				exact
+				path="/"
+				component={Root}
+			/>
+			<Route
+				path="/play"
+				component={Play}
+			/>
+		</Switch>
+	);
+	if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes); //required to work in gh-pages
+	else return withBrowserRouter(routes);
 }
 
 export default App;

@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import intrigueIcon from '../../../media/intrigue-icon.png';
 import militaryIcon from '../../../media/intrigue-icon.png';
 import powerIcon from '../../../media/intrigue-icon.png';
+import './CardDetails.css';
 
 const CharacterCardDetails = ({faction_name, is_loyal, cost, strength, type_name, is_intrigue, is_power, is_military, traits, text}) => (
-	<div id="card-data" className="card-data">
+	<div className="character-details">
 		<div>
 			<p>{faction_name}. {is_loyal ? 'Loyal' : 'Non-loyal'}.</p>
 		</div>
@@ -27,17 +29,17 @@ const CharacterCardDetails = ({faction_name, is_loyal, cost, strength, type_name
 		}
 		{text &&
 			<div>
-				{text}
+				<ReactMarkdown
+					source={text}
+					escapeHtml={false}
+				/>
 			</div>
 		}
 	</div>
 );
 
-const AgendaCardDetails = ({label, faction_name, traits, text}) => (
-	<div id="card-data" className="card-data">
-		<div>
-			<h3>{label}</h3>
-		</div>
+const AgendaCardDetails = ({faction_name, traits, text}) => (
+	<div className="agenda-details">
 		<div>
 			<p>{faction_name}</p>
 		</div>
@@ -53,51 +55,65 @@ const AgendaCardDetails = ({label, faction_name, traits, text}) => (
 	</div>
 );
 
-const PlotCardDetails = ({label, income, initiative, claim, reserve, deck_limit, traits, text}) => (
-	<div id="card-data" className="card-data">
-		<div id="plot-card-label">
-			<h3>{label}</h3>
+const PlotCardDetails = ({income, initiative, claim, reserve, deck_limit, traits, text}) => {
+	console.log(text);
+	return (
+		<div className="plot-details">
+			<div id="plot-card-stats">
+				<p>
+					<b>Plot.</b>
+					Income: {income}. Initiative: {initiative}. Claim: {claim}. Reserve: {reserve}.{deck_limit > 0 ? ` Plot deck limit: ${deck_limit}` : null}
+				</p>
+			</div>
+			<div id="plot-card-traits">
+				<p>{traits}</p>
+			</div>
+			<div id="plot-card-text">
+				<ReactMarkdown
+					source={text}
+					escapeHtml={false}
+				/>
+			</div>
 		</div>
-		<div id="plot-card-stats">
-			<p>
-				<b>Plot.</b>
-				Income: {income}. Initiative: {initiative}. Claim: {claim}. Reserve: {reserve}.{deck_limit > 0 ? ` Plot deck limit: ${deck_limit}` : null}
-			</p>
+	);
+}
+
+const LocationCardDetails = ({faction_name, cost, traits, is_limited, text}) => (
+	<div className="location-details">
+		<div>
+			{faction_name}
 		</div>
-		<div id="plot-card-traits">
-			<p>{traits}</p>
+		<div>
+			{cost}
 		</div>
-		<div id="plot-card-text">
-			{text ? text: null}
+		<div>
+			{traits}
+		</div>
+		<div>
+			{text}
 		</div>
 	</div>
 );
 
-const LocationCardDetails = ({}) => (
-	<div id="card-data" className="card-data">
+const AttachmentCardDetails = ({faction_name, cost, traits, text}) => (
+	<div className="attachment-details">
 		<div>
-		
+			{faction_name}
 		</div>
 		<div>
-		
+			{cost}
 		</div>
 		<div>
-		
+			{traits}
 		</div>
 		<div>
-		
+			{text}
 		</div>
 	</div>
 );
 
-const AttachmentCardDetails = ({}) => (
-	<div id="card-data" className="card-data">
-		
-	</div>
-);
-
-const CardDetails = ({type_code, label, ...rest}) => (
-	<div className="card-data" id="card-data">
+const CardDetails = ({type_code, label, url, ...rest}) => (
+	<div className="card-details">
 		<div>
 			<h3>{label}</h3>
 		</div>
@@ -106,6 +122,9 @@ const CardDetails = ({type_code, label, ...rest}) => (
 		{type_code === 'plot' && <PlotCardDetails {...rest}/>}
 		{type_code === 'location' && <LocationCardDetails {...rest}/>}
 		{type_code === 'attachment' && <AttachmentCardDetails {...rest}/>}
+		<div>
+			<p><a href={url} rel="noopener noreferrer" target="_blank">Go to card page.</a></p>
+		</div>
 	</div>
 );
 

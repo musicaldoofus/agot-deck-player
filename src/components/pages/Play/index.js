@@ -9,14 +9,16 @@ class Play extends Component {
 	constructor() {
 		super();
 		this.state = {
-			deck: undefined
+			deck: undefined,
+			gameStates: []
 		};
 		this.onDeckLoaded = this.onDeckLoaded.bind(this);
 		this.handleFullscreen = this.handleFullscreen.bind(this);
+		this.handleGameStateUpdate = this.handleGameStateUpdate.bind(this);
 	}
 	
 	onDeckLoaded(deck) {
-		console.log('Play', deck);
+		// console.log('deck', Object.keys(deck));
 		this.setState({deck});
 	}
 	
@@ -28,14 +30,21 @@ class Play extends Component {
 		document.documentElement.requestFullscreen();
 	}
 	
+	handleGameStateUpdate(state) {
+		//extend - add a unique key (e.g. hash fn) to allow targeting specific states to step back
+		this.setState({gameStates: this.state.gameStates.concat(state)});
+	}
+	
 	render() {
-		console.log('render', this.props.deck);
 		return (
 			<Page title="Play">
 				<button className="btn pull-top" onClick={this.handleFullscreen}>Fullscreen</button>
 					{!this.state.deck ?
 						<Loading/>
-						: <GameBoard deck={this.state.deck}/>
+						: <GameBoard
+							deck={this.state.deck}
+							handleGameStateUpdate={this.handleGameStateUpdate}
+						/>
 					}
 			</Page>
 		);

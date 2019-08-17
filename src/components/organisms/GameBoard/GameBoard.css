@@ -37,7 +37,7 @@
 .board-area.faction-card > div {
   display: flex;
 }
-.board-area.draw-deck {
+.board-area.draw-pile {
   grid-column: 5 / 6;
   grid-row: 4 / 6;
 }
