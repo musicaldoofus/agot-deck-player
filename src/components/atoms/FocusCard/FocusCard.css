@@ -1,1 +1,14 @@
 /*FocusCard.css*/
+.focus-card-container {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+.focus-card-container > .card > img {
+    width: 100%;
+}
+.plot-deck > .overlay-container > .overlay > .focus-card-container {
+    grid-template-columns: 3fr 2fr;
+}
+.plot-deck-used > .overlay-container > .overlay > .focus-card-container {
+    grid-template-columns: 3fr 2fr;
+}

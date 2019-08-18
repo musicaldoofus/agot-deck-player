@@ -8,3 +8,29 @@
 .card-list {
     display: grid;
 }
+.viewer-btn.right {
+	right: 0;
+}
+.viewer-btn.left {
+	left: 0;
+}	
+.dismiss-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.card-option-buttons {
+	display: flex;
+	flex-direction: column;
+}
+#right-side-controls {
+	width: 48px;
+	display: flex;
+	flex-direction: column;
+}
+#right-side-controls > .btn.viewer-btn.right {
+    height: auto;
+    flex-grow: 5;
+    position: relative;
+    width: 100%;
+}
