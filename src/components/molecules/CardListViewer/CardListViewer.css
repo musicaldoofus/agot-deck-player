@@ -1,1 +1,10 @@
 /*CardListViewer.css*/
+.card-list-viewer {
+	height: 100%;
+	overflow: hidden;
+	transition: all ease 0.4s;
+	position: relative;
+}
+.card-list {
+    display: grid;
+}

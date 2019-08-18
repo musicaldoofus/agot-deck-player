@@ -20,6 +20,7 @@ class GetDecks extends Component {
 		this.handleSearch = this.handleSearch.bind(this);
 		this.updateDecklistCache = this.updateDecklistCache.bind(this);
 		this.handleClickDecklist = this.handleClickDecklist.bind(this);
+		this.handleDismiss = this.handleDismiss.bind(this);
 	}
 	
 	componentDidMount() {
@@ -56,6 +57,10 @@ class GetDecks extends Component {
 		}
 		console.log('focusDeck id set to', focusDeck);
 		this.setState({focusDeck});
+	}
+	
+	handleDismiss() {
+		this.setState({focusDeck: null});
 	}
 	
 	render() {
@@ -105,6 +110,7 @@ class GetDecks extends Component {
 					<OverlayCardList
 						label=""
 						cards={this.state.decklistCache[this.state.focusDeck].cardList}
+						onDismiss={this.handleDismiss}
 					/>
 				}
 			</div>
