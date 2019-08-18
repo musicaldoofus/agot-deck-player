@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { OverlayCardList } from '../../molecules/PureCardList';
+import OverlayCardList from '../OverlayCardList';
 import factionCardImages from '../../../helpers/factionCardImages';
 import './FactionArea.css';
 

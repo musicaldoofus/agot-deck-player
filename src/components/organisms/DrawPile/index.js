@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardPileBtn from '../../atoms/CardPileBtn';
-import { OverlayCardList } from '../../molecules/PureCardList';
+import OverlayCardList from '../OverlayCardList';
 import './DrawPile.css';
 
 /*

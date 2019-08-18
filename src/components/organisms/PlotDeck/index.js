@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardPileBtn from '../../atoms/CardPileBtn';
-import { OverlayCardList } from '../../molecules/PureCardList';
+import OverlayCardList from '../OverlayCardList';
 import './PlotDeck.css';
 
 class PlotDeck extends Component {
