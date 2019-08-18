@@ -12,21 +12,22 @@ class GetDecks extends Component {
 		this.state = {
 			searchInput: '',
 			decklistCache: [],
+			recentlySearchedLimit: 0,
 			focusDeck: null,
 			startingFocusIndex: 0
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
-		this.handleSearchCallback = this.handleSearchCallback.bind(this);
+		this.updateDecklistCache = this.updateDecklistCache.bind(this);
 		this.handleClickDecklist = this.handleClickDecklist.bind(this);
 	}
 	
 	componentDidMount() {
-		//load recently searched decks from DB
 		const recentlySearched = getFromDB('recentlySearched');
-		//get default decks to browse (extend via search API from thronesDB)
-		
-		//add to this.state.decklistCache
+		this.setState({
+			decklistCache: this.state.decklistCache.concat(recentlySearched),
+			recentlySearchedLimit: recentlySearched.length
+		});
 	}
 	
 	handleInputChange(e) {
@@ -35,10 +36,10 @@ class GetDecks extends Component {
 	
 	handleSearch(e) {
 		e.preventDefault();
-		getDeckFromAPI({id: this.state.searchInput}, this.handleSearchCallback);
+		getDeckFromAPI({id: this.state.searchInput}, this.updateDecklistCache);
 	}
 	
-	handleSearchCallback(deck) {
+	updateDecklistCache(deck) {
 		this.setState({decklistCache: this.state.decklistCache.concat(deck)});
 		let recentlySearched = getFromDB('recentlySearched');
 		if (recentlySearched === null) recentlySearched = [];
@@ -46,16 +47,31 @@ class GetDecks extends Component {
 		putToDB('recentlySearched', recentlySearched.concat(deck));
 	}
 	
-	handleClickDecklist(focusDeck) {
+	handleClickDecklist(deckId) {
+		console.log('got', deckId);
+		let focusDeck;
+		for (let i = 0; i < this.state.decklistCache.length; i++) {
+			console.log(this.state.decklistCache[i]);
+			if (this.state.decklistCache[i].id === deckId) focusDeck = i;
+		}
+		console.log('focusDeck id set to', focusDeck);
 		this.setState({focusDeck});
 	}
 	
 	render() {
-		const deckListResults = this.state.decklistCache.map((deck, i) => (
+		const deckListResults = this.state.decklistCache.slice(this.state.recentlySearchedLimit, this.state.decklistCache.length - 1).map((deck, i) => (
 			<div key={i} id={`search-result-decklist-${deck.id}`}>
 				<CardPileBtn
 					imgSrc={factionCardImages[deck.faction_code]}
-					onClick={() => this.handleClickDecklist(i)}
+					onClick={() => this.handleClickDecklist(deck.id)}
+				/>
+			</div>
+		));
+		const recentlySearched = this.state.decklistCache.slice(0, this.state.recentlySearchedLimit).map((deck, i) => (
+			<div key={i} id={`search-result-decklist-${deck.id}`}>
+				<CardPileBtn
+					imgSrc={factionCardImages[deck.faction_code]}
+					onClick={() => this.handleClickDecklist(deck.id)}
 				/>
 			</div>
 		));
@@ -73,11 +89,21 @@ class GetDecks extends Component {
 					</label>
 					<button type="submit" onClick={this.handleSearch}>Search</button>
 				</form>
-				<div id="search-results" style={{display: 'grid', gridTemplateColumns: 'repeat(3, auto)'}}>
-					{this.state.decklistCache.length > 0 && deckListResults}
+				<div id="search-results">
+					<h1>Decklist search results</h1>
+					<div style={{display: 'grid', gridTemplateColumns: 'repeat(3, auto)'}}>
+						{this.state.decklistCache.length > 0 && deckListResults}
+					</div>
+				</div>
+				<div id="recently-searched">
+					<h1>Recently searched decklists</h1>
+					<div>
+						{recentlySearched}
+					</div>
 				</div>
 				{this.state.focusDeck !== null &&
 					<OverlayCardList
+						label=""
 						cards={this.state.decklistCache[this.state.focusDeck].cardList}
 					/>
 				}

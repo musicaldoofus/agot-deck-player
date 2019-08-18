@@ -47,7 +47,7 @@ class CardListViewer extends Component {
 									key={i}
 									onClick={() => this.handleFilterUpdate(type)}
 								>
-									{type.charAt(0).toUpperCase().concat(type.subStr(1))}
+									{type.charAt(0).toUpperCase().concat(type.substring(1))}
 								</button>
 							))
 						}
@@ -60,7 +60,7 @@ class CardListViewer extends Component {
 					{this.props.handleFullscreen &&
 						<button onClick={this.props.handleFullscreen}>Expand</button>
 					}
-					{this.props.cards.length >= this.props.viewerLimit && this.state.ind < (this.props.cards.length - 1) && 
+					{viewableCardList.length >= this.props.viewerLimit && this.state.ind < (viewableCardList.length - 1) && 
 						<button className="btn viewer-btn right" onClick={() => this.handleIndexUpdate(1)}>&rarr;</button>
 					}
 				</div>
