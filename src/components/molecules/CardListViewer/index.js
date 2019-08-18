@@ -9,10 +9,16 @@ const PureCardList = ({cards, onCardClick}) => {
 class CardListViewer extends Component {
 	constructor(props) {
 		super(props);
+		this.hasTypes = !Array.isArray(this.props.cards);
 		this.state = {
-			focusCardListType: null,
+			focusCardListType: this.hasTypes ? Object.keys(this.props.cards)[0] : null,
 			ind: 0
 		};
+		this.handleFilterUpdate = this.handleFilterUpdate.bind(this);
+	}
+	
+	handleFilterUpdate(focusCardListType) {
+		this.setState({focusCardListType});
 	}
 	
 	handleIndexUpdate(amt) {
@@ -25,6 +31,7 @@ class CardListViewer extends Component {
 			gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`,
 			marginLeft: `${-this.props.colSize * this.state.ind}px`
 		};
+		const viewableCardList = this.hasTypes ? this.props.cards[this.state.focusCardListType] : this.props.cards;
 		return (
 			<div className="card-list-viewer">
 				{this.state.ind > 0 && 
@@ -32,8 +39,22 @@ class CardListViewer extends Component {
 						<button className="btn viewer-btn left" onClick={() => this.handleIndexUpdate(-1)}>&larr;</button>
 					</div>
 				}
+				{this.hasTypes &&
+					<div id="card-list-filters">
+						{Object.keys(this.props.cards)
+							.map((type, i) => (
+								<button
+									key={i}
+									onClick={() => this.handleFilterUpdate(type)}
+								>
+									{type.charAt(0).toUpperCase().concat(type.subStr(1))}
+								</button>
+							))
+						}
+					</div>
+				}
 				<div id="card-list" className="card-list" style={viewerStyle}>
-					<PureCardList cards={this.props.cards} onCardClick={this.props.onCardClick}/>
+					<PureCardList cards={viewableCardList} onCardClick={this.props.onCardClick}/>
 				</div>
 				<div id="right-side-controls" className="pull-right">
 					{this.props.handleFullscreen &&
