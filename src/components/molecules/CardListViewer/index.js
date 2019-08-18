@@ -10,6 +10,7 @@ class CardListViewer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			focusCardListType: null,
 			ind: 0
 		};
 	}

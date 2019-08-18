@@ -20,12 +20,17 @@ const getFromAPI = ({type, id, scope = 'public', format = '.json'} = {}) => { //
 	});
 };
 
-const deckFromLocalStorage = window.localStorage.getItem('localDecklist');
+// const deckFromLocalStorage = window.localStorage.getItem('localDecklist');
 
 let localDecklist = {};
 
+let keyMemo = [];
+
 const getUniqueKey = () => {
-	return 100 * Math.random();
+	let newKey = 100 * Math.random();
+	if (keyMemo.indexOf(newKey) > -1) newKey = newKey * 2;
+	keyMemo.push(newKey);
+	return newKey;
 }
 
 /*
@@ -35,10 +40,10 @@ todo:
 */
 
 const getDeckFromAPI = (params, componentCallback) => {
-	if (deckFromLocalStorage !== null) {
-		componentCallback(JSON.parse(deckFromLocalStorage));
-		return;
-	}
+	// if (deckFromLocalStorage !== null) {
+		// componentCallback(JSON.parse(deckFromLocalStorage));
+		// return;
+	// }
 	return getFromAPI(Object.assign(params, {type: 'decklist'}))
 		.then(deck => {
 			deck = JSON.parse(deck);
