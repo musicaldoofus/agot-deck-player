@@ -2,6 +2,7 @@
 .card {
 	transition: all ease 0.2s;
 	height: 300px;
+	cursor: pointer;
 }
 .card.knelt {
 	transform: rotate(0.25turn) translateX(32px);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+	import React, { Component } from 'react';
 import CardPileBtn from '../../../atoms/CardPileBtn';
 import OverlayCardList from '../../../organisms/OverlayCardList';
 import getDeckFromAPI from '../../../../helpers/getFromAPI';

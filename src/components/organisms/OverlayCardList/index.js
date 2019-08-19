@@ -38,19 +38,18 @@ class OverlayCardList extends Component {
 				<div className="overlay-label">
 					<h3>{this.props.label}</h3>
 				</div>
-				{this.state.focusCard ? (
+				{this.state.focusCard && 
 					<FocusCard
 						cardProps={cardProps}
 						cardOptions={this.props.cardOptions}
 						handleUnfocusCard={this.handleUnfocusCard}
 					/>
-					) : (
-					<CardListViewer
-						{...props}
-						onCardClick={this.handleFocusCard}
-						colSize={240}
-					/>
-				)}
+				}
+				<CardListViewer
+					{...props}
+					onCardClick={this.handleFocusCard}
+					colSize={240}
+				/>
 				<button className="dismiss-btn" onClick={this.handleDismiss}>Dismiss</button>
 			</Overlay>
 		);
