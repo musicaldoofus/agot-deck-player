@@ -4,17 +4,17 @@ import GetCards from './GetCards';
 import GetDecks from './GetDecks';
 
 const Get = (props) => {
-	console.log('<Get>', props);
+	// console.log('<Get>', props);
 	return (
 		<Fragment>
 			<Route
 				exact
 				path={props.match.url}
-				render={(prop) => <Redirect to={`${props.match.url}/decks`}/>}
+				render={(p) => <Redirect to={`${p.match.url}/decks`}/>}
 			/>
 			<Route
 				path={`${props.match.url}/decks`}
-				component={GetDecks}
+				render={(p) => <GetDecks handleSelectDeck={props.handleSelectDeck} {...p}/>}
 			/>
 			<Route
 				path={`${props.match.url}/cards`}

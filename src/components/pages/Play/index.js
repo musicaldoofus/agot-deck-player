@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Page from '../../molecules/Page';
-import Loading from '../../atoms/Loading';
 import GameBoard from '../../organisms/GameBoard';
-import getDeckFromAPI from '../../../helpers/getFromAPI';
+import { getFromDB } from '../../../helpers/dbHelpers';
 import './Play.css';
+
+const NoDeck = () => {
+	return (
+		<div className="no-deck">
+			<h1>It looks like there's no active deck loaded.</h1>
+			<p>Want to head over to <Link to="/get/decks">/get/decks</Link>?</p>
+		</div>
+	);
+}
 
 class Play extends Component {
 	constructor() {
 		super();
 		this.state = {
-			deck: undefined,
 			gameStates: []
 		};
-		this.onDeckLoaded = this.onDeckLoaded.bind(this);
 		this.handleFullscreen = this.handleFullscreen.bind(this);
 		this.handleGameStateUpdate = this.handleGameStateUpdate.bind(this);
-	}
-	
-	onDeckLoaded(deck) {
-		// console.log('deck', Object.keys(deck));
-		this.setState({deck});
-	}
-	
-	componentDidMount() {
-		if (!this.state.deck) getDeckFromAPI({id: 13145}, this.onDeckLoaded);
 	}
 	
 	handleFullscreen() {
@@ -36,13 +34,15 @@ class Play extends Component {
 	}
 	
 	render() {
+		const deck = this.props.deck ? this.props.deck : getFromDB('activeDeck');
+		console.log('deck in <Play>', deck);
 		return (
 			<Page title="Play">
 				<button className="btn pull-top" onClick={this.handleFullscreen}>Fullscreen</button>
-					{!this.state.deck ?
-						<Loading/>
+					{deck === undefined ?
+						<NoDeck/>
 						: <GameBoard
-							deck={this.state.deck}
+							deck={deck}
 							handleGameStateUpdate={this.handleGameStateUpdate}
 						/>
 					}

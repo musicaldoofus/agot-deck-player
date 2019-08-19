@@ -1,0 +1,24 @@
+/*Alert.css*/
+.alert-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.alert {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	padding: 24px;
+	background-color: #fff;
+	border-radius: 2px;
+	border: none;
+	text-align: center;
+}
+.alert > div {
+	margin-bottom: 16px;
+}

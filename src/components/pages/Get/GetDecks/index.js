@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CardPileBtn from '../../../atoms/CardPileBtn';
 import OverlayCardList from '../../../organisms/OverlayCardList';
 import getDeckFromAPI from '../../../../helpers/getFromAPI';
-import putToDB, { getFromDB } from '../../../../helpers/putToDB';
+import putToDB, { getFromDB } from '../../../../helpers/dbHelpers';
 import factionCardImages from '../../../../helpers/factionCardImages';
 import './GetDecks.css';
 
@@ -21,11 +21,12 @@ class GetDecks extends Component {
 		this.updateDecklistCache = this.updateDecklistCache.bind(this);
 		this.handleClickDecklist = this.handleClickDecklist.bind(this);
 		this.handleDismiss = this.handleDismiss.bind(this);
+		this.handleSelectDeck = this.handleSelectDeck.bind(this);
 	}
 	
 	componentDidMount() {
 		const recentlySearched = getFromDB('recentlySearched');
-		this.setState({
+		if (recentlySearched !== null) this.setState({
 			recentlySearchedCache: this.state.recentlySearchedCache.concat(recentlySearched)
 		});
 	}
@@ -48,18 +49,19 @@ class GetDecks extends Component {
 	}
 	
 	handleClickDecklist(deckId, focusDeckCacheType) {
-		console.log('got', deckId);
 		let focusDeck;
 		for (let i = 0; i < this.state[focusDeckCacheType].length; i++) {
-			console.log(this.state[focusDeckCacheType][i]);
 			if (this.state[focusDeckCacheType][i].id === deckId) focusDeck = i;
 		}
-		console.log('focusDeck id set to', focusDeck);
 		this.setState({focusDeck, focusDeckCacheType});
 	}
 	
 	handleDismiss() {
 		this.setState({focusDeck: null});
+	}
+	
+	handleSelectDeck() {
+		this.props.handleSelectDeck(this.state[this.state.focusDeckCacheType][this.state.focusDeck]);
 	}
 	
 	render() {
@@ -118,6 +120,7 @@ class GetDecks extends Component {
 						label=""
 						cards={this.state[this.state.focusDeckCacheType][this.state.focusDeck].cardList}
 						onDismiss={this.handleDismiss}
+						handleSelectDeck={this.handleSelectDeck}
 					/>
 				}
 			</div>

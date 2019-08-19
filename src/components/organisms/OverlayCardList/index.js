@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Overlay from '../../molecules/Overlay';
 import FocusCard from '../../atoms/FocusCard';
+import Alert from '../../atoms/Alert';
 import CardListViewer from '../../molecules/CardListViewer';
 
 class OverlayCardList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			focusCard: null
+			focusCard: null,
+			focusDeck: false
 		};
 		this.handleDismiss = this.handleDismiss.bind(this);
 		this.handleFocusCard = this.handleFocusCard.bind(this);
 		this.handleUnfocusCard = this.handleUnfocusCard.bind(this);
 		this.handleSelectDeck = this.handleSelectDeck.bind(this);
+		this.handleDismissDeckAlert = this.handleDismissDeckAlert.bind(this);
 	}
 	
 	handleDismiss() {
@@ -28,16 +32,18 @@ class OverlayCardList extends Component {
 	}
 	
 	handleSelectDeck() {
-		this.props.handleSelectDeck();
+		this.setState({
+			focusDeck: true
+		}, this.props.handleSelectDeck);
+	}
+	
+	handleDismissDeckAlert() {
+		this.setState({focusDeck: false});
 	}
 	
 	render() {
 		const props = this.props; //allow passthrough props to child component
 		const cardProps = this.state.focusCard ? this.state.focusCard : null; //allow passthrough props to child component
-		// const cardOptionButtons = this.props.cardOptions ?
-			// this.props.cardOptions.map(
-				// (o, i) => <button key={i} onClick={() => o.optionCallback(cardProps)}>{o.label}</button>)
-			// : null;
 		return (
 			<Overlay>
 				<div className="overlay-label">
@@ -57,6 +63,18 @@ class OverlayCardList extends Component {
 				/>
 				<button className="dismiss-btn" onClick={this.handleDismiss}>Dismiss</button>
 				{this.props.handleSelectDeck && <button className="btn" onClick={this.handleSelectDeck}>Select this deck</button>}
+				{this.state.focusDeck && 
+					<Alert
+						handleDismiss={this.handleDismissDeckAlert}
+					>
+						<div>
+							<p>Loaded this deck!</p>
+						</div>
+						<div>
+							<Link to="/play">Go to /play</Link>
+						</div>
+					</Alert>
+				}
 			</Overlay>
 		);
 	}

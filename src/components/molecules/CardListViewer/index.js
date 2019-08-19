@@ -18,7 +18,7 @@ class CardListViewer extends Component {
 	}
 	
 	componentDidUpdate(prevProps, prevState) {
-		console.log('did update', prevProps, prevState, this.props, this.state);
+		// console.log('<CardListViewer> did update', prevProps, prevState, this.props, this.state);
 		if (this.state.focusCardListType !== prevState.focusCardListType && this.state.ind > 0) this.setState({ind: 0});
 	}
 	

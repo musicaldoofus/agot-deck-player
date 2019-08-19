@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router-dom';
 import Root from './components/pages/Root';
 import Get from './components/pages/Get';
 import Play from './components/pages/Play';
+import putToDB from './helpers/dbHelpers';
 import './App.css';
 
 const withHashRouter = (routes) => (
@@ -17,26 +18,43 @@ const withBrowserRouter = (routes) => (
 	</Router>
 );
 
-const App = () => {
-	const routes = (
-		<Switch>
-			<Route
-				exact
-				path="/"
-				component={Root}
-			/>
-			<Route
-				path="/get"
-				component={Get}
-			/>
-			<Route
-				path="/play"
-				component={Play}
-			/>
-		</Switch>
-	);
-	if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes); //required to work in gh-pages
-	else return withBrowserRouter(routes);
+class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			activeDeck: undefined
+		};
+		this.handleSelectDeck = this.handleSelectDeck.bind(this);
+	}
+	
+	handleSelectDeck(activeDeck) {
+		console.log('got activeDeck', activeDeck);
+		this.setState({
+			activeDeck
+		}, () => putToDB('activeDeck', activeDeck));
+	}
+	
+	render() {
+		const routes = (
+			<Switch>
+				<Route
+					exact
+					path="/"
+					component={Root}
+				/>
+				<Route
+					path="/get"
+					render={(props) => <Get handleSelectDeck={this.handleSelectDeck} {...props}/>}
+				/>
+				<Route
+					path="/play"
+					render={(props) => <Play deck={this.state.activeDeck} {...props}/>}
+				/>
+			</Switch>
+		);
+		if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes); //required to work in gh-pages
+		else return withBrowserRouter(routes);
+	}
 }
 
 export default App;
