@@ -3,7 +3,7 @@ import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router
 import Root from './components/pages/Root';
 import Get from './components/pages/Get';
 import Play from './components/pages/Play';
-import putToDB from './helpers/dbHelpers';
+import putToDB, { getFromDB } from './helpers/dbHelpers';
 import './App.css';
 
 const withHashRouter = (routes) => (
@@ -22,16 +22,24 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			activeDeck: undefined
+			activeDeck: undefined, //convert to activeDeckIndex and use as ref to this.state.myDecks
+			myDecks: getFromDB('myDecks')
 		};
 		this.handleSelectDeck = this.handleSelectDeck.bind(this);
+		this.handleAddToMyDecks = this.handleAddToMyDecks.bind(this);
 	}
 	
 	handleSelectDeck(activeDeck) {
 		console.log('got activeDeck', activeDeck);
+		// const activeDeckIndex = 0; <-- placeholder
 		this.setState({
 			activeDeck
 		}, () => putToDB('activeDeck', activeDeck));
+	}
+	
+	handleAddToMyDecks(deck) {
+		console.log('add to myDecks', deck);
+		this.setState({myDecks: this.state.myDecks.concat(deck)});
 	}
 	
 	render() {
@@ -44,7 +52,7 @@ class App extends Component {
 				/>
 				<Route
 					path="/get"
-					render={(props) => <Get handleSelectDeck={this.handleSelectDeck} {...props}/>}
+					render={(props) => <Get handleAddToMyDecks={this.handleAddToMyDecks} handleSelectDeck={this.handleSelectDeck} {...props}/>}
 				/>
 				<Route
 					path="/play"

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Overlay from '../../molecules/Overlay';
 import FocusCard from '../../atoms/FocusCard';
@@ -49,6 +49,12 @@ class OverlayCardList extends Component {
 				<div className="overlay-label">
 					<h3>{this.props.label}</h3>
 				</div>
+				{this.props.handleSelectDeck && 
+					<Fragment>
+						<button className="btn" onClick={this.handleSelectDeck}>Select this deck</button>
+						<button className="btn" onClick={this.handleAddToMyDecks}>Add to My Decks</button>
+					</Fragment>
+				}
 				{this.state.focusCard && 
 					<FocusCard
 						cardProps={cardProps}
@@ -62,7 +68,6 @@ class OverlayCardList extends Component {
 					colSize={240}
 				/>
 				<button className="dismiss-btn" onClick={this.handleDismiss}>Dismiss</button>
-				{this.props.handleSelectDeck && <button className="btn" onClick={this.handleSelectDeck}>Select this deck</button>}
 				{this.state.focusDeck && 
 					<Alert
 						handleDismiss={this.handleDismissDeckAlert}
@@ -71,7 +76,7 @@ class OverlayCardList extends Component {
 							<p>Loaded this deck!</p>
 						</div>
 						<div>
-							<Link to="/play">Go to /play</Link>
+							<Link to="/play">Play this deck</Link>
 						</div>
 					</Alert>
 				}

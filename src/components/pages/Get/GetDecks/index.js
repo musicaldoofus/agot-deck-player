@@ -111,10 +111,11 @@ class GetDecks extends Component {
 				</div>
 				{this.state.focusDeck !== null &&
 					<OverlayCardList
-						label=""
+						label={this.state[this.state.focusDeckCacheType][this.state.focusDeck].name}
 						cards={this.state[this.state.focusDeckCacheType][this.state.focusDeck].cardList}
 						onDismiss={this.handleDismiss}
 						handleSelectDeck={this.handleSelectDeck}
+						// handleAddToMyDecks={this.handleAddToMyDecks}
 					/>
 				}
 			</div>
