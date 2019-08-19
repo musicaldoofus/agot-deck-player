@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardPileBtn from '../../../atoms/CardPileBtn';
+import CardListViewer from '../../../molecules/CardListViewer';
 import OverlayCardList from '../../../organisms/OverlayCardList';
 import getDeckFromAPI from '../../../../helpers/getFromAPI';
 import putToDB, { getFromDB } from '../../../../helpers/dbHelpers';
@@ -41,6 +42,7 @@ class GetDecks extends Component {
 	}
 	
 	updateDecklistCache(deck) {
+		console.log('GetDecks.state.searchCache', this.state.searchCache, 'new deck', deck);
 		this.setState({searchCache: this.state.searchCache.concat(deck)});
 		let recentlySearched = getFromDB('recentlySearched');
 		if (recentlySearched === null) recentlySearched = [];
@@ -49,6 +51,7 @@ class GetDecks extends Component {
 	}
 	
 	handleClickDecklist(deckId, focusDeckCacheType) {
+		console.log('deckId', deckId, 'type', focusDeckCacheType);
 		let focusDeck;
 		for (let i = 0; i < this.state[focusDeckCacheType].length; i++) {
 			if (this.state[focusDeckCacheType][i].id === deckId) focusDeck = i;
@@ -77,18 +80,7 @@ class GetDecks extends Component {
 				/>
 			</div>
 		));
-		const recentlySearched = this.state.recentlySearchedCache.map((deck, i) => (
-			<div key={i} id={`search-result-decklist-${deck.id}`}>
-				<div>
-					<h3>{deck.name}</h3>
-					<a href={`https://thronesdb.com/decklist/view/${deck.id}`} target="_blank" rel="noopener noreferrer">Go to decklist page</a>
-				</div>
-				<CardPileBtn
-					imgSrc={factionCardImages[deck.faction_code]}
-					onClick={() => this.handleClickDecklist(deck.id, 'recentlySearchedCache')}
-				/>
-			</div>
-		));
+		const recentlySearchedCards = this.state.recentlySearchedCache.map(({id, name, faction_code}) => ({id, name, image_url: factionCardImages[faction_code]}));
 		return (
 			<div className="get-decks">
 				<form>
@@ -111,9 +103,11 @@ class GetDecks extends Component {
 				</div>
 				<div id="recently-searched">
 					<h1>Recently searched decklists</h1>
-					<div className="decklist-viewer" style={{gridTemplateColumns: `repeat(${this.state.recentlySearchedCache.length}, 10rem)`}}>
-						{recentlySearched}
-					</div>
+					<CardListViewer
+						cards={recentlySearchedCards}
+						colSize={240}
+						onCardClick={({id}) => this.handleClickDecklist(id, 'recentlySearchedCache')}
+					/>
 				</div>
 				{this.state.focusDeck !== null &&
 					<OverlayCardList

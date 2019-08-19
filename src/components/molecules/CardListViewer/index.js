@@ -31,6 +31,7 @@ class CardListViewer extends Component {
 	}
 	
 	render() {
+		console.log('<CardListViewer>', this.props);
 		const viewableCardList = this.hasTypes ? this.props.cards[this.state.focusCardListType] : this.props.cards;
 		const viewerStyle = {
 			gridTemplateColumns: `repeat(${viewableCardList.length}, ${this.props.colSize}px)`,
