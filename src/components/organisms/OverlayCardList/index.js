@@ -12,6 +12,7 @@ class OverlayCardList extends Component {
 		this.handleDismiss = this.handleDismiss.bind(this);
 		this.handleFocusCard = this.handleFocusCard.bind(this);
 		this.handleUnfocusCard = this.handleUnfocusCard.bind(this);
+		this.handleSelectDeck = this.handleSelectDeck.bind(this);
 	}
 	
 	handleDismiss() {
@@ -24,6 +25,10 @@ class OverlayCardList extends Component {
 	
 	handleFocusCard(focusCard) {
 		this.setState({focusCard});
+	}
+	
+	handleSelectDeck() {
+		this.props.handleSelectDeck();
 	}
 	
 	render() {
@@ -51,6 +56,7 @@ class OverlayCardList extends Component {
 					colSize={240}
 				/>
 				<button className="dismiss-btn" onClick={this.handleDismiss}>Dismiss</button>
+				{this.props.handleSelectDeck && <button className="btn" onClick={this.handleSelectDeck}>Select this deck</button>}
 			</Overlay>
 		);
 	}
