@@ -64,7 +64,9 @@ class GetDecks extends Component {
 	}
 	
 	render() {
-		const deckListResults = this.state.decklistCache.slice(this.state.recentlySearchedLimit, this.state.decklistCache.length - 1).map((deck, i) => (
+		const newResults = this.state.decklistCache.slice(this.state.recentlySearchedLimit, this.state.decklistCache.length - 1);
+		const oldResults = this.state.decklistCache.slice(0, this.state.recentlySearchedLimit);
+		const deckListResults = newResults.map((deck, i) => (
 			<div key={i} id={`search-result-decklist-${deck.id}`}>
 				<CardPileBtn
 					imgSrc={factionCardImages[deck.faction_code]}
@@ -72,7 +74,7 @@ class GetDecks extends Component {
 				/>
 			</div>
 		));
-		const recentlySearched = this.state.decklistCache.slice(0, this.state.recentlySearchedLimit).map((deck, i) => (
+		const recentlySearched = oldResults.map((deck, i) => (
 			<div key={i} id={`search-result-decklist-${deck.id}`}>
 				<CardPileBtn
 					imgSrc={factionCardImages[deck.faction_code]}
@@ -102,7 +104,7 @@ class GetDecks extends Component {
 				</div>
 				<div id="recently-searched">
 					<h1>Recently searched decklists</h1>
-					<div>
+					<div className="decklist-viewer" style={{gridTemplateColumns: `repeat(${oldResults.length}, ${oldResults.length === 1 ? '120px' : 'auto'})`}}>
 						{recentlySearched}
 					</div>
 				</div>

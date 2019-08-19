@@ -8,12 +8,9 @@
 .card-list {
     display: grid;
 }
-.viewer-btn.right {
-	right: 0;
+.viewer-btn {
+	height: 100%;
 }
-.viewer-btn.left {
-	left: 0;
-}	
 .dismiss-btn {
 	position: absolute;
 	top: 0;
@@ -23,14 +20,16 @@
 	display: flex;
 	flex-direction: column;
 }
-#right-side-controls {
+#left-side-controls, #right-side-controls {
+	position: absolute;
 	width: 48px;
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 }
-#right-side-controls > .btn.viewer-btn.right {
-    height: auto;
-    flex-grow: 5;
-    position: relative;
-    width: 100%;
+#left-side-controls {
+	left: 0;
+}
+#right-side-controls {
+	right: 0;
 }

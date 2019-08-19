@@ -1,1 +1,4 @@
 /*GetDecks.css*/
+.decklist-viewer {	
+	display: grid;
+}

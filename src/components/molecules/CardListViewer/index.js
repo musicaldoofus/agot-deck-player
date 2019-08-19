@@ -17,6 +17,11 @@ class CardListViewer extends Component {
 		this.handleFilterUpdate = this.handleFilterUpdate.bind(this);
 	}
 	
+	componentDidUpdate(prevProps, prevState) {
+		console.log('did update', prevProps, prevState, this.props, this.state);
+		if (this.state === prevState && this.state.ind > 0) this.setState({ind: 0});
+	}
+	
 	handleFilterUpdate(focusCardListType) {
 		this.setState({focusCardListType});
 	}
@@ -26,12 +31,12 @@ class CardListViewer extends Component {
 	}
 	
 	render() {
-		// console.log('<CardListViewer> render', this.props);
+		const viewableCardList = this.hasTypes ? this.props.cards[this.state.focusCardListType] : this.props.cards;
 		const viewerStyle = {
-			gridTemplateColumns: `repeat(${this.props.cards.length}, ${this.props.colSize}px)`,
+			gridTemplateColumns: `repeat(${viewableCardList.length}, ${this.props.colSize}px)`,
 			marginLeft: `${-this.props.colSize * this.state.ind}px`
 		};
-		const viewableCardList = this.hasTypes ? this.props.cards[this.state.focusCardListType] : this.props.cards;
+		const viewerLimit = this.props.viewerLimit ? this.props.viewerLimit : 5;
 		return (
 			<div className="card-list-viewer">
 				{this.state.ind > 0 && 
@@ -41,6 +46,7 @@ class CardListViewer extends Component {
 				}
 				{this.hasTypes &&
 					<div id="card-list-filters">
+						<button onClick={() => this.handleFilterUpdate(null)}>All</button>
 						{Object.keys(this.props.cards)
 							.map((type, i) => (
 								<button
@@ -60,7 +66,7 @@ class CardListViewer extends Component {
 					{this.props.handleFullscreen &&
 						<button onClick={this.props.handleFullscreen}>Expand</button>
 					}
-					{viewableCardList.length >= this.props.viewerLimit && this.state.ind < (viewableCardList.length - 1) && 
+					{viewableCardList.length >= viewerLimit && this.state.ind < (viewableCardList.length - 1) && 
 						<button className="btn viewer-btn right" onClick={() => this.handleIndexUpdate(1)}>&rarr;</button>
 					}
 				</div>
