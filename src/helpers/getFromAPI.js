@@ -47,7 +47,7 @@ const getDeckFromAPI = (params, componentCallback) => {
 	return getFromAPI(Object.assign(params, {type: 'decklist'}))
 		.then(deck => {
 			deck = JSON.parse(deck);
-			Object.assign(localDecklist, deck, {cardList: {}, agendaCard: {}});
+			Object.assign(localDecklist, deck, {cardList: {}});
 			const promiseList = Object.keys(deck.slots).map(
 				(cardId, cardInd) => getFromAPI({id: cardId, type: 'card'})
 					.then(cardObj => {
