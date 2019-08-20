@@ -15,11 +15,12 @@
 	background-color: #fff;
 	margin: auto;
 	border: 2px solid #fff;
-	max-width: calc(100% - 64px);
 	border-radius: 4px;
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	max-width: calc(100% - 64px);
+	min-width: 40rem;
 	max-height: 24rem;
 }
 .overlay-inner-container {
