@@ -11,4 +11,4 @@
 
 ### Done
 
-* Initial media queries removed for clarity (done)
+* Initial media queries removed for clarity
