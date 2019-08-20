@@ -13,12 +13,15 @@
 }
 .overlay {
 	background-color: #fff;
-	margin: 12px;
+	margin: auto;
 	border: 2px solid #fff;
-	width: 96%;
+	max-width: calc(100% - 64px);
 	border-radius: 4px;
 	display: flex;
 	flex-direction: column;
-	overflow-y: scroll;
 	position: relative;
+	max-height: 24rem;
+}
+.overlay-inner-container {
+	padding: 24px;
 }

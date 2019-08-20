@@ -4,7 +4,9 @@ import './Overlay.css';
 const Overlay = ({children}) => (
 	<div className="overlay-container">
 		<div className="overlay">
-			{children}
+			<div className="overlay-inner-container">
+				{children}
+			</div>
 		</div>
 	</div>
 );

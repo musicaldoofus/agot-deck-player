@@ -10,16 +10,7 @@
 	display: grid;
 	grid-template-columns: auto auto auto;
 	width: 100%;
-	height: 100%;
+	height: 16rem;
 	grid-template-rows: auto auto;
 	overflow: hidden;
-}
-.card-list.multiple > .card > img {
-    width: 120px;
-}
-.card-list.single {
-	
-}
-.card-list.multiple {
-	
 }

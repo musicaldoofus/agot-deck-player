@@ -10,15 +10,17 @@ const FocusCard = ({cardProps, cardOptions, handleUnfocusCard}) => {
 		: null;
 	return (
 		<div className="focus-card-container">
-			<Card
-				{...cardProps}
-			/>
-			<div className="card-option-buttons">
+			<div className="focus-card-inner-container">
+				<Card
+					{...cardProps}
+				/>
 				<div className="card-option-buttons">
-					<button onClick={handleUnfocusCard}>&larr; Back to list</button>
-					{cardOptionButtons}
+					<div>
+						<button onClick={handleUnfocusCard}>&larr; Back to list</button>
+						{cardOptionButtons}
+					</div>
+					<CardDetails {...cardProps}/>
 				</div>
-				<CardDetails {...cardProps}/>
 			</div>
 		</div>
 	);

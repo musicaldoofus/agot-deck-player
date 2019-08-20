@@ -1,12 +1,13 @@
 /*CardListViewer.css*/
 .card-list-viewer {
-	height: 100%;
+	height: inherit;
 	overflow: hidden;
 	transition: all ease 0.4s;
 	position: relative;
 }
 .card-list {
     display: grid;
+	height: 16rem;
 }
 .viewer-btn {
 	height: 100%;
@@ -19,6 +20,7 @@
 .card-option-buttons {
 	display: flex;
 	flex-direction: column;
+	height: calc(100% - 96px);
 }
 #left-side-controls, #right-side-controls {
 	position: absolute;
