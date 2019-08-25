@@ -56,6 +56,16 @@ class GameBoard extends Component {
 		}, () => this.props.handleGameStateUpdate(this.state));
 	}
 	
+	handleShuffleDrawDeck() {
+		let shuffledDeck = this.state.drawDeckCards.slice();
+		//Fisher-Yates shuffle algorithm
+		for (let i = shuffledDeck.length - 1; i > 0; i--) {
+			const randIndex = Math.floor(Math.random() * (i + 1));
+			[shuffledDeck[i], shuffledDeck[randIndex]] = [shuffledDeck[randIndex], shuffledDeck[i]];
+		}
+		this.setState({drawDeckCards: shuffledDeck});
+	}
+	
 	render() {
 		return (
 			<div className="game-board">
@@ -80,6 +90,7 @@ class GameBoard extends Component {
 				<DrawPile
 					cards={this.state.drawDeckCards}
 					handleDrawCards={this.handlePutCardInArea}
+					handleShuffle={this.handleShuffleDrawDeck}
 				/>
 				<DiscardPile
 					cards={this.state.discardPileCards}

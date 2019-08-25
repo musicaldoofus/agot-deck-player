@@ -48,6 +48,7 @@ class DrawPile extends Component {
 					/>
 				}
 				<CardPileBtn
+					isPortrait={true}
 					onClick={() => this.handleDrawCard()}
 				/>
 			</div>
