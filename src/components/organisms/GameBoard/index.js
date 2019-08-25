@@ -30,6 +30,7 @@ class GameBoard extends Component {
 		this.handleUpdatePlotDeck = this.handleUpdatePlotDeck.bind(this);
 		this.handleDrawCards = this.handleDrawCards.bind(this);
 		this.handlePutCardInArea = this.handlePutCardInArea.bind(this);
+		this.handleShuffleDrawDeck = this.handleShuffleDrawDeck.bind(this);
 	}
 	
 	handleUpdatePlotDeck(card, source, target) {

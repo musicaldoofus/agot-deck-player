@@ -12,45 +12,54 @@ class DrawPile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			showDrawOptions: false,
 			isFullscreen: false
 		};
-		this.handleDrawCard = this.handleDrawCard.bind(this);
-		this.handleRemoveCard = this.handleRemoveCard.bind(this);
-		this.getCardFromDeck = this.getCardFromDeck.bind(this);
+		this.drawAreaRef = React.createRef();
+		this.handleToggleShowOptions = this.handleToggleShowOptions.bind(this);
+		this.handleToggleFullscreen = this.handleToggleFullscreen.bind(this);
 	}
 	
-	handleDrawCard(amt) {
-		amt = !amt ? 1 : amt;
-		const cards = Array.from({length: amt}, (_) => this.getCardFromDeck());
-		this.props.handleDrawCards(cards);
+	componentDidMount() {
+		window.addEventListener('click', (e) => {
+			console.log(e.target, this.drawAreaRef.current);
+		});
 	}
 	
-	getCardFromDeck() {
-		return this.props.cards[Object.keys(this.props.cards)[0]];
+	handleToggleShowOptions() {
+		this.setState({showDrawOptions: !this.state.showDrawOptions});
 	}
 	
-	handleRemoveCard(c) {
-		// console.log('got', c);
+	handleToggleFullscreen() {
+		this.setState({isFullscreen: !this.state.isFullscreen});
 	}
-		
+	
 	render() {
 		const cardOptions = [];
 		return (
-			<div className="board-area draw-pile">
+			<div ref={this.drawAreaRef} className="board-area draw-pile">
 				{this.state.isFullscreen && 
 					<OverlayCardList
-						cards={this.props.focusCards}
+						cards={this.props.cards}
 						onDismiss={this.handleToggleFullscreen}
 						onSelectCard={this.handleSelectCard}
 						label="Select a Plot card from your Plot deck to play"
-						viewerLimit={3}
+						viewerLimit={5}
 						cardOptions={cardOptions}
 					/>
 				}
-				<CardPileBtn
-					isPortrait={true}
-					onClick={() => this.handleDrawCard()}
-				/>
+				<div style={{position: 'relative'}}>
+					<CardPileBtn
+						isPortrait={true}
+						onClick={this.handleToggleShowOptions}
+					/>
+					{this.state.showDrawOptions &&
+						<div className="draw-area-options" style={{position: 'absolute', top: '0'}}>
+							<button onClick={this.handleToggleFullscreen}>View cards in draw deck</button>
+							<button onClick={this.props.handleShuffle}>Shuffle draw deck</button>
+						</div>
+					}
+				</div>
 			</div>
 		)
 	}
