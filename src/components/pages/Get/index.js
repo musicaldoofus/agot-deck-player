@@ -4,7 +4,6 @@ import GetCards from './GetCards';
 import GetDecks from './GetDecks';
 
 const Get = (props) => {
-	// console.log('<Get>', props);
 	return (
 		<Fragment>
 			<Route

@@ -56,7 +56,6 @@ const AgendaCardDetails = ({faction_name, traits, text}) => (
 );
 
 const PlotCardDetails = ({income, initiative, claim, reserve, deck_limit, traits, text}) => {
-	console.log(text);
 	return (
 		<div className="plot-details">
 			<div id="plot-card-stats">

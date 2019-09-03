@@ -18,7 +18,6 @@ class CardListViewer extends Component {
 	}
 	
 	componentDidUpdate(prevProps, prevState) {
-		// console.log('<CardListViewer> did update', prevProps, prevState, this.props, this.state);
 		if (this.state.focusCardListType !== prevState.focusCardListType && this.state.ind > 0) this.setState({ind: 0});
 	}
 	
@@ -31,7 +30,6 @@ class CardListViewer extends Component {
 	}
 	
 	render() {
-		console.log('<CardListViewer>', this.props);
 		const viewableCardList = this.hasTypes ? this.props.cards[this.state.focusCardListType] : this.props.cards;
 		const viewerStyle = {
 			gridTemplateColumns: `repeat(${viewableCardList.length}, ${this.props.colSize}px)`,

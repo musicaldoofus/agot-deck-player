@@ -20,12 +20,6 @@ class DrawPile extends Component {
 		this.handleToggleFullscreen = this.handleToggleFullscreen.bind(this);
 	}
 	
-	componentDidMount() {
-		window.addEventListener('click', (e) => {
-			console.log(e.target, this.drawAreaRef.current);
-		});
-	}
-	
 	handleToggleShowOptions() {
 		this.setState({showDrawOptions: !this.state.showDrawOptions});
 	}

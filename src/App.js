@@ -30,7 +30,6 @@ class App extends Component {
 	}
 	
 	handleSelectDeck(activeDeck) {
-		console.log('got activeDeck', activeDeck);
 		// const activeDeckIndex = 0; <-- placeholder
 		this.setState({
 			activeDeck
@@ -38,7 +37,6 @@ class App extends Component {
 	}
 	
 	handleAddToMyDecks(deck) {
-		console.log('add to myDecks', deck);
 		this.setState({myDecks: this.state.myDecks.concat(deck)});
 	}
 	

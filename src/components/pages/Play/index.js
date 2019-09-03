@@ -35,7 +35,6 @@ class Play extends Component {
 	
 	render() {
 		const deck = this.props.deck ? this.props.deck : getFromDB('activeDeck');
-		console.log('deck in <Play>', deck);
 		return (
 			<Page title="Play">
 				<button className="btn pull-top" onClick={this.handleFullscreen}>Fullscreen</button>

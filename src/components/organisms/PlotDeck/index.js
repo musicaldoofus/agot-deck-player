@@ -26,7 +26,6 @@ class PlotDeck extends Component {
 	}
 	
 	handleRemoveCard(c) {
-		// console.log('got', c);
 	}
 		
 	render() {

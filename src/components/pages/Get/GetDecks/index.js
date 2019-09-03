@@ -42,7 +42,6 @@ class GetDecks extends Component {
 	}
 	
 	updateDecklistCache(deck) {
-		console.log('GetDecks.state.searchCache', this.state.searchCache, 'new deck', deck);
 		this.setState({searchCache: this.state.searchCache.concat(deck)});
 		let recentlySearched = getFromDB('recentlySearched');
 		if (recentlySearched === null) recentlySearched = [];
@@ -51,7 +50,6 @@ class GetDecks extends Component {
 	}
 	
 	handleClickDecklist(deckId, focusDeckCacheType) {
-		console.log('deckId', deckId, 'type', focusDeckCacheType);
 		let focusDeck;
 		for (let i = 0; i < this.state[focusDeckCacheType].length; i++) {
 			if (this.state[focusDeckCacheType][i].id === deckId) focusDeck = i;
