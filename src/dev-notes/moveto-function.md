@@ -2,6 +2,13 @@
 
 By area:
 
+### <DrawPile>
+
+(The areas above are determined by card type)
+- I can move a card from <DrawPile> to <Hand>
+- I can move a card from <DrawPile> to <DiscardPile>
+- I can move multiple cards from <DrawPile> to <Hand>
+
 ### <PlotDeck>
 
 - I can move a card from <PlotDeck> to <PlotDeckUsed>
@@ -11,19 +18,13 @@ By area:
 - I can move a card from <PlotDeckUsed> to <PlotDeck>
 - I can move all cards from <PlotDeckUsed> to <PlotDeck>
 
-### <DrawPile>
-
-(The areas above are determined by card type)
-- I can move a card from <DrawPile> to <DiscardPile>
-- I can move a card from <DrawPile> to <Hand>
-- I can move multiple cards from <DrawPile> to <Hand>
-
 ### Hand
 
-- I can move a character from <Hand> to <CharacterArea>
-- I can move an attachment from <Hand> to <CharacterArea> after selecting a specific card
-- I can move a card from <Hand> to <LocationArea>
+- I can move a character card from <Hand> to <CharacterArea>
+- I can move an attachment card from <Hand> to <CharacterArea> after selecting a specific card
+- I can move a location card from <Hand> to <LocationArea>
 - I can move a card from <Hand> to <DiscardPile>
+- I can move an event card from <Hand> to <DiscardPile>
 
 ### DiscardPile
 

@@ -1,4 +1,8 @@
 /*DrawPile.css*/
+.draw-pile > div {
+	height: 100%;
+	width: 100%;
+}
 .draw-area-options {
 	position: absolute;
 	top: -3em;

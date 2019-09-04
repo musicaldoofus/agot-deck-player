@@ -28,6 +28,7 @@ class GameBoard extends Component {
 			discardPileCards: []
 		};
 		this.handleShuffleDrawDeck = this.handleShuffleDrawDeck.bind(this);
+		this.handleMoveCards = this.handleMoveCards.bind(this);
 	}
 	
 	handleShuffleDrawDeck() {
@@ -40,9 +41,16 @@ class GameBoard extends Component {
 		this.setState({drawDeckCards: shuffledDeck});
 	}
 	
-	handleMoveCards(cards, stateTarget) {
-		//get current cards in target area by this.state[stateTarget]
-		//
+	handleMoveCards(cards, source, target) {
+		const sourceCards = this.state[source]
+			.filter(sourceCard => cards
+				.filter(c => c.keyInd !== sourceCard.keyInd).length === 0);
+		// console.log('sourceCards', sourceCards);
+		const targetCards = this.state[target].concat(cards);
+		this.setState({
+			[source]: sourceCards,
+			[target]: targetCards
+		});
 	}
 	
 	render() {
@@ -69,13 +77,13 @@ class GameBoard extends Component {
 				<DrawPile
 					cards={this.state.drawDeckCards}
 					handleShuffle={this.handleShuffleDrawDeck}
+					handleDraw={(cards) => this.handleMoveCards(cards, 'drawDeckCards', 'handCards')}
 				/>
 				<DiscardPile
 					cards={this.state.discardPileCards}
 				/>
 				<Hand
 					cards={this.state.handCards}
-					handlePutCardIntoPlay={this.handlePutCardInArea}
 				/>
 			</div>
 		);

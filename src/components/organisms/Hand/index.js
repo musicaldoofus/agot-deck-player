@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CardPileBtn from '../../atoms/CardPileBtn';
 import OverlayCardList from '../OverlayCardList';
+import CardBack from '../../../media/card-back.png';
 import './Hand.css';
 
 class Hand extends Component {
@@ -41,9 +41,13 @@ class Hand extends Component {
 						cardOptions={cardOptions}
 					/>
 				}
-				<CardPileBtn
+				<div className="btn card-pile-btn"
 					onClick={this.handleToggleFullscreen}
-				/>
+				>
+					<img src={CardBack} alt=""/>
+					<img src={CardBack} alt=""/>
+					<img src={CardBack} alt=""/>
+				</div>
 			</div>
 		)
 	}

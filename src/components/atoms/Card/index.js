@@ -11,7 +11,15 @@ const Card = (props) => {
 	);
 }
 
-const toCard = ({cardProps, ind, onClick}) => <Card key={cardProps.code + '-' + ind} ind={ind} {...cardProps} onClick={onClick}/>;
+const toCard = ({cardProps, ind, onClick}) => (
+	<Card
+		key={cardProps.code + '-' + ind}
+		keyInd={cardProps.code + '-' + ind}
+		ind={ind}
+		{...cardProps}
+		onClick={onClick}
+	/>
+);
 
 export default Card;
 export { toCard };

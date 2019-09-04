@@ -35,8 +35,9 @@ class DrawPile extends Component {
 		this.handleToggleShowOptions();
 	}
 	
-	handleDraw() {
-		// this.props.handleDraw();
+	handleDraw(amt) {
+		const cards = this.props.cards.splice(amt ? amt : 1);
+		this.props.handleDraw(cards);
 	}
 	
 	render() {

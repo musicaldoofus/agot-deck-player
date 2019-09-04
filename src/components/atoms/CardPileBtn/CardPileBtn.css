@@ -1,9 +1,14 @@
 /*CardPileBtn.css*/
 .card-pile-btn {
 	max-width: 100%;
-	height: 200px;
+    height: 100%;
+    display: flex;
 }
 .card-pile-btn > img {
 	max-height: 100%;
-	max-width: 100%;
+	margin: auto;
+}
+.card-pile-btn.portrait > img {
+	transform: rotate(-90deg) translateY(-1em);
+	height: 5em;
 }
