@@ -8,7 +8,7 @@
 }
 .board-area {
 	border: 1px solid black;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 .board-area.plot-deck {
   grid-column: 1 / 3;

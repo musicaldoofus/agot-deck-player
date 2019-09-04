@@ -18,6 +18,8 @@ class DrawPile extends Component {
 		this.drawAreaRef = React.createRef();
 		this.handleToggleShowOptions = this.handleToggleShowOptions.bind(this);
 		this.handleToggleFullscreen = this.handleToggleFullscreen.bind(this);
+		this.handleShuffle = this.handleShuffle.bind(this);
+		this.handleDraw = this.handleDraw.bind(this);
 	}
 	
 	handleToggleShowOptions() {
@@ -25,7 +27,16 @@ class DrawPile extends Component {
 	}
 	
 	handleToggleFullscreen() {
-		this.setState({isFullscreen: !this.state.isFullscreen});
+		this.setState({isFullscreen: !this.state.isFullscreen, showDrawOptions: false});
+	}
+	
+	handleShuffle() {
+		this.props.handleShuffle();
+		this.handleToggleShowOptions();
+	}
+	
+	handleDraw() {
+		// this.props.handleDraw();
 	}
 	
 	render() {
@@ -48,9 +59,10 @@ class DrawPile extends Component {
 						onClick={this.handleToggleShowOptions}
 					/>
 					{this.state.showDrawOptions &&
-						<div className="draw-area-options" style={{position: 'absolute', top: '0'}}>
+						<div className="draw-area-options">
 							<button onClick={this.handleToggleFullscreen}>View cards in draw deck</button>
-							<button onClick={this.props.handleShuffle}>Shuffle draw deck</button>
+							<button onClick={this.handleShuffle}>Shuffle draw deck</button>
+							<button onClick={this.handleDraw}>Draw</button>
 						</div>
 					}
 				</div>
