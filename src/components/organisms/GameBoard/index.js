@@ -27,34 +27,7 @@ class GameBoard extends Component {
 			handCards: [],
 			discardPileCards: []
 		};
-		this.handleUpdatePlotDeck = this.handleUpdatePlotDeck.bind(this);
-		this.handleDrawCards = this.handleDrawCards.bind(this);
-		this.handlePutCardInArea = this.handlePutCardInArea.bind(this);
 		this.handleShuffleDrawDeck = this.handleShuffleDrawDeck.bind(this);
-	}
-	
-	handleUpdatePlotDeck(card, source, target) {
-		const plotDeckCards = this.state.plotDeckCards.filter(c => c.cardKey !== card.cardKey);
-		const plotDeckCardsUsed = this.state.plotDeckCardsUsed.concat(card);
-		this.setState({plotDeckCards, plotDeckCardsUsed}, () => this.props.handleGameStateUpdate(this.state));
-	}
-	
-	handleDrawCards(cards) { //this code reads like hell
-		const deckKeys = Object.keys(this.state.drawDeckCards);
-		const cardsKeys = Object.keys(cards);
-		const drawDeckCards = deckKeys
-			.filter(dKey => cardsKeys
-				.every(cKey => this.state.drawDeckCards[dKey].cardKey !== cards[cKey].cardKey)
-			)
-			.map(key => this.state.drawDeckCards[key]);
-		const handCards = this.state.handCards.concat(cards);
-		this.setState({drawDeckCards, handCards}, () => this.props.handleGameStateUpdate(this.state));
-	}
-	
-	handlePutCardInArea(cardList, source, action) {
-		this.setState({
-			
-		}, () => this.props.handleGameStateUpdate(this.state));
 	}
 	
 	handleShuffleDrawDeck() {
@@ -65,6 +38,11 @@ class GameBoard extends Component {
 			[shuffledDeck[i], shuffledDeck[randIndex]] = [shuffledDeck[randIndex], shuffledDeck[i]];
 		}
 		this.setState({drawDeckCards: shuffledDeck});
+	}
+	
+	handleMoveCards(cards, stateTarget) {
+		//get current cards in target area by this.state[stateTarget]
+		//
 	}
 	
 	render() {
@@ -90,7 +68,6 @@ class GameBoard extends Component {
 				/>
 				<DrawPile
 					cards={this.state.drawDeckCards}
-					handleDrawCards={this.handlePutCardInArea}
 					handleShuffle={this.handleShuffleDrawDeck}
 				/>
 				<DiscardPile
