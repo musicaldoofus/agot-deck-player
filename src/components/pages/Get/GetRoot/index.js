@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchInput from '../../../atoms/SearchInput';
 import Button from '../../../atoms/Button';
 import NoResults from '../../../atoms/NoResults';
+import { getAllDecksLocal } from '../../../../helpers/getItems';
 
 class GetRoot extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class GetRoot extends Component {
         };
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSearchInput = this.handleSearchInput.bind(this);
-        this.renderAllResults = this.renderAllResults.bind(this);
+        this.renderSearchResults = this.renderSearchResults.bind(this);
         this.renderResult = this.renderResult.bind(this);
     }
 
@@ -39,32 +40,38 @@ class GetRoot extends Component {
     }
 
     renderResult(result) {
+        console.log('renderResult', result);
+        const type = result.hasOwnProperty('slots') || result.hasOwnProperty('cards') ? 'decks' : 'cards';
         return (
-            <Link to={`${this.props.match.url}/${result.id}`} className="get-result-deck-link">
-                {result.title}
+            <Link key={result.id} to={`${this.props.match.url}/${type}/${result.id}`} className="get-result-deck-link">
+                {result.name}
             </Link>
         );
     }
 
-    renderAllResults(results) {
+    renderResults(results) {
+        console.log('renderResults', results);
+        let memo = [];
+        return results
+            .filter((r) => {
+                //console.log('checking', r);
+                const isInMemo = memo.indexOf(r.id) === -1;
+                memo.push(r.id);
+                return isInMemo;
+            })
+            .map(this.renderResult);
+    }
+
+    renderSearchResults(results) {
         if (!results) return undefined;
         const decks = results.filter(r => r.type === 'deck');
         const cards = results.filter(r => r.type === 'card');
-        const resultsLists = [decks, cards].map(list => (
-            <div className="search-results-display">
-                {list}
-            </div>
-        ));
-        return (
-            <div className="search-results-display">
-                {resultsLists}
-            </div>
-        );
+        return [decks, cards].map(this.renderResults);
     }
 
     render() {
-        //console.log('GetRoot', this.props);
-        const results = this.renderAllResults(this.state.searchResults);
+        const results = this.renderSearchResults(this.state.searchResults);
+        const recentlySearched = this.renderResults(getAllDecksLocal());
         return (
             <div className="get-root">
                 <header>
@@ -84,6 +91,12 @@ class GetRoot extends Component {
                 <div className="search-results-container">
                     {(results && results.length > 0) ? results : <NoResults/>}
                 </div>
+                {recentlySearched && recentlySearched.length > 0 && (
+                    <div className="search-results-recent">
+                        <h2>Recently searched decks</h2>
+                        {recentlySearched}
+                    </div>
+                )}
             </div>
         );
     }

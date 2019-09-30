@@ -2,24 +2,24 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../atoms/Loading';
 import cardCache from '../../../../helpers/cardCache';
-import { getFromAPI } from '../../../../helpers/getFromAPI';
+import getItem, { getDeckLocal } from '../../../../helpers/getItems';
 import Button from '../../../atoms/Button';
 
 const GetDecks = (props) => {
-    const [deck, setDeck] = useState(cardCache.get('decklist', props.match.params.id));
+    const [deck, setDeck] = useState(getDeckLocal(props.match.params.id));
 
+    //may remove this hook if deck can be set to a promise resolve() value above
     useEffect(() => {
         if (!deck) {
-            getFromAPI({
-                type: 'decklist',
-                id: props.match.params.id
-            })
-            .then(deckObj => {
-                const parsedDeckObj = JSON.parse(deckObj);
-                cardCache.add('decklist', props.match.params.id, parsedDeckObj);
-                setDeck(parsedDeckObj);
-            })
-            .catch(err => console.error(err));
+            getItem('deck', props.match.params.id)
+                .then(deckObj => {
+                    cardCache.add('decklist', props.match.params.id, deckObj);
+                    setDeck(deckObj);
+                })
+                .catch(err => {
+                    console.info('err @ getDeck');
+                    console.error(err);
+                });
         }
     })
 
