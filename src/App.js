@@ -32,25 +32,27 @@ const App = () =>  {
 	const routes = (
 		<Fragment>
 			<Nav/>
-			<Switch>
-				<Route
-					exact
-					path="/"
-					component={Splash}
-				/>
-				<Route
-					path="/get"
-					component={Get}
-				/>
-				<Route
-					path="/play"
-					component={Play}
-				/>
-				<Route
-					path="/my"
-					component={My}
-				/>
-			</Switch>
+			<div className="page">
+				<Switch>
+					<Route
+						exact
+						path="/"
+						component={Splash}
+					/>
+					<Route
+						path="/get"
+						component={Get}
+					/>
+					<Route
+						path="/play"
+						component={Play}
+					/>
+					<Route
+						path="/my"
+						component={My}
+					/>
+				</Switch>
+			</div>
 		</Fragment>
 	);
 	return withContainer(routes);

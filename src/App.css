@@ -1,3 +1,11 @@
+:root {
+    --light-main: #F2F2F2;
+    --dark-main: #26140E;
+    --dark-alt: #0D0706;
+    --accent-main: #732E1F;
+    --gold-one: rgb(140, 108, 69);
+    --dark-main-low-opacity: rgba(51,41,39, 0.4);
+}
 html, body {
     height: 100vh;
     margin: 0;
@@ -8,4 +16,17 @@ div#root, .app {
 .app {
     display: grid;
     grid-template-columns: auto 1fr;
+}
+.page {
+    background: url(./media/backgrounds/winterfell.jpg) no-repeat;
+    background-size: cover;
+}
+.page > div {
+    padding: 4em;
+}
+h1, h2, h3, h4, h5, p, a {
+    color: var(--light-main);
+}
+h1, h2, h3, h4, h5, a {
+    font-family: 'Julius Sans One', sans-serif;
 }
