@@ -4,13 +4,15 @@ import CharacterArea from '../CharacterArea';
 import LocationArea from '../LocationArea';
 import PlotArea from '../PlotArea';
 import PlotDiscardArea from '../PlotDiscardArea';
-import DrawPile from '../DrawPile';
+import DrawPileArea from '../DrawPileArea';
 import DiscardArea from '../DiscardArea';
 import Hand from '../Hand';
 
 const GameBoard = (props) => {
     const moveCardTo = (card, targetArea) => {
         console.log('moveCardTo', card, targetArea);
+        const updatedGameState = Object.assign({}, {});
+        props.handleGameStateUpdate(updatedGameState);
     }
     const moveTokenTo = (card, token, fromSource) => {
         console.log('moveTokenTo', card, token, fromSource);
@@ -21,7 +23,6 @@ const GameBoard = (props) => {
     const handleDraw = (amt = 1) => {
         console.log('handleDraw', amt);
     }
-
     return (
         <div className="game-board">
             <Hand
@@ -50,13 +51,13 @@ const GameBoard = (props) => {
             />
             <PlotArea
                 cards={props.gameState.plotArea}
-
+                handleCardMove={moveCardTo}
             />
             <PlotDiscardArea
                 cards={props.gameState.plotDiscardArea}
-
+                handleCardMove={moveCardTo}
             />
-            <DrawPile
+            <DrawPileArea
                 cards={props.gameState.drawPileArea}
                 handleDraw={handleDraw}
             />

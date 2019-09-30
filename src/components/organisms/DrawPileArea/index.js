@@ -22,7 +22,7 @@ const DrawPile = (props) => {
                 </div>
             )}
             <div className="card-btn card-btn-backside">
-
+                <p>draw pile</p>
             </div>
         </div>
     )
