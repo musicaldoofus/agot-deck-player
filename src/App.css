@@ -1,0 +1,11 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+}
+div#root, .app {
+    height: inherit;
+}
+.app {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
