@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CharacterArea = (props) => {
+const PlotArea = (props) => {
     return (
         <div className="plot-area">
 
         </div>
-    );
+    )
 }
 
-export default CharacterArea;
+export default PlotArea;

@@ -19,11 +19,12 @@ const cardCache = {
         const localGet = (lId) => JSON.parse(storageProvider.getItem(`decklist_${lId}`));
         if (!scope) return localGet(id);
         else {
+            const keys = Object.keys(storageProvider).filter(k => k.indexOf(type) > -1);
             if (type === 'savelist') {
-                const key = Object.keys(storageProvider).filter(k => k.indexOf(type) > -1)[0];
-                const parsedKey = JSON.parse(storageProvider.getItem(key));
+                const parsedKey = JSON.parse(storageProvider.getItem(keys[0]));
                 return parsedKey ? parsedKey.map(kId => localGet(kId)) : [];
             }
+            else return keys.map(kId => JSON.parse(storageProvider.getItem(kId)));
         }
     },
     clear: (id, scope) => {
