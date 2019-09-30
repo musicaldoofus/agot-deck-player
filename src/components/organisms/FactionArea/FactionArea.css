@@ -1,8 +1,0 @@
-/*FactionArea.css*/
-.board-area.faction-card > div {
-	width: 100%;
-	height: 100%;
-}
-.board-area.faction-card > div > img {
-	max-height: 100%;
-}

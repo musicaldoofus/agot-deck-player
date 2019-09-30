@@ -1,124 +1,61 @@
-import React, { Component } from 'react';
-import CardPileBtn from '../../../atoms/CardPileBtn';
-import CardListViewer from '../../../molecules/CardListViewer';
-import OverlayCardList from '../../../organisms/OverlayCardList';
-import getDeckFromAPI from '../../../../helpers/getFromAPI';
-import putToDB, { getFromDB } from '../../../../helpers/dbHelpers';
-import factionCardImages from '../../../../helpers/factionCardImages';
-import './GetDecks.css';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Loading from '../../../atoms/Loading';
+import cardCache from '../../../../helpers/cardCache';
+import { getFromAPI } from '../../../../helpers/getFromAPI';
+import Button from '../../../atoms/Button';
 
-class GetDecks extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			searchInput: '',
-			searchCache: [],
-			recentlySearchedCache: [],
-			focusDeck: null,
-			focusDeckCacheType: 'searchCache'
-		};
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSearch = this.handleSearch.bind(this);
-		this.updateDecklistCache = this.updateDecklistCache.bind(this);
-		this.handleClickDecklist = this.handleClickDecklist.bind(this);
-		this.handleDismiss = this.handleDismiss.bind(this);
-		this.handleSelectDeck = this.handleSelectDeck.bind(this);
-	}
-	
-	componentDidMount() {
-		const recentlySearched = getFromDB('recentlySearched');
-		if (recentlySearched !== null) this.setState({
-			recentlySearchedCache: this.state.recentlySearchedCache.concat(recentlySearched)
-		});
-	}
-	
-	handleInputChange(e) {
-		this.setState({searchInput: e.target.value});
-	}
-	
-	handleSearch(e) {
-		e.preventDefault();
-		getDeckFromAPI({id: this.state.searchInput}, this.updateDecklistCache);
-	}
-	
-	updateDecklistCache(deck) {
-		this.setState({searchCache: this.state.searchCache.concat(deck)});
-		let recentlySearched = getFromDB('recentlySearched');
-		if (recentlySearched === null) recentlySearched = [];
-		recentlySearched = recentlySearched.filter(oldDeck => oldDeck.id !== deck.id); //avoid duplicates in cache
-		putToDB('recentlySearched', recentlySearched.concat(deck));
-	}
-	
-	handleClickDecklist(deckId, focusDeckCacheType) {
-		let focusDeck;
-		for (let i = 0; i < this.state[focusDeckCacheType].length; i++) {
-			if (this.state[focusDeckCacheType][i].id === deckId) focusDeck = i;
-		}
-		this.setState({focusDeck, focusDeckCacheType});
-	}
-	
-	handleDismiss() {
-		this.setState({focusDeck: null});
-	}
-	
-	handleSelectDeck() {
-		this.props.handleSelectDeck(this.state[this.state.focusDeckCacheType][this.state.focusDeck]);
-	}
-	
-	render() {
-		const searchResults = this.state.searchCache.map((deck, i) => (
-			<div key={i} id={`search-result-decklist-${deck.id}`}>
-				<div>
-					<h3>{deck.name}</h3>
-					<a href={`https://thronesdb.com/decklist/view/${deck.id}`} target="_blank" rel="noopener noreferrer">Go to decklist page</a>
-				</div>
-				<CardPileBtn
-					imgSrc={factionCardImages[deck.faction_code]}
-					onClick={() => this.handleClickDecklist(deck.id, 'searchCache')}
-				/>
-			</div>
-		));
-		const recentlySearchedCards = this.state.recentlySearchedCache.map(({id, name, faction_code}) => ({id, name, image_url: factionCardImages[faction_code]}));
-		return (
-			<div className="get-decks">
-				<form>
-					<label htmlFor="deck-search">
-						<input
-							name="deck-search"
-							type="text"
-							placeholder="Search for decklist by id"
-							value={this.state.searchInput}
-							onChange={this.handleInputChange}
-						/>
-					</label>
-					<button type="submit" onClick={this.handleSearch}>Search</button>
-				</form>
-				<div id="search-results">
-					<h1>Decklist search results</h1>
-					<div style={{display: 'grid', gridTemplateColumns: `repeat(${this.state.searchCache.length}, 10rem)`}}>
-						{this.state.searchCache.length > 0 && searchResults}
-					</div>
-				</div>
-				<div id="recently-searched">
-					<h1>Recently searched decklists</h1>
-					<CardListViewer
-						cards={recentlySearchedCards}
-						colSize={240}
-						onCardClick={({id}) => this.handleClickDecklist(id, 'recentlySearchedCache')}
-					/>
-				</div>
-				{this.state.focusDeck !== null &&
-					<OverlayCardList
-						label={this.state[this.state.focusDeckCacheType][this.state.focusDeck].name}
-						cards={this.state[this.state.focusDeckCacheType][this.state.focusDeck].cardList}
-						onDismiss={this.handleDismiss}
-						handleSelectDeck={this.handleSelectDeck}
-						// handleAddToMyDecks={this.handleAddToMyDecks}
-					/>
-				}
-			</div>
-		);
-	}
+const GetDecks = (props) => {
+    const [deck, setDeck] = useState(cardCache.get('decklist', props.match.params.id));
+
+    useEffect(() => {
+        if (!deck) {
+            getFromAPI({
+                type: 'decklist',
+                id: props.match.params.id
+            })
+            .then(deckObj => {
+                const parsedDeckObj = JSON.parse(deckObj);
+                cardCache.add('decklist', props.match.params.id, parsedDeckObj);
+                setDeck(parsedDeckObj);
+            })
+            .catch(err => console.error(err));
+        }
+    })
+
+    const display = deck ? (
+        <Fragment>
+            <header>
+                <h1>{deck.name}</h1>
+            </header>
+            <div className="get-deck-controls">
+                <Button
+                    title="Save"
+                    onClick={() => cardCache.save(deck.id, 'decklist')}
+                />
+            </div>
+            <div className="get-deck-metadata">
+
+            </div>
+            <div className="get-deck-cardlist">
+                <div className="get-deck-cardlist-viewcontrols">
+
+                </div>
+            </div>
+        </Fragment>
+    ) : (
+        <Loading/>
+    );
+    return (
+        <div className="get-decks">
+            <div className="get-decks-title">
+                <Link to="/get">&larr;</Link>
+            </div>
+            <div className="get-decks-display">
+                {display}
+            </div>
+        </div>
+    );
 }
 
 export default GetDecks;

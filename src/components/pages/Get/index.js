@@ -1,26 +1,27 @@
 import React, { Fragment } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import GetCards from './GetCards';
+import { Route } from 'react-router-dom';
+import GetRoot from './GetRoot';
 import GetDecks from './GetDecks';
+import GetCards from './GetCards';
 
-const Get = (props) => {
-	return (
-		<Fragment>
-			<Route
-				exact
-				path={props.match.url}
-				render={(p) => <Redirect to={`${p.match.url}/decks`}/>}
-			/>
-			<Route
-				path={`${props.match.url}/decks`}
-				render={(p) => <GetDecks handleSelectDeck={props.handleSelectDeck} {...p}/>}
-			/>
-			<Route
-				path={`${props.match.url}/cards`}
-				component={GetCards}
-			/>
-		</Fragment>
-	);
+const Get = ({match}) => {
+    return (
+        <Fragment>
+            <Route
+                exact
+                path={match.url}
+                component={GetRoot}
+            />
+            <Route
+                path={`${match.url}/decks/:id`}
+                component={GetDecks}
+            />
+            <Route
+                path={`${match.url}/cards/:id`}
+                component={GetCards}
+            />
+        </Fragment>
+    );
 }
 
 export default Get;

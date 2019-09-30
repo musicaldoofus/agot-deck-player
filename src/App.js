@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, HashRouter, Switch, Route } from 'react-router-dom';
-import Root from './components/pages/Root';
+import Nav from './components/molecules/Nav';
+import Splash from './components/pages/Splash';
 import Get from './components/pages/Get';
 import Play from './components/pages/Play';
-import putToDB, { getFromDB } from './helpers/dbHelpers';
+import My from './components/pages/My';
 import './App.css';
 
 const withHashRouter = (routes) => (
@@ -18,49 +19,41 @@ const withBrowserRouter = (routes) => (
 	</Router>
 );
 
-class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			activeDeck: undefined, //convert to activeDeckIndex and use as ref to this.state.myDecks
-			myDecks: getFromDB('myDecks')
-		};
-		this.handleSelectDeck = this.handleSelectDeck.bind(this);
-		this.handleAddToMyDecks = this.handleAddToMyDecks.bind(this);
-	}
-	
-	handleSelectDeck(activeDeck) {
-		// const activeDeckIndex = 0; <-- placeholder
-		this.setState({
-			activeDeck
-		}, () => putToDB('activeDeck', activeDeck));
-	}
-	
-	handleAddToMyDecks(deck) {
-		this.setState({myDecks: this.state.myDecks.concat(deck)});
-	}
-	
-	render() {
-		const routes = (
+const withContainer = (routes) => {
+	const isGhPages = window.location.href.indexOf('github.io') > -1;
+	return (
+		<div className="app">
+			{isGhPages ? withHashRouter(routes) : withBrowserRouter(routes)}
+		</div>
+	);
+}
+
+const App = () =>  {
+	const routes = (
+		<Fragment>
+			<Nav/>
 			<Switch>
 				<Route
 					exact
 					path="/"
-					component={Root}
+					component={Splash}
 				/>
 				<Route
 					path="/get"
-					render={(props) => <Get handleAddToMyDecks={this.handleAddToMyDecks} handleSelectDeck={this.handleSelectDeck} {...props}/>}
+					component={Get}
 				/>
 				<Route
 					path="/play"
-					render={(props) => <Play deck={this.state.activeDeck} {...props}/>}
+					component={Play}
+				/>
+				<Route
+					path="/my"
+					component={My}
 				/>
 			</Switch>
-		);
-		if (window.location.href.indexOf('github.io') > -1) return withHashRouter(routes); //required to work in gh-pages
-		else return withBrowserRouter(routes);
-	}
+		</Fragment>
+	);
+	return withContainer(routes);
 }
 
 export default App;

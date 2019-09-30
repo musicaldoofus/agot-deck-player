@@ -6,7 +6,7 @@ const getEnv = () => {
 	else if (window.location.href.indexOf('github.io') > -1) return 'prod-gh';
 }
 
-const getFromAPI = ({type, id, scope = 'public', format = '.json'} = {}) => { //allow  default format to be json
+const getFromAPI = ({type, id, scope = 'public', format = '.json'} = {}) => {
 	const rootUrl = 'https://thronesdb.com/api';
 	const reqUrl = `${rootUrl}/${scope}/${type}/${id}${format}`;
 	return new Promise((resolve, reject) => {
@@ -74,4 +74,4 @@ const getDeckFromAPI = (params, componentCallback) => {
 }
 
 export default getDeckFromAPI;
-export { getEnv };
+export { getFromAPI, getEnv };
