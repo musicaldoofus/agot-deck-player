@@ -1,0 +1,10 @@
+/*Nav.css*/
+nav {
+    display: flex;
+    height: 100%;
+}
+.nav-controls-container {
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}

@@ -4,13 +4,11 @@ import GameSetup from '../../organisms/GameSetup';
 
 const Play = () => {
     const handleSelectDeck = (deck) => {
-        console.log('handleSelectDeck', deck);
-        //wrap below - need a Promise so this can be a callback once all cards are loaded from deck.slots
-        const isFaction = (c) => c.type === 'agenda' || c.type === 'faction';
-        const isPlot = (c) => c.type === 'plot';
-        const factionArea = deck.slots.filter(isFaction); //check & improve
-        const plotArea = deck.slots.filter(isPlot); //check & improve
-        const drawPileArea = deck.filter(card => !isFaction(card) && !isPlot(card));
+        const isFaction = (c) => c.type_code === 'agenda' || c.type === 'faction';
+        const isPlot = (c) => c.type_code === 'plot';
+        const factionArea = deck.cards.filter(isFaction); //check & improve
+        const plotArea = deck.cards.filter(isPlot); //check & improve
+        const drawPileArea = deck.cards.filter(card => !isFaction(card) && !isPlot(card));
         const initGameState = {
             factionArea,
             drawPileArea,
@@ -31,14 +29,14 @@ const Play = () => {
     const [gameState, setGameState] = useState([]); //extend: allow continue game option (use a getter instead of empty array)
     return (
         <div className="play-container">
-            {gameState.length > 0 ? (
+            {gameState.length === 0 ? (
+                <GameSetup
+                    handleSelectDeck={handleSelectDeck}
+                />
+            ) : (
                 <GameBoard
                     gameState={gameState[gameState.length - 1]}
                     handleGameStateUpdate={handleGameStateUpdate}
-                />
-            ) : (
-                <GameSetup
-                    handleSelectDeck={handleSelectDeck}
                 />
             )}
         </div>
