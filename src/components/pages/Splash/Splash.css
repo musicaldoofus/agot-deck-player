@@ -1,0 +1,5 @@
+/*Splash.css*/
+section {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,11 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = (props) => {
-    //const className = 'hover-float'.concat(props.className ? ' '.concat(props.className) : ''); <-- for extension - may not use
-    return (
+    const className = 'btn hover-float';
+    return props.to ? (
+        <Link
+            className={className}
+            to={props.to}
+            id={props.id}
+        >
+            <div>{props.children ? props.children : <span className="light">{props.title}</span>}</div>
+        </Link>
+    ) : (
         <button
-            className="hover-float"
+            className={className}
             id={props.id}
             onClick={props.onClick}
             onPress={props.onPress}
