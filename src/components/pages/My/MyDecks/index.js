@@ -1,17 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Button from '../../../atoms/Button';
 import cardCache from '../../../../helpers/cardCache';
 
 const MyDecks = (props) => {
     const deck = cardCache.get('decklist', props.match.params.id);
+    const display = !deck ? (
+        <div>
+            <h1>Deck not found.</h1>
+        </div>
+    ) : (
+        <header>
+            {deck.name}
+        </header>
+    );
     return (
         <div className="my-decks">
             <div className="back-button-container">
-                <Link className="btn hover-float" to="/my">&larr;</Link>
+                <Button to="/my">&larr;</Button>
             </div>
-            <header>
-                {deck.name}
-            </header>
+            <div className="deck-display-single">
+                {display}
+            </div>
         </div>
     );
 }

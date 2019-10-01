@@ -41,3 +41,8 @@ a {
     transform: translateY(-0.3em);
     box-shadow: 0px 3px 6px 0px var(--dark-main-low-opacity);
 }
+.deck-results-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}

@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom';
 import './NavLink.css';
 
 const NavLink = (props) => {
-    const formatLabel = (l) => {
-        const lbl = props.to.replace(/(\/|\.)/g, '');
-        return lbl.slice(0,1).toUpperCase().concat(lbl.slice(1));
-    }
-    const linkLabel = props.label ? props.label : formatLabel(props.to);
+    const toLabel = props.to.replace(/\//g, '');
+    const labelText = toLabel.slice(0,1).toUpperCase().concat(toLabel.slice(1));
     return (
         <div className="nav-btn-container hover-float">
             <Link className="nav-btn" to={props.to}>
-                <div className="light">{linkLabel}</div>
+                <div className="light">{labelText}</div>
             </Link>
             <div className="nav-bg-screen"></div>
             <div className="nav-btn-bg">

@@ -1,1 +1,33 @@
 /*DeckUiCard.css*/
+.deck-ui-card-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+    height: 16em;
+    padding: 0;
+    column-gap: 1em;
+}
+.deck-ui-card-container > div {
+    height: inherit;
+}
+.deck-ui-card-header-left {
+    width: 100%;
+}
+.deck-ui-card-metadata {
+    width: calc(100% - 1em);
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+.deck-ui-card-title {
+    display: flex;
+    border-bottom: 2px solid var(--gold-one);
+    border-radius: 2px;
+}
+.deck-ui-card-title > h3 {
+    align-self: flex-end;
+    margin-bottom: 0.5em;
+}
+.deck-ui-card-description {
+    overflow: hidden;
+    height: calc(100% - 2em);
+}

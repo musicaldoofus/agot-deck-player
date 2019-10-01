@@ -49,7 +49,7 @@ const GetDecks = (props) => {
     return (
         <div className="get-decks">
             <div className="get-decks-title">
-                <Link to="/get">&larr;</Link>
+                <Button to="/get">&larr;</Button>
             </div>
             <div className="get-decks-display">
                 {display}

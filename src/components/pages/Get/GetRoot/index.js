@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchInput from '../../../atoms/SearchInput';
 import Button from '../../../atoms/Button';
 import NoResults from '../../../atoms/NoResults';
-import UiCard from '../../../atoms/UiCard';
+import DeckUiCard from '../../../molecules/DeckUiCard';
 import { getAllDecksLocal } from '../../../../helpers/getItems';
 
 class GetRoot extends Component {
@@ -45,19 +45,17 @@ class GetRoot extends Component {
         const type = result.hasOwnProperty('slots') || result.hasOwnProperty('cards') ? 'decks' : 'cards';
         return (
             <Link key={result.id} to={`${this.props.match.url}/${type}/${result.id}`}>
-                <UiCard className="get-result-deck-link">
-                    {result.name}
-                </UiCard>
+                <DeckUiCard
+                    deck={result}
+                />
             </Link>
         );
     }
 
     renderResults(results) {
-        console.log('renderResults', results);
         let memo = [];
         return results
             .filter((r) => {
-                //console.log('checking', r);
                 const isInMemo = memo.indexOf(r.id) === -1;
                 memo.push(r.id);
                 return isInMemo;
@@ -97,7 +95,9 @@ class GetRoot extends Component {
                 {recentlySearched && recentlySearched.length > 0 && (
                     <div className="search-results-recent">
                         <h2>Recently searched decks</h2>
-                        {recentlySearched}
+                        <div className="deck-results-container">
+                            {recentlySearched}
+                        </div>
                     </div>
                 )}
             </div>

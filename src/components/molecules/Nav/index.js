@@ -5,11 +5,11 @@ import './Nav.css';
 
 const Nav = () => {
     const links = [{
-        to: './get'
+        to: '/get'
     }, {
-        to: './play'
+        to: '/play'
     }, {
-        to: './my'
+        to: '/my'
     }];
     const navLinks = links.map(l => <NavLink key={l.to} {...l}/>);
     return (
