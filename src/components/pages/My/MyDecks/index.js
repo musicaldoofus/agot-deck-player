@@ -7,7 +7,7 @@ const MyDecks = (props) => {
     return (
         <div className="my-decks">
             <div className="back-button-container">
-                <Link to="/my">&larr;</Link>
+                <Link className="btn hover-float" to="/my">&larr;</Link>
             </div>
             <header>
                 {deck.name}

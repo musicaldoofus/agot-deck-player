@@ -5,7 +5,6 @@ import './Nav.css';
 const Nav = () => {
     return (
         <nav>
-            <span className="nav-bg nav-bg-left"></span>
             <div className="nav-controls-container">
                 <div>
                     <Link className="hover-float" to="/get">
@@ -23,7 +22,24 @@ const Nav = () => {
                     </Link>
                 </div>
             </div>
-            <span className="nav-bg nav-bg-right"></span>
+            <div className="nav-bg-screen"></div>
+            <div className="nav-bg-container">
+                <div className="nav-bg-row">
+                    <div className="nav-bg-col corner-left-top"></div>
+                    <div className="nav-bg-col side-top"></div>
+                    <div className="nav-bg-col corner-right-top"></div>
+                </div>
+                <div className="nav-bg-row">
+                    <div className="nav-bg-col side-left"></div>
+                    <div className="nav-bg-col center"></div>
+                    <div className="nav-bg-col side-right"></div>
+                </div>
+                <div className="nav-bg-row">
+                    <div className="nav-bg-col corner-left-bottom"></div>
+                    <div className="nav-bg-col side-bottom"></div>
+                    <div className="nav-bg-col corner-right-bottom"></div>
+                </div>
+            </div>
         </nav>
     )
 }

@@ -1,5 +1,5 @@
 /*Button.css*/
-button {
+button, .btn {
     background-color: var(--accent-main);
     color: var(--light-main);
     border: 2px solid var(--gold-one);
@@ -7,4 +7,7 @@ button {
     padding: 0.5em 1em;
     border-radius: 3px;
     cursor: pointer;
+}
+.back-button-container {
+    display: flex;
 }
