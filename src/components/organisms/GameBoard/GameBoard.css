@@ -1,0 +1,19 @@
+/*GameBoard.css*/
+.game-board {
+    display: grid;
+    grid-template-columns: 20em auto 20em;
+    width: 100%;
+}
+.area {
+    display: grid;
+    row-gap: 1em;
+}
+.lefhand-area {
+    grid-template-rows: 12em 12em;
+}
+.in-play-area {
+    grid-template-rows: auto auto;
+}
+.righthand-area {
+    grid-template-rows: 2fr 1fr;
+}

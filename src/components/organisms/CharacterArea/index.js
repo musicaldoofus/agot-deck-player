@@ -2,8 +2,8 @@ import React from 'react';
 
 const CharacterArea = (props) => {
     return (
-        <div className="plot-area">
-
+        <div className="character-area">
+            Character Area
         </div>
     );
 }

@@ -8,6 +8,7 @@ import DrawPileArea from '../DrawPileArea';
 import DiscardArea from '../DiscardArea';
 import DeadArea from '../DeadArea';
 import Hand from '../Hand';
+import './GameBoard.css';
 
 const GameBoard = (props) => {
     const moveCardTo = (card, targetArea) => {
@@ -26,7 +27,7 @@ const GameBoard = (props) => {
     }
     return (
         <div className="game-board">
-            <div className="plot-area">
+            <div className="area lefthand-area">
                 <PlotArea
                     cards={props.gameState.plotArea}
                     handleCardMove={moveCardTo}
@@ -36,7 +37,7 @@ const GameBoard = (props) => {
                     handleCardMove={moveCardTo}
                 />
             </div>
-            <div className="in-play-area">
+            <div className="area in-play-area">
                 <CharacterArea
                     cards={props.gameState.characterArea}
                     handleCardMove={moveCardTo}
@@ -50,7 +51,7 @@ const GameBoard = (props) => {
                     handleKneel={kneelToggle}
                 />
             </div>
-            <div className="lefthand-area">
+            <div className="area righthand-area">
                 <FactionArea
                     cards={props.gameState.factionArea}
                     handleTokenMove={moveTokenTo}
