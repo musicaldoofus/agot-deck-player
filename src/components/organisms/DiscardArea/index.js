@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const DiscardArea = (props) => {
-    const [discard, setDiscard] = useState(props.cards);
     return (
         <div onClick={props.handleDraw} className="discard-pile">
+            Discard Area
             <div className="card-btn card-btn-hidden">
                 
             </div>

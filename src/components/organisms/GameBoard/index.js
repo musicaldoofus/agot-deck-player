@@ -56,22 +56,26 @@ const GameBoard = (props) => {
                 />
             </div>
             <div className="area righthand-area">
-                <FactionArea
-                    cards={props.gameState.factionArea}
-                    handleTokenMove={moveTokenTo}
-                />
-                <DrawPileArea
-                    cards={props.gameState.drawPileArea}
-                    handleDraw={handleDraw}
-                />
-                <DiscardArea
-                    cards={props.gameState.discardArea}
-                    handleCardMove={moveCardTo}
-                />
-                <DeadArea
-                    cards={props.gameState.deadArea}
-                    handleCardMove={moveCardTo}
-                />
+                <div>
+                    <FactionArea
+                        cards={props.gameState.factionArea}
+                        handleTokenMove={moveTokenTo}
+                    />
+                    <DrawPileArea
+                        cards={props.gameState.drawPileArea}
+                        handleDraw={handleDraw}
+                    />
+                    <DiscardArea
+                        cards={props.gameState.discardArea}
+                        handleCardMove={moveCardTo}
+                    />
+                </div>
+                <div>
+                    <DeadArea
+                        cards={props.gameState.deadArea}
+                        handleCardMove={moveCardTo}
+                    />
+                </div>
             </div>
             <Hand
                 cards={props.gameState.hand}

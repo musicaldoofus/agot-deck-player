@@ -14,9 +14,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.plot-hud-display-container > div {
-    
-}
 .area {
     display: grid;
     row-gap: 1em;
@@ -32,4 +29,8 @@
 }
 .righthand-area {
     grid-template-rows: 2fr 1fr;
+}
+.righthand-area > div:first-child {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr;
 }
