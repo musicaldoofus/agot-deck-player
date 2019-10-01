@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UiCard from '../../../atoms/UiCard';
+import DeckUiCard from '../../../molecules/DeckUiCard';
 import cardCache from '../../../../helpers/cardCache';
 
 const MyRoot = (props) => {
     const deckList = cardCache.get('savelist', null, 'all');
     const decks = deckList.map(deck => (
         <Link key={deck.id} to={`${props.match.url}/decks/${deck.id}`}>
-            <UiCard className="my-decks-display-deck">
-                {deck.name}
-            </UiCard>
+            <DeckUiCard
+                deck={deck}
+            />
         </Link>
     ));
     return (
@@ -17,7 +17,7 @@ const MyRoot = (props) => {
             <header>
                 <h1>My decks and cards</h1>
             </header>
-            <div className="my-root-display">
+            <div className="deck-results-container">
                 {decks}
             </div>
         </div>
