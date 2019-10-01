@@ -17,7 +17,8 @@ const Play = () => {
             characterArea: [],
             locationArea: [],
             plotDiscardArea: [],
-            discardPileArea: []
+            discardPileArea: [],
+            deadArea: []
         };
         setGameState(gameState.concat(initGameState));
     }

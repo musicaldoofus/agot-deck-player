@@ -6,6 +6,7 @@ import PlotArea from '../PlotArea';
 import PlotDiscardArea from '../PlotDiscardArea';
 import DrawPileArea from '../DrawPileArea';
 import DiscardArea from '../DiscardArea';
+import DeadArea from '../DeadArea';
 import Hand from '../Hand';
 
 const GameBoard = (props) => {
@@ -25,41 +26,51 @@ const GameBoard = (props) => {
     }
     return (
         <div className="game-board">
+            <div className="plot-area">
+                <PlotArea
+                    cards={props.gameState.plotArea}
+                    handleCardMove={moveCardTo}
+                />
+                <PlotDiscardArea
+                    cards={props.gameState.plotDiscardArea}
+                    handleCardMove={moveCardTo}
+                />
+            </div>
+            <div className="in-play-area">
+                <CharacterArea
+                    cards={props.gameState.characterArea}
+                    handleCardMove={moveCardTo}
+                    handleTokenMove={moveTokenTo}
+                    handleKneel={kneelToggle}
+                />
+                <LocationArea
+                    cards={props.gameState.locationArea}
+                    handleCardMove={moveCardTo}
+                    handleTokenMove={moveTokenTo}
+                    handleKneel={kneelToggle}
+                />
+            </div>
+            <div className="lefthand-area">
+                <FactionArea
+                    cards={props.gameState.factionArea}
+                    handleTokenMove={moveTokenTo}
+                />
+                <DrawPileArea
+                    cards={props.gameState.drawPileArea}
+                    handleDraw={handleDraw}
+                />
+                <DiscardArea
+                    cards={props.gameState.discardArea}
+                    handleCardMove={moveCardTo}
+                />
+                <DeadArea
+                    cards={props.gameState.deadArea}
+                    handleCardMove={moveCardTo}
+                />
+            </div>
             <Hand
                 cards={props.gameState.hand}
                 handleCardMove={moveCardTo}
-            />
-            <FactionArea
-                cards={props.gameState.factionArea}
-                handleTokenMove={moveTokenTo}
-            />
-            <DiscardArea
-                cards={props.gameState.discardArea}
-                handleCardMove={moveCardTo}
-            />
-            <CharacterArea
-                cards={props.gameState.characterArea}
-                handleCardMove={moveCardTo}
-                handleTokenMove={moveTokenTo}
-                handleKneel={kneelToggle}
-            />
-            <LocationArea
-                cards={props.gameState.locationArea}
-                handleCardMove={moveCardTo}
-                handleTokenMove={moveTokenTo}
-                handleKneel={kneelToggle}
-            />
-            <PlotArea
-                cards={props.gameState.plotArea}
-                handleCardMove={moveCardTo}
-            />
-            <PlotDiscardArea
-                cards={props.gameState.plotDiscardArea}
-                handleCardMove={moveCardTo}
-            />
-            <DrawPileArea
-                cards={props.gameState.drawPileArea}
-                handleDraw={handleDraw}
             />
         </div>
     )
