@@ -1,0 +1,7 @@
+/*UiCard.css*/
+.card {
+    border: 2px solid var(--gold-one);
+    background-color: var(--light-main);
+    padding: 2em;
+    cursor: pointer;
+}

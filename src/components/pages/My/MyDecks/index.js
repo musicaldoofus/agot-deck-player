@@ -12,7 +12,6 @@ const MyDecks = (props) => {
             <header>
                 {deck.name}
             </header>
-
         </div>
     );
 }

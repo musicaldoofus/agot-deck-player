@@ -5,23 +5,25 @@ import './Nav.css';
 const Nav = () => {
     return (
         <nav>
+            <span className="nav-bg nav-bg-left"></span>
             <div className="nav-controls-container">
                 <div>
                     <Link className="hover-float" to="/get">
-                        <div>Get decks</div>
+                        <div className="light">Get decks</div>
                     </Link>
                 </div>
                 <div>
                     <Link className="hover-float" to="/play">
-                        <div>Play</div>
+                        <div className="light">Play</div>
                     </Link>
                 </div>
                 <div>
                     <Link className="hover-float" to="/my">
-                        <div>My decks</div>
+                        <div className="light">My decks</div>
                     </Link>
                 </div>
             </div>
+            <span className="nav-bg nav-bg-right"></span>
         </nav>
     )
 }

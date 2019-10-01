@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchInput from '../../../atoms/SearchInput';
 import Button from '../../../atoms/Button';
 import NoResults from '../../../atoms/NoResults';
+import UiCard from '../../../atoms/UiCard';
 import { getAllDecksLocal } from '../../../../helpers/getItems';
 
 class GetRoot extends Component {
@@ -43,8 +44,10 @@ class GetRoot extends Component {
         console.log('renderResult', result);
         const type = result.hasOwnProperty('slots') || result.hasOwnProperty('cards') ? 'decks' : 'cards';
         return (
-            <Link key={result.id} to={`${this.props.match.url}/${type}/${result.id}`} className="get-result-deck-link">
-                {result.name}
+            <Link key={result.id} to={`${this.props.match.url}/${type}/${result.id}`}>
+                <UiCard className="get-result-deck-link">
+                    {result.name}
+                </UiCard>
             </Link>
         );
     }

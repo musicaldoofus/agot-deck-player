@@ -10,7 +10,7 @@ const Button = (props) => {
             onClick={props.onClick}
             onPress={props.onPress}
         >
-            {props.children ? props.children : props.title}
+            {props.children ? props.children : <span className="light">{props.title}</span>}
         </button>
     )
 }

@@ -24,9 +24,13 @@ div#root, .app {
 .page > div {
     padding: 4em;
 }
-h1, h2, h3, h4, h5, p, a {
+.light {
     color: var(--light-main);
 }
-h1, h2, h3, h4, h5, a {
+h1, h2, h3, h4, h5, a, p, span, div {
     font-family: 'Julius Sans One', sans-serif;
+    color: var(--dark-main);
+}
+a {
+    text-decoration: none;
 }

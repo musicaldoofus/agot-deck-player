@@ -1,12 +1,13 @@
 import React from 'react';
 import cardCache from '../../../helpers/cardCache';
+import UiCard from '../../atoms/UiCard';
 
 const GameSetup = (props) => {
     const deckList = cardCache.get('decklist', null, 'all');
     const decks = deckList.map(deck => (
-        <div key={deck.id} className="game-setup-deck" onClick={() => props.handleSelectDeck(deck)}>
+        <UiCard key={deck.id} className="game-setup-deck" onClick={() => props.handleSelectDeck(deck)}>
             <div>{deck.name}</div>
-        </div>
+        </UiCard>
     ));
     return (
         <div className="game-setup">
