@@ -18,7 +18,12 @@ const Play = () => {
             locationArea: [],
             plotDiscardArea: [],
             discardPileArea: [],
-            deadArea: []
+            deadArea: [],
+            tokenState: {
+                gold: 0,
+                initiative: null,
+                claim: null
+            }
         };
         setGameState(gameState.concat(initGameState));
     }

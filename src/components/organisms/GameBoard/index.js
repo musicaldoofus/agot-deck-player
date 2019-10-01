@@ -1,4 +1,5 @@
 import React from 'react';
+import HUD from '../HUD';
 import FactionArea from '../FactionArea';
 import CharacterArea from '../CharacterArea';
 import LocationArea from '../LocationArea';
@@ -27,6 +28,9 @@ const GameBoard = (props) => {
     }
     return (
         <div className="game-board">
+            <HUD
+                tokenState={props.gameState.tokenState}
+            />
             <div className="area lefthand-area">
                 <PlotArea
                     cards={props.gameState.plotArea}
