@@ -9,13 +9,13 @@ import DrawPileArea from '../DrawPileArea';
 import DiscardArea from '../DiscardArea';
 import DeadArea from '../DeadArea';
 import Hand from '../Hand';
+import moveCardToHook from '../../../helpers/moveCardToHook';
 import './GameBoard.css';
 
 const GameBoard = (props) => {
-    const moveCardTo = (card, targetArea) => {
-        console.log('moveCardTo', card, targetArea);
-        const updatedGameState = Object.assign({}, {});
-        props.handleGameStateUpdate(updatedGameState);
+    const moveCardTo = (card, fromArea, targetArea) => {
+        console.log('moveCardTo', card, fromArea, targetArea);
+        props.handleGameStateUpdate(moveCardToHook(card, fromArea, targetArea, props.gameState));
     }
     const moveTokenTo = (card, token, fromSource) => {
         console.log('moveTokenTo', card, token, fromSource);
@@ -26,9 +26,13 @@ const GameBoard = (props) => {
     const handleDraw = (amt = 1) => {
         console.log('handleDraw', amt);
     }
+    const advancePhase = () => {
+        console.log('advancePhase');
+    }
     return (
         <div className="game-board">
             <HUD
+                phase={props.gameState.phase}
                 tokenState={props.gameState.tokenState}
             />
             <div className="area lefthand-area">
@@ -79,6 +83,7 @@ const GameBoard = (props) => {
             </div>
             <div style={{gridColumn: '1 / 4'}}>
                 <Hand
+                    phase={props.gameState.phase ? props.gameState.phase : 'marshal'}
                     cards={props.gameState.hand}
                     handleCardMove={moveCardTo}
                 />
