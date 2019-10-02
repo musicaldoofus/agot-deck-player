@@ -17,13 +17,6 @@ div#root, .app {
     display: grid;
     grid-template-columns: auto 1fr;
 }
-.page {
-    background: url(./media/backgrounds/winterfell.jpg) no-repeat;
-    background-size: cover;
-}
-.page > div {
-    padding: 4em;
-}
 .light {
     color: var(--light-main);
 }
@@ -35,10 +28,10 @@ a {
     text-decoration: none;
 }
 .hover-float {
-    transition: all ease 0.4s;
+    transition: all ease 0.2s;
 }
 .hover-float:hover {
-    transform: translateY(-0.3em);
+    transform: translateY(-0.1em);
     box-shadow: 0px 3px 6px 0px var(--dark-main-low-opacity);
 }
 .deck-results-container {

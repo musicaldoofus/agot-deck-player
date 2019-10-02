@@ -4,7 +4,7 @@ import './LocationArea.css';
 const LocationArea = (props) => {
     return (
         <div className="location-area">
-            <div className="border"></div>
+            <div className="border" id={`Locations(${props.cards.length})`}></div>
         </div>
     )
 }

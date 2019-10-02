@@ -1,4 +1,5 @@
 import React from 'react';
+import Page from '../../../molecules/Page';
 import Button from '../../../atoms/Button';
 import cardCache from '../../../../helpers/cardCache';
 
@@ -14,14 +15,14 @@ const MyDecks = (props) => {
         </header>
     );
     return (
-        <div className="my-decks">
+        <Page className="my-decks">
             <div className="back-button-container">
                 <Button to="/my">&larr;</Button>
             </div>
             <div className="deck-display-single">
                 {display}
             </div>
-        </div>
+        </Page>
     );
 }
 

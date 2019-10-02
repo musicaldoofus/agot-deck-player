@@ -1,6 +1,7 @@
 import React from 'react';
 import UiCard from '../../atoms/UiCard';
 import './DeckUiCard.css';
+import factionCardImages from '../../../helpers/factionCardImages';
 
 const DeckUiCard = (props) => {
     const { name, description_md } = props.deck;
@@ -10,7 +11,7 @@ const DeckUiCard = (props) => {
             onClick={props.onClick}
         >
             <div className="deck-ui-card-header-left">
-                <div className={props.deck.faction_code} alt={`${props.deck.faction_code} faction image`}></div>
+                <img src={factionCardImages[props.deck.faction_code]} alt=""/>
             </div>
             <div className="deck-ui-card-metadata">
                 <div className="deck-ui-card-title">

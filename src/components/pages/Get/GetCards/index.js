@@ -1,11 +1,12 @@
 import React from 'react';
+import Page from '../../../molecules/Page';
 
 const GetCards = (props) => {
     console.log('GetCards', props);
     return (
-        <div className="get-cards">
+        <Page className="get-cards">
 
-        </div>
+        </Page>
     )
 }
 

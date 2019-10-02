@@ -1,4 +1,7 @@
 /*Page.css*/
 .page {
-
+    background: url(../../../media/backgrounds/winterfell.jpg) no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 4em;
 }

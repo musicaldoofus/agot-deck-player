@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Page from '../../molecules/Page';
 import GameBoard from '../../organisms/GameBoard';
 import GameSetup from '../../organisms/GameSetup';
 import shuffle from '../../../helpers/shuffle';
@@ -37,7 +38,7 @@ const Play = () => {
     }
     const [gameState, setGameState] = useState([]); //extend: allow continue game option (use a getter instead of empty array)
     return (
-        <div className="play-container">
+        <Page className="play-container">
             {gameState.length === 0 ? (
                 <GameSetup
                     handleSelectDeck={handleSelectDeck}
@@ -48,8 +49,8 @@ const Play = () => {
                     handleGameStateUpdate={handleGameStateUpdate}
                 />
             )}
-        </div>
-    )
+        </Page>
+    );
 }
 
 export default Play;

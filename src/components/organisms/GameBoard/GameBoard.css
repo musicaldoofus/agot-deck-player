@@ -1,7 +1,6 @@
 /*GameBoard.css*/
 .game-board {
     display: grid;
-    width: 100%;
     grid-template-columns: 20em auto 20em;
     column-gap: 1em;
 }
@@ -21,10 +20,22 @@
     box-shadow: 0px 4px 5px 1px var(--dark-main-low-opacity);
     border: 2px solid var(--gold-one);
 }
-.area > div > .border {
+.border {
+    position: relative;
     border: 0.125em solid var(--gold-one);
     height: calc(100% - 1.25em);
     margin: 0.5em;
+}
+.border::before {
+    content: attr(id);
+    position: absolute;
+    top: 0;
+    left: 2em;
+    transform: translateY(-50%);
+    font-size: 0.75em;
+    background-color: var(--light-main);
+    border: 2px solid var(--gold-one);
+    padding: 0.5em;
 }
 .lefhand-area {
     grid-template-rows: 12em 12em;

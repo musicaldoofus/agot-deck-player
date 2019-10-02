@@ -12,6 +12,12 @@
 }
 .deck-ui-card-header-left {
     width: 100%;
+    display: flex;
+}
+.deck-ui-card-header-left > img {
+    max-width: calc(100% - 2em);
+    margin: auto;
+    margin-left: 2em;
 }
 .deck-ui-card-metadata {
     width: calc(100% - 1em);

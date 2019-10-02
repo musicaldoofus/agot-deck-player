@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Page from '../../../molecules/Page';
 import SearchInput from '../../../atoms/SearchInput';
 import Button from '../../../atoms/Button';
 import NoResults from '../../../atoms/NoResults';
@@ -74,7 +75,7 @@ class GetRoot extends Component {
         const results = this.renderSearchResults(this.state.searchResults);
         const recentlySearched = this.renderResults(getAllDecksLocal());
         return (
-            <div className="get-root">
+            <Page className="get-root">
                 <header>
                     <h1>Get decks and cards</h1>
                 </header>
@@ -100,7 +101,7 @@ class GetRoot extends Component {
                         </div>
                     </div>
                 )}
-            </div>
+            </Page>
         );
     }
 }

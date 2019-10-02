@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Page from '../../../molecules/Page';
 import Loading from '../../../atoms/Loading';
 import cardCache from '../../../../helpers/cardCache';
 import getItem, { getDeckLocal } from '../../../../helpers/getItems';
@@ -47,14 +47,14 @@ const GetDecks = (props) => {
         <Loading/>
     );
     return (
-        <div className="get-decks">
+        <Page className="get-decks">
             <div className="get-decks-title">
                 <Button to="/get">&larr;</Button>
             </div>
             <div className="get-decks-display">
                 {display}
             </div>
-        </div>
+        </Page>
     );
 }
 

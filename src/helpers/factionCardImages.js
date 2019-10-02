@@ -1,11 +1,11 @@
-import baratheonFaction from '../media/baratheon-faction.jpg';
-import tyrellFaction from '../media/tyrell-faction.jpg';
-import targaryenFaction from '../media/targaryen-faction.jpg';
-import starkFaction from '../media/stark-faction.jpg';
-import nightsWatchFaction from '../media/nights-watch-faction.jpg';
-import martellFaction from '../media/martell-faction.jpg';
-import lannisterFaction from '../media/lannister-faction.jpg';
-import greyjoyFaction from '../media/greyjoy-faction.jpg';
+import baratheonFaction from '../media/factions/baratheon-faction.jpg';
+import tyrellFaction from '../media/factions/tyrell-faction.jpg';
+import targaryenFaction from '../media/factions/targaryen-faction.jpg';
+import starkFaction from '../media/factions/stark-faction.jpg';
+import nightsWatchFaction from '../media/factions/nights-watch-faction.jpg';
+import martellFaction from '../media/factions/martell-faction.jpg';
+import lannisterFaction from '../media/factions/lannister-faction.jpg';
+import greyjoyFaction from '../media/factions/greyjoy-faction.jpg';
 
 const factionCardImages = {
 	baratheon: baratheonFaction,
