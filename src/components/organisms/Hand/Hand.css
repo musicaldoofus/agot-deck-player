@@ -1,0 +1,26 @@
+/*Hand.css*/
+.hand {
+    position: relative;
+    width: 10em;
+    height: 10em;
+    cursor: pointer;
+    margin: 2em auto;
+}
+.hand > .card-img {
+    position: absolute;
+    left: 21%;
+    margin: 1em;
+
+}
+.hand > .card-img:first-child {
+    transform: rotate(-90deg) translateY(-37%);
+    top: 1.5em;
+}
+.hand > .card-img:nth-child(2) {
+    transform: rotate(-67deg) translateY(-23%);
+    top: 2.25em;
+}
+.hand > .card-img:last-child {
+    transform: rotate(-45deg) translateY(-10%);
+    top: 2.75em;
+}

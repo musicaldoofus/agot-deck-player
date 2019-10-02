@@ -2,7 +2,8 @@ import React from 'react';
 import './UiCard.css';
 
 const UiCard = (props) => {
-    const className = props.className ? 'card hover-float '.concat(props.className) : 'card hover-float';
+    const baseClassName = 'ui-card hover-float';
+    const className = props.className ? baseClassName.concat(' ').concat(props.className) : baseClassName;
     return (
         <div
             className={className}

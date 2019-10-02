@@ -77,12 +77,14 @@ const GameBoard = (props) => {
                     />
                 </div>
             </div>
-            <Hand
-                cards={props.gameState.hand}
-                handleCardMove={moveCardTo}
-            />
+            <div style={{gridColumn: '1 / 4'}}>
+                <Hand
+                    cards={props.gameState.hand}
+                    handleCardMove={moveCardTo}
+                />
+            </div>
         </div>
-    )
+    );
 }
 
 export default GameBoard;

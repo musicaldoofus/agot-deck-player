@@ -3,7 +3,6 @@ import UiCard from '../../atoms/UiCard';
 import './DeckUiCard.css';
 
 const DeckUiCard = (props) => {
-    console.log('DeckUiCard render', props);
     const { name, description_md } = props.deck;
     return (
         <UiCard
@@ -22,7 +21,7 @@ const DeckUiCard = (props) => {
                 </div>
             </div>
         </UiCard>
-    )
+    );
 }
 
 export default DeckUiCard;

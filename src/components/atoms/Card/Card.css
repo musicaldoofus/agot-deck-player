@@ -1,25 +1,9 @@
 /*Card.css*/
 .card {
-	transition: all ease 0.2s;
-	height: calc(100% - 96px);
-	display: flex;
-	cursor: pointer;
+    width: 5em;
+    height: 5em;
+    display: flex;
 }
-.card.knelt {
-	transform: rotate(0.25turn) translateX(32px);
-}
-/*works for portrait cards, but needs parent to have explicitly set height*/
-.card > img {
-	max-width: 100%;
-	margin: auto;
-	max-height: 100%;
-}
-.card.landscape > img {
-	height: auto;
-}
-.area > .card-list-viewer > .card-list > .card {
-	/* max-height: 120px; */
-}
-.card.lg {
-	max-height: 20rem;
+.card.portrait > .card-img, .card.knelt > .card-img {
+    transform: rotate(-90deg);
 }

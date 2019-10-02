@@ -1,25 +1,29 @@
 import React from 'react';
+import cardBackside from '../../../media/card-back.png';
+import CardImg from '../CardImg';
 import './Card.css';
 
+/*
+implementations of Card
+- .portrait
+- .landscape
+- .backside.portrait (DrawDeck, setup cards, duplicate cards,)
+- .backside.landscape (PlotArea)
+- .portrait.knelt
+*/
+
 const Card = (props) => {
-	const { ind, onClick, name, image_url, cardStatus, className, bgImage_url, bgImgName } = props;
 	return (
-		<div onClick={onClick ? () => onClick(props, ind) : () => {}} className={`card${cardStatus ? ' ' + cardStatus : ''}${className ? ' ' + className : ''}`}>
-			<img alt={name} src={image_url}/>
-			{bgImage_url && <img alt={bgImgName} src={bgImage_url}/>}
+		<div
+			className={`card${props.isKnelt ? ' knelt' : ''}${props.isLandscape ? ' landscape' : ' portrait'}${props.isBackside ? ' backside' : ''}`}
+			onClick={props.onClick}
+			onPress={props.onPress}
+		>
+			<CardImg
+				src={props.isBackside ? cardBackside : props.card.image_url}
+			/>
 		</div>
 	);
 }
 
-const toCard = ({cardProps, ind, onClick}) => (
-	<Card
-		key={cardProps.code + '-' + ind}
-		keyInd={cardProps.code + '-' + ind}
-		ind={ind}
-		{...cardProps}
-		onClick={onClick}
-	/>
-);
-
 export default Card;
-export { toCard };

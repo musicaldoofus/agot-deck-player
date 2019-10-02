@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import Card from '../../atoms/Card';
 import Button from '../../atoms/Button';
+import shuffle from '../../../helpers/shuffle';
 
 const DrawPile = (props) => {
-    const shuffle = (arr) => {
-        return arr;
-    }
-    const [deck, setDeck] = useState(shuffle(props.cards));
+    const [deck, setDeck] = useState(shuffle(props.cards)); //extend - deck will already be shuffled if setting is true: settings.autoSetupHand ? props.cards : shuffle(props.cards)
     const [isMenuOpen, toggleMenu] = useState(false);
     return (
-        <div onClick={() => toggleMenu(true)} className="draw-pile">
+        <Card
+            isBackside
+            onClick={() => toggleMenu(true)}
+        >
             {isMenuOpen && (
                 <div className="draw-pile-menu-options">
                     <Button
@@ -21,10 +23,7 @@ const DrawPile = (props) => {
                     />
                 </div>
             )}
-            <div className="card-btn card-btn-backside">
-                <p>draw pile</p>
-            </div>
-        </div>
+        </Card>
     )
 }
 

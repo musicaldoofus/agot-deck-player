@@ -1,5 +1,5 @@
 /*UiCard.css*/
-.card {
+.ui-card {
     border: 2px solid var(--gold-one);
     background-color: var(--light-main);
     padding: 2em;

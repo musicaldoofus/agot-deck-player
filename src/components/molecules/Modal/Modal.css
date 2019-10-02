@@ -1,0 +1,10 @@
+/*Modal.css*/
+.modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-main-low-opacity);
+    z-index: 1000;
+}

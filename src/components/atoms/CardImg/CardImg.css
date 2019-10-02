@@ -1,0 +1,7 @@
+/*CardImg.css*/
+.card-img {
+    margin: auto;
+}
+.card-img > img {
+    max-width: 100%;
+}

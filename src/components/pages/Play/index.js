@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import GameBoard from '../../organisms/GameBoard';
 import GameSetup from '../../organisms/GameSetup';
+import shuffle from '../../../helpers/shuffle';
 
 const Play = () => {
     const handleSelectDeck = (deck) => {
-        const isFaction = (c) => c.type_code === 'agenda' || c.type === 'faction';
+        const isAgenda = (c) => c.type_code === 'agenda';
         const isPlot = (c) => c.type_code === 'plot';
-        const factionArea = deck.cards.filter(isFaction); //check & improve
+        const factionArea = deck.cards.filter(isAgenda); //check & improve
         const plotArea = deck.cards.filter(isPlot); //check & improve
-        const drawPileArea = deck.cards.filter(card => !isFaction(card) && !isPlot(card));
+        const shuffledDrawDeck = shuffle(deck.cards.filter(card => !isAgenda(card) && !isPlot(card)));
+        const autoSetupHand = shuffledDrawDeck.slice(0, 6);
+        const drawPileArea = shuffledDrawDeck.slice(7);
         const initGameState = {
             factionArea,
             drawPileArea,
             plotArea,
-            hand: [],
+            hand: autoSetupHand, //extend (user sets to auto-receive setup hand on start of game): settings.autoSetupHand ? autoSetupHand : []
             characterArea: [],
             locationArea: [],
             plotDiscardArea: [],
