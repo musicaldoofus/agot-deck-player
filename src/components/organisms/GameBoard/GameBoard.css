@@ -40,6 +40,9 @@
 .lefhand-area {
     grid-template-rows: 12em 12em;
 }
+.lefthand-area .card-img {
+    max-width: 8em;
+}
 .in-play-area {
     grid-template-rows: auto auto;
 }
@@ -49,4 +52,12 @@
 .righthand-area > div:first-child {
     display: grid;
     grid-template-columns: 3fr 2fr 2fr;
+}
+.no-cards-portrait {
+    height: 11.25;
+    width: 8em;
+}
+.no-cards-landscape {
+    height: 8em;
+    width: 11.25em;
 }

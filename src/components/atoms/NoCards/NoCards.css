@@ -1,0 +1,9 @@
+/*NoCards.css*/
+.no-cards-landscape {
+    height: 8em;
+    width: 11.25em;
+}
+.no-cards-portrait {
+    height: 11.25em;
+    width: 8em;
+}
