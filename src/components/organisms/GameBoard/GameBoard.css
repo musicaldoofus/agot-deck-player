@@ -66,8 +66,6 @@
 .character-area > .border, .location-area > .border {
     display: grid;
     grid-template-rows: auto auto;
-    grid-template-columns: repeat(6, 1fr);
     column-gap: 0.5em;
     padding: 1em;
-    height: var(--card-min-height);
 }

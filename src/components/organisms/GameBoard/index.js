@@ -36,14 +36,16 @@ const GameBoard = (props) => {
                 tokenState={props.gameState.tokenState}
             />
             <div className="lefthand-area">
-                <PlotDiscardArea
-                    cards={props.gameState.plotDiscardArea}
-                    handleCardMove={moveCardTo}
-                />
-                <PlotArea
-                    cards={props.gameState.plotArea}
-                    handleCardMove={moveCardTo}
-                />
+                <div className="area">
+                    <PlotDiscardArea
+                        cards={props.gameState.plotDiscardArea}
+                        handleCardMove={moveCardTo}
+                    />
+                    <PlotArea
+                        cards={props.gameState.plotArea}
+                        handleCardMove={moveCardTo}
+                    />
+                </div>
             </div>
             <div className="area in-play-area">
                 <CharacterArea

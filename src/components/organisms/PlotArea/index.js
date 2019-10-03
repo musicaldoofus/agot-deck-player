@@ -9,7 +9,7 @@ const PlotArea = (props) => {
 
     const cards = props.cards && props.cards.map(card => <Card key={card.cardKey} card={card}/>);
     return (
-        <div className="area plot-area">
+        <div className="plot-area">
             <div className="border" id={`Plot(${props.cards.length})`}>
                 {props.cards.length > 0 ? (
                     <Card

@@ -4,4 +4,5 @@
 }
 .card-img > img {
     max-width: 100%;
+    min-width: var(--card-min-width);
 }

@@ -5,9 +5,11 @@ import './CharacterArea.css';
 
 const CharacterArea = (props) => {
     const cards = props.cards && props.cards.map(card => <Card key={card.cardKey} card={card}/>);
+    const colWidth = '10em';
+    const gridStyle = {gridTemplateColumns: `repeat(${props.cards.length}, ${colWidth})`};
     return (
         <div className="character-area">
-            <div className="border" id={`Characters(${props.cards.length})`}>
+            <div className="border" id={`Characters(${props.cards.length})`} style={gridStyle}>
                 {cards.length && cards.length > 0 ? cards : <NoCards/>}
             </div>
         </div>
