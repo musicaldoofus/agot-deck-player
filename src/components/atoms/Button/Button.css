@@ -10,6 +10,7 @@ button, .btn {
     max-width: 8em;
     text-align: center;
     cursor: pointer;
+    justify-content: center;
 }
 .back-button-container {
     display: flex;

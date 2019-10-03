@@ -9,11 +9,11 @@ const ToggleShowButton = (props) => {
     const posStyle = props.isLeft ? { right: 0 } : { left: 0 };
     return (
         <Button
-            className="toggle-show-button"
+            className={`toggle-show-button ${props.isShowing ? 'showing' : 'collapsed'}`}
             onClick={props.onClick}
             style={posStyle}
         >
-            {displayArrow}
+            <span>{displayArrow}</span>
         </Button>
     );
 }

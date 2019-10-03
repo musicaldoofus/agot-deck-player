@@ -3,3 +3,12 @@
     position: absolute;
     top: 0;
 }
+.toggle-show-button > span {
+    font-size: 1.5em;
+    color: var(--light-main);
+    margin: auto;
+}
+.toggle-show-button.collapsed {
+    width: 100%;
+    height: 100%;
+}
