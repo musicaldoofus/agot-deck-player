@@ -43,7 +43,7 @@
     grid-template-rows: 12em 12em;
 }
 .lefthand-area .card-img {
-    max-width: 8em;
+    max-width: calc(var(--card-min-height) - 1em);
 }
 .in-play-area {
     grid-template-rows: auto auto;
@@ -67,5 +67,4 @@
     display: grid;
     grid-template-rows: auto auto;
     column-gap: 0.5em;
-    padding: 1em;
 }

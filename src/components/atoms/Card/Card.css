@@ -1,6 +1,7 @@
 /*Card.css*/
 .card {
     display: flex;
+    padding: 0.5em 0;
 }
 .card.landscape > .card-img, .card.knelt > .card-img {
     transform: rotate(90deg);

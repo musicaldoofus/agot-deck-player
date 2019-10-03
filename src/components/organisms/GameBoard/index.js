@@ -61,8 +61,8 @@ const GameBoard = (props) => {
                     handleKneel={kneelToggle}
                 />
             </div>
-            <div className="area righthand-area">
-                <div>
+            <div className="righthand-area">
+                <div className="area">
                     <FactionArea
                         cards={props.gameState.factionArea}
                         handleTokenMove={moveTokenTo}
