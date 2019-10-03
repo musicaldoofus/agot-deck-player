@@ -61,7 +61,7 @@ const GameBoard = (props) => {
                     onClick={() => handleToggle('left')}
                 />
             </div>
-            <div className="area in-play-area">
+            <div className="area in-play-area showing">
                 <CharacterArea
                     cards={props.gameState.characterArea}
                     handleCardMove={moveCardTo}
