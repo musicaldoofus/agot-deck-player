@@ -5,6 +5,8 @@
     --accent-main: #732E1F;
     --gold-one: rgb(140, 108, 69);
     --dark-main-low-opacity: rgba(51,41,39, 0.4);
+    --card-min-height: 11.25em;
+    --card-min-width: 8em;
 }
 html, body {
     height: 100vh;

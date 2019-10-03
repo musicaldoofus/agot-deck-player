@@ -1,9 +1,4 @@
 /*CharacterArea.css*/
 .character-area > .border {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 0.5em;
-    padding: 1em;
-    min-height: 6em;
+
 }

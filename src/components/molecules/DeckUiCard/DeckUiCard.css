@@ -18,6 +18,7 @@
     max-width: calc(100% - 2em);
     margin: auto;
     margin-left: 2em;
+    max-height: calc(100% - 2em);
 }
 .deck-ui-card-metadata {
     width: calc(100% - 1em);

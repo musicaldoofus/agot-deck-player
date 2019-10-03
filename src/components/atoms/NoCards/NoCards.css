@@ -1,9 +1,13 @@
 /*NoCards.css*/
-.no-cards-landscape {
-    height: 8em;
-    width: 11.25em;
+.no-cards {
+    height: var(--card-min-height);
+    width: var(--card-min-width);
 }
-.no-cards-portrait {
-    height: 11.25em;
-    width: 8em;
+.no-cards > div {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.no-cards.landscape > div {
+    transform: rotate(90deg);
 }

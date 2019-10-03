@@ -3,7 +3,9 @@ import './NoCards.css';
 
 const NoCards = ({isLandscape}) => {
     return (
-        <div className={`no-cards-${isLandscape ? 'landscape' : 'portrait'}`}></div>
+        <div className={`no-cards${isLandscape ? ' landscape' : ''}`}>
+            <div id="no-cards-inner-container"></div>
+        </div>
     );
 }
 

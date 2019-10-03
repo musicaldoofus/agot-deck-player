@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../../atoms/Card';
+import NoCards from '../../atoms/NoCards';
 import './CharacterArea.css';
 
 const CharacterArea = (props) => {
@@ -7,7 +8,7 @@ const CharacterArea = (props) => {
     return (
         <div className="character-area">
             <div className="border" id={`Characters(${props.cards.length})`}>
-                {cards}
+                {cards.length && cards.length > 0 ? cards : <NoCards/>}
             </div>
         </div>
     );

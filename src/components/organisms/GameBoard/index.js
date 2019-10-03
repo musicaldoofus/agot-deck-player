@@ -26,9 +26,9 @@ const GameBoard = (props) => {
     const handleDraw = (amt = 1) => {
         console.log('handleDraw', amt);
     }
-    const advancePhase = () => {
+    /*const advancePhase = () => {
         console.log('advancePhase');
-    }
+    }*/
     return (
         <div className="game-board">
             <HUD

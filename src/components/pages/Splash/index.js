@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Button from '../../atoms/Button';
 import './Splash.css';
 
 const Splash = (props) => {
     return (
-        <div>
+        <div className="splash">
             <header>
                 <h1>A Game of Thrones LCG</h1>
                 <h2>Deck player</h2>

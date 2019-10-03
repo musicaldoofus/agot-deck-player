@@ -25,6 +25,8 @@
     border: 0.125em solid var(--gold-one);
     height: calc(100% - 1.25em);
     margin: 0.5em;
+    display: flex;
+    justify-content: center;
 }
 .border::before {
     content: attr(id);
@@ -60,4 +62,12 @@
 .no-cards-landscape {
     height: 8em;
     width: 11.25em;
+}
+.character-area > .border, .location-area > .border {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 0.5em;
+    padding: 1em;
+    height: var(--card-min-height);
 }
