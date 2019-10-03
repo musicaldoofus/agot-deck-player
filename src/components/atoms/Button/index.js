@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = (props) => {
-    const className = 'btn hover-float';
+    const className = `btn hover-float${props.className ? ' '.concat(props.className) : ''}`;
+    const style = props.style ? props.style : {};
     return props.to ? (
         <Link
             className={className}
+            style={style}
             to={props.to}
             id={props.id}
         >
@@ -15,6 +17,7 @@ const Button = (props) => {
     ) : (
         <button
             className={className}
+            style={style}
             id={props.id}
             onClick={props.onClick}
             onPress={props.onPress}

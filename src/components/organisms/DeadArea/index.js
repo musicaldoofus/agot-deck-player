@@ -1,12 +1,15 @@
 import React from 'react';
 import Card from '../../atoms/Card';
+import NoCards from '../../atoms/NoCards';
 import './DeadArea.css';
 
 const DeadArea = (props) => {
     const cards = props.cards && props.cards.map(card => <Card key={card.cardKey} card={card}/>);
     return (
         <div className="dead-area">
-            {cards}
+            <div className="border" id={`Dead(${cards ? cards.length : 0})`}>
+                {cards && cards.length > 0 ? cards : <NoCards/>}
+            </div>
         </div>
     );
 }

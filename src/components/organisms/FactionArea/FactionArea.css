@@ -1,0 +1,4 @@
+/*FactionArea.css*/
+.agenda-card > div > div > img {
+    min-width: calc(var(--card-min-width) * 0.75);
+}

@@ -1,7 +1,6 @@
 /*GameBoard.css*/
 .game-board {
     display: grid;
-    grid-template-columns: 20em auto 20em;
     column-gap: 1em;
 }
 .plot-hud-display-container {
@@ -39,8 +38,8 @@
     border: 2px solid var(--gold-one);
     padding: 0.5em;
 }
-.lefhand-area {
-    grid-template-rows: 12em 12em;
+.lefthand-area, .righthand-area {
+    position: relative;
 }
 .lefthand-area .card-img {
     max-width: calc(var(--card-min-height) - 1em);
@@ -49,11 +48,11 @@
     grid-template-rows: auto auto;
 }
 .righthand-area {
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: auto auto;
 }
 .righthand-area > div:first-child {
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-columns: 3fr 2fr;
 }
 .no-cards-portrait {
     height: 11.25;
@@ -67,4 +66,12 @@
     display: grid;
     grid-template-rows: auto auto;
     column-gap: 0.5em;
+}
+.play-controls-area {
+    grid-column: 1 / 4;
+    display: flex;
+    justify-content: space-around;
+}
+.play-controls-area > div {
+    margin: 0 auto;
 }

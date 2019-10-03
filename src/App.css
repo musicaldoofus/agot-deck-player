@@ -9,7 +9,7 @@
     --card-min-width: 8em;
 }
 html {
-    font-size: 1em;
+    font-size: 100%;
 }
 html, body {
     height: 100vh;

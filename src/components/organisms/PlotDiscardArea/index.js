@@ -10,7 +10,7 @@ const PlotDiscardArea = (props) => {
                 {cards.length > 0 ? cards : <NoCards isLandscape/>}
             </div>
         </div>
-    )
+    );
 }
 
 export default PlotDiscardArea;
