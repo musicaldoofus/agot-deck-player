@@ -35,7 +35,7 @@ const GameBoard = (props) => {
                 phase={props.gameState.phase}
                 tokenState={props.gameState.tokenState}
             />
-            <div className="area lefthand-area">
+            <div className="lefthand-area">
                 <PlotArea
                     cards={props.gameState.plotArea}
                     handleCardMove={moveCardTo}

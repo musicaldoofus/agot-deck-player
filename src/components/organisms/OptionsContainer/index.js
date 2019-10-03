@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../atoms/Button';
 import cardFocusOptions from '../../../helpers/cardFocusOptions';
 
 const OptionsContainer = (props) => {
+    const [showAttachmentOptions, setShowAttachmentOptions] = useState(false);
+
     const { card, handleCardMove, handleKneel } = props;
     //const inCurrentPhase = (opt) => opt.availablePhases.indexOf(props.phase) > -1;
     const inAvailableCards = (opt) => opt.availableCards.indexOf(props.card.type_code) > -1;
@@ -14,6 +16,8 @@ const OptionsContainer = (props) => {
         'hand' : 'hand',
         'character' : 'characterArea',
         'location' : 'locationArea',
+        //'attachment': 'attachment',
+        'event': 'discardPileArea',
         'plotDiscard' : 'plotDiscardArea',
         'discard' : 'discardPileArea',
         'dead' : 'deadArea'
@@ -26,24 +30,37 @@ const OptionsContainer = (props) => {
     const handlers = {
         'marshal': () => handleCardMove(handlerTypeCode),
         'put into play': () => handleCardMove(handlerTypeCode),
-        'play': () => handleCardMove('discard'),
-        'discard': () => handleCardMove('discard'),
+        'play': () => handleCardMove(handlerTypeCode),
+        'discard': () => handleCardMove('discardPileArea'),
         'kneel': () => handleKneel(card)
     }
-    const options = availableOptions.length > 1 ? availableOptions.map(opt => (
-            <Button
-                key={opt.label}
-                title={opt.label}
-                onClick={handlers[opt.label]}
-            />
-        )) : (
-            <div>
-                <p>Can't take any action on this card right now.</p>
+    const NoOptions = () => (
+        <div>
+            <p>Can't take any action on this card right now.</p>
+        </div>
+    );
+    const AttachmentOptions = () => {
+        return (
+            <div className="options-attachment-container">
+
             </div>
         );
+    }
+
     return (
         <div className="card-focus-controls">
-            {options}
+            {availableOptions.length && availableOptions.length > 0 ? availableOptions.map(opt => (
+                <Button
+                    key={opt.label}
+                    title={opt.label}
+                    onClick={card.type_code === 'attachment' ? () => setShowAttachmentOptions(true) : handlers[opt.label]}
+                />
+            )) : (
+                <NoOptions/>
+            )}
+            {showAttachmentOptions && (
+                <AttachmentOptions/>
+            )}
         </div>
     )
 }

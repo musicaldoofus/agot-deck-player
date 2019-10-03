@@ -3,5 +3,5 @@
     display: flex;
 }
 .card.landscape > .card-img, .card.knelt > .card-img {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
 }
