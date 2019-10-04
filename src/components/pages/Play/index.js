@@ -3,6 +3,7 @@ import Page from '../../molecules/Page';
 import GameBoard from '../../organisms/GameBoard';
 import GameSetup from '../../organisms/GameSetup';
 import shuffle from '../../../helpers/shuffle';
+import getNewGameState from '../../../helpers/getNewGameState';
 
 const Play = () => {
     const handleSelectDeck = (deck) => {
@@ -33,9 +34,10 @@ const Play = () => {
         setGameState(gameState.concat(initGameState));
     }
 
-    const handleGameStateUpdate = (newGameState) => {
-        console.log('handleGameStateUpdate', newGameState);
-        setGameState(gameState.concat(newGameState));
+    const handleGameStateUpdate = (card, fromArea, targetArea) => {
+        setGameState(gameState.concat(
+            getNewGameState(card, fromArea, targetArea, gameState[gameState.length - 1])
+        ));
     }
     const [gameState, setGameState] = useState([]); //extend: allow continue game option (use a getter instead of empty array)
     return (

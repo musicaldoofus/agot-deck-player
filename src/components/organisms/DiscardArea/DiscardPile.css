@@ -1,1 +1,6 @@
 /*DiscardPile.css*/
+.discard-pile > div > .card {
+    position: absolute;
+    max-width: calc(100% - 1em);
+    top: 0;
+}

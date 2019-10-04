@@ -1,4 +1,4 @@
-const moveCardToHook = (card, fromArea, targetArea, gameState) => {
+const getNewGameState = (card, fromArea, targetArea, gameState) => {
     const updatedFromList = gameState[fromArea].filter(c => c.cardKey !== card.cardKey);
     const updatedTargetList = gameState[targetArea].concat(card);
     const updatedParams = {
@@ -9,4 +9,4 @@ const moveCardToHook = (card, fromArea, targetArea, gameState) => {
     return updatedGameState;
 }
 
-export default moveCardToHook;
+export default getNewGameState;

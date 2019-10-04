@@ -18,6 +18,7 @@ const Card = (props) => {
 			className={`card${props.isKnelt ? ' knelt' : ''}${props.isLandscape ? ' landscape' : ' portrait'}${props.isBackside ? ' backside' : ''}`}
 			onClick={props.onClick}
 			onPress={props.onPress}
+			onContextMenu={props.onContextMenu}
 		>
 			<CardImg
 				src={props.isBackside ? cardBackside : props.card.image_url}

@@ -10,13 +10,12 @@ import DiscardArea from '../DiscardArea';
 import DeadArea from '../DeadArea';
 import Hand from '../Hand';
 import ToggleShowButton from '../../atoms/ToggleShowButton';
-import moveCardToHook from '../../../helpers/moveCardToHook';
 import './GameBoard.css';
 
 const GameBoard = (props) => {
     const moveCardTo = (card, fromArea, targetArea) => {
-        console.log('moveCardTo', card, fromArea, targetArea);
-        props.handleGameStateUpdate(moveCardToHook(card, fromArea, targetArea, props.gameState));
+        //props.handleGameStateUpdate(getNewGameState(card, fromArea, targetArea, props.gameState));
+        props.handleGameStateUpdate(card, fromArea, targetArea);
     }
     const moveTokenTo = (card, token, fromSource) => {
         console.log('moveTokenTo', card, token, fromSource);
@@ -82,7 +81,7 @@ const GameBoard = (props) => {
                         handleTokenMove={moveTokenTo}
                     />
                     <DiscardArea
-                        cards={props.gameState.discardArea}
+                        cards={props.gameState.discardPileArea}
                         handleCardMove={moveCardTo}
                     />
                     <DeadArea

@@ -1,8 +1,22 @@
 /*Splash.css*/
 .splash {
-    
+    background: url(../../../media/backgrounds/tyrell-faction.jpg) no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.splash-display {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 section {
     display: flex;
     flex-direction: row;
+}
+header {
+    text-align: center;
+    color: var(--light-main);
 }

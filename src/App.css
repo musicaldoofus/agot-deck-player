@@ -14,6 +14,7 @@ html {
 html, body {
     height: 100vh;
     margin: 0;
+    color: var(--dark-main);
 }
 div#root, .app {
     height: inherit;
@@ -27,7 +28,8 @@ div#root, .app {
 }
 h1, h2, h3, h4, h5, a, p, span, div {
     font-family: 'Julius Sans One', sans-serif;
-    color: var(--dark-main);
+    /*color: var(--dark-main);*/
+    color: inherit;
 }
 a {
     text-decoration: none;
