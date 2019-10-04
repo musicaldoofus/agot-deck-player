@@ -15,17 +15,37 @@ const reqAPI = ({type, id, scope = 'public', format = '.json'} = {}) => {
 	});
 };
 
+let keyMemo = [];
+
+const getCardParams = () => ({
+	cardKey: getUniqueKey(keyMemo),
+	status: 'standing'
+});
+
+const constructCardObj = (card) => {
+	const parsedCard = typeof card === 'string' ? JSON.parse(card) : card;
+	//console.log('constructCardObj', card.cardKey, parsedCard, getCardParams());
+	return Object.assign({}, parsedCard, getCardParams());
+}
+
 const getCardFromAPI = (cardId) => reqAPI({type: 'card', id: cardId})
-	.then(cardObj => Object.assign({}, JSON.parse(cardObj), {cardKey: getUniqueKey()}))
+	.then(cardObj => constructCardObj(cardObj))
 	.catch(err => console.error(`Error getting card from id ${cardId}`, err))
 
 const getCardsFromDeck = (deckObj, callback) => {
 	const parsedDeck = typeof deckObj === 'string' ? JSON.parse(deckObj) : deckObj;
-	const promiseList = Object
-		.keys(parsedDeck.slots)
+	const promiseListkeys = Object
+		.keys(parsedDeck.slots);
+	const promiseList = promiseListkeys
 		.map(cardId => getCardFromAPI(cardId));
 	Promise.all(promiseList)
-		.then((results) => callback(results)) //(data) => callback(data)
+		.then((results) => {
+			const constructedResults = results.map((r) => {
+				const amt = parsedDeck.slots[r.code];
+				return Array.from({ length: amt }, () => constructCardObj(r));
+			});
+			callback(constructedResults.flat());
+		})
 		.catch(err => {
 			//console.info('err @ getCardsFromDeck Promise.all')
 			console.error(err);

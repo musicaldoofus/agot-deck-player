@@ -14,6 +14,7 @@ const Play = () => {
         const autoSetupHand = shuffledDrawDeck.slice(0, 6);
         const drawPileArea = shuffledDrawDeck.slice(7);
         const initGameState = {
+            phase: 'plot',
             factionArea,
             drawPileArea,
             plotArea,

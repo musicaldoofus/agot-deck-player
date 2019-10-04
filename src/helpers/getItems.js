@@ -17,12 +17,12 @@ const getItem = (type, id) => {
                 if (type === 'card') resolve(dataObj);
                 else {
                     const resolveCards = (cards) => {
-                        let constructedDeck = Object.assign({}, { cards }, dataObj);
+                        let constructedDeck = Object.assign({}, dataObj, { cards });
                         resolve(constructedDeck);
                     };
                     getCardsFromDeck(dataObj, resolveCards);
                 }
-            })
+            });
     });
 }
 
