@@ -1,4 +1,5 @@
 import React/*, { useState }*/ from 'react';
+import Button from '../../atoms/Button';
 import './HUD.css';
 
 /*
@@ -30,6 +31,12 @@ const HUD = (props) => {
             </div>
             <div className="hud-phase-container">
                 <div>{props.phase}</div>
+            </div>
+            <div className="hud-admin-controls">
+                <Button
+                    title="Revert"
+                    onClick={props.handleRevert}
+                />
             </div>
         </div>
     );

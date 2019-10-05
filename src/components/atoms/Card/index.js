@@ -15,7 +15,7 @@ implementations of Card
 const Card = (props) => {
 	return (
 		<div
-			className={`card${props.isKnelt ? ' knelt' : ''}${props.isLandscape ? ' landscape' : ' portrait'}${props.isBackside ? ' backside' : ''}`}
+			className={`card${props.card ? ' '.concat(props.card.status) : ''} ${props.isLandscape ? 'landscape' : 'portrait'}${props.isBackside ? ' backside' : ''}`}
 			onClick={props.onClick}
 			onPress={props.onPress}
 			onContextMenu={props.onContextMenu}

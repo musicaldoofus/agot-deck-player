@@ -6,6 +6,9 @@
 .card-img {
     transition: all ease 0.4s;
 }
-.card.landscape > .card-img, .card.knelt > .card-img {
+.card.landscape > .card-img, .card.kneeling > .card-img {
     transform: rotate(90deg);
+}
+.card-inplay-slot > .card {
+    padding: 0.5em 4em 0 0;
 }

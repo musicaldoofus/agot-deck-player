@@ -4,7 +4,7 @@ import './FactionArea.css';
 
 const FactionArea = (props) => {
     const agendaCard = props.cards.filter(card => card.type_code === 'agenda')[0];
-    const factionCard = ''; //get from ~/helpers; use faction from gameState
+    const factionCard = props.cards.filter(c => c.type_code === 'faction')[0];
 
     const [focusCardKey, setFocusCardKey] = useState(agendaCard ? agendaCard.cardKey : factionCard.cardKey);
 

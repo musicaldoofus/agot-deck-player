@@ -23,14 +23,16 @@ const CharacterArea = (props) => {
         }
     }
     const cards = props.cards && props.cards.map(card => (
-        <Card
-            key={card.cardKey}
-            card={card}
-            onContextMenu={(e) => setContextMenuPos(e, card)}
-            onClick={() => props.handleKneel(card)}
-        />
+        <div className="card-inplay-slot">
+            <Card
+                key={card.cardKey}
+                card={card}
+                onContextMenu={(e) => setContextMenuPos(e, card)}
+                onClick={() => props.handleKneel(card, 'characterArea')}
+            />
+        </div>
     ));
-    const colWidth = '10em';
+    const colWidth = '12em';
     const gridStyle = {gridTemplateColumns: `repeat(${props.cards.length}, ${colWidth})`};
     return (
         <div className="character-area">
@@ -46,7 +48,7 @@ const CharacterArea = (props) => {
                         card={focusCard}
                         context="character"
                         handleCardMove={handleCardMove}
-                        handleKneel={() => props.handleKneel(focusCard)}
+                        handleKneel={() => props.handleKneel(focusCard, 'characterArea')}
                         handleDismiss={() => toggleShowContextMenu(null)}
                     />
                 </ContextMenu>

@@ -13,18 +13,21 @@ import ToggleShowButton from '../../atoms/ToggleShowButton';
 import './GameBoard.css';
 
 const GameBoard = (props) => {
+    const handleRevertGameState = () => {
+        if (props.gameState.length === 0) return;
+        props.handleGameStateUpdate('revert');
+    }
     const moveCardTo = (card, fromArea, targetArea) => {
-        //props.handleGameStateUpdate(getNewGameState(card, fromArea, targetArea, props.gameState));
-        props.handleGameStateUpdate(card, fromArea, targetArea);
+        props.handleGameStateUpdate({card, fromArea, targetArea});
     }
     const moveTokenTo = (card, token, fromSource) => {
-        console.log('moveTokenTo', card, token, fromSource);
+        //console.log('moveTokenTo', card, token, fromSource);
     }
-    const kneelToggle = (card) => {
-        console.log('kneelToggle', card);
+    const kneelToggle = (card, fromArea) => {
+        props.handleGameStateUpdate({card, cardStatus: card.status === 'standing' ? 'kneeling' : 'standing', fromArea});
     }
     const handleDraw = (amt = 1) => {
-        console.log('handleDraw', amt);
+        //console.log('handleDraw', amt);
     }
     /*const advancePhase = () => {
         console.log('advancePhase');
@@ -42,6 +45,7 @@ const GameBoard = (props) => {
             <HUD
                 phase={props.gameState.phase}
                 tokenState={props.gameState.tokenState}
+                handleRevert={handleRevertGameState}
             />
             <div className={`lefthand-area ${isLefthandShowing ? 'showing' : 'collapsed'}`}>
                 <div className="area">

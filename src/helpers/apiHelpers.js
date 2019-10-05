@@ -15,7 +15,9 @@ const reqAPI = ({type, id, scope = 'public', format = '.json'} = {}) => {
 	});
 };
 
-let keyMemo = [];
+let keyMemo = [
+	-1 //reserved key for faction card
+];
 
 const getCardParams = () => ({
 	cardKey: getUniqueKey(keyMemo),
