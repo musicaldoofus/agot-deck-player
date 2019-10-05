@@ -1,1 +1,4 @@
 /*DeadArea.css*/
+.dead-area {
+    grid-column: 1 / 3;
+}

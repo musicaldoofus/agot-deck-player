@@ -2,6 +2,7 @@
 .toggle-show-button {
     position: absolute;
     top: 0;
+    z-index: 1000;
 }
 .toggle-show-button > span {
     font-size: 1.5em;

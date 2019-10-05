@@ -1,4 +1,19 @@
 /*FactionArea.css*/
-.agenda-card > div > div > img {
-    min-width: calc(var(--card-min-width) * 0.75);
+.faction-area > .border {
+    padding-bottom: 0.5em;
+}
+.agenda-card, .faction-card {
+    position: absolute;
+}
+.agenda-card {
+    top: 0;
+    left: 0;
+    max-width: calc(var(--card-min-width) * 0.66);
+    z-index: 2;
+}
+.faction-card {
+    max-width: calc(var(--card-min-width) * 0.8);
+    z-index: 1;
+    top: 1em;
+    left: 2em;
 }

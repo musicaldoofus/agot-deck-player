@@ -38,7 +38,7 @@ const GameBoard = (props) => {
     const handleToggle = (dir) => dir === 'left' ? setIsLefthandShowing(!isLefthandShowing) : setIsRighthandShowing(!isRighthandShowing)
 
     const gameBoardGridStyle = {
-        gridTemplateColumns: `${isLefthandShowing ? '20em' : '3em'} auto ${isRighthandShowing ? '34em' : '3em'}`
+        gridTemplateColumns: `${isLefthandShowing ? '20em' : '3em'} auto ${isRighthandShowing ? '22.5em' : '3em'}`
     }
     return (
         <div className="game-board" style={gameBoardGridStyle}>
