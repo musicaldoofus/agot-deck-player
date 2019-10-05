@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '../../atoms/Card';
 import NoCards from '../../atoms/NoCards';
 import './DeadArea.css';

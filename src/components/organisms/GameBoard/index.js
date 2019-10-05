@@ -28,6 +28,7 @@ const GameBoard = (props) => {
     }
     const handleDraw = (amt = 1) => {
         //console.log('handleDraw', amt);
+        props.handleGameStateUpdate({drawAmt: amt});
     }
     /*const advancePhase = () => {
         console.log('advancePhase');

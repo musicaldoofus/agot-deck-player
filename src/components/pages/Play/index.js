@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Page from '../../molecules/Page';
 import GameBoard from '../../organisms/GameBoard';
 import GameSetup from '../../organisms/GameSetup';
