@@ -2,3 +2,6 @@
 .dead-area {
     grid-column: 1 / 3;
 }
+.dead-area .card-img {
+    max-width: var(--card-min-width);
+}

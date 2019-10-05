@@ -4,9 +4,7 @@ import NoCards from '../../atoms/NoCards';
 import './DeadArea.css';
 
 const DeadArea = (props) => {
-    const cards = props.cards && props.cards.map(card => <Card key={card.cardKey} card={card}/>);
-
-
+    const cards = props.cards && props.cards.map(card => <Card isLandscape key={card.cardKey} card={card}/>);
     return (
         <div className="dead-area">
             <div className="border" id={`Dead(${cards ? cards.length : 0})`}>
