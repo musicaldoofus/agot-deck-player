@@ -5,10 +5,13 @@ import cardFocusOptions from '../../../helpers/cardFocusOptions';
 const OptionsContainer = (props) => {
     const [showAttachmentOptions, setShowAttachmentOptions] = useState(false);
 
-    const { card, handleCardMove, handleKneel } = props;
+    const { card, context, handleCardMove, handleKneel } = props;
+    console.log('OptionsContainer', props);
     //const inCurrentPhase = (opt) => opt.availablePhases.indexOf(props.phase) > -1;
-    const inAvailableCards = (opt) => opt.availableCards.indexOf(props.card.type_code) > -1;
-    const inAvailbleContext = (opt) => opt.availableCards.indexOf(props.card.type_code) > -1;
+    const inAvailableCards = (opt) => opt.availableCards.indexOf(card.type_code) > -1;
+    const inAvailableContext = (opt) => opt.availableContext.indexOf(context) > -1;
+    console.log('inAvailableCards', cardFocusOptions.filter(inAvailableCards));
+    console.log('inAvailableContext', cardFocusOptions.filter(inAvailableContext));
     const typeCodeMap = {
         'faction' : 'factionArea',
         'deck' : 'drawPileArea',
@@ -26,7 +29,7 @@ const OptionsContainer = (props) => {
     const availableOptions = cardFocusOptions
         //.filter(inCurrentPhase)
         .filter(inAvailableCards)
-        .filter(inAvailbleContext);
+        .filter(inAvailableContext);
     const handlers = {
         'marshal': () => handleCardMove(handlerTypeCode),
         'put into play': () => handleCardMove(handlerTypeCode),
@@ -46,7 +49,6 @@ const OptionsContainer = (props) => {
             </div>
         );
     }
-
     return (
         <div className="card-focus-controls">
             {availableOptions.length && availableOptions.length > 0 ? availableOptions.map(opt => (

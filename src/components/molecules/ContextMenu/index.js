@@ -20,15 +20,15 @@ const ContextMenu = (props) => {
         top: props.pos.y,
         left: props.pos.x
     };
-    const options = props.options.map(opt => (
-        <div key={opt} className="context-menu-option">
-            {opt}
-        </div>
-    ));
     return (
         <div ref={containerRef} className="context-menu-container" style={posStyle}>
             <div className="context-menu">
-                {options}
+                {props.options ? props.options.map(opt => (
+                    <div key={opt} className="context-menu-option">
+                        {opt}
+                    </div>
+                )) : props.children
+                }
             </div>
         </div>
     );

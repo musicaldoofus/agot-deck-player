@@ -1,22 +1,33 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState } from 'react';
 import Card from '../../atoms/Card';
 import NoCards from '../../atoms/NoCards';
 import ContextMenu from '../../molecules/ContextMenu';
+import OptionsContainer from '../../organisms/OptionsContainer';
 import './CharacterArea.css';
 
 const CharacterArea = (props) => {
     const [contextMenuPos, toggleShowContextMenu] = useState(null);
+    const [focusCard, setFocusCard] = useState(null);
 
-    const setContextMenuPos = (e) => {
-        e.preventDefault();
-        if (!contextMenuPos) toggleShowContextMenu({x: e.clientX, y: e.clientY});
+    const handleCardMove = (targetArea) => {
+        const fromTarget = 'characterArea';
+        props.handleCardMove(focusCard, fromTarget, targetArea);
+        setFocusCard(null);
     }
 
+    const setContextMenuPos = (e, card) => {
+        e.preventDefault();
+        if (!contextMenuPos) {
+            toggleShowContextMenu({x: e.clientX, y: e.clientY});
+            setFocusCard(card);
+        }
+    }
     const cards = props.cards && props.cards.map(card => (
         <Card
             key={card.cardKey}
             card={card}
-            onContextMenu={setContextMenuPos}
+            onContextMenu={(e) => setContextMenuPos(e, card)}
+            onClick={() => props.handleKneel(card)}
         />
     ));
     const colWidth = '10em';
@@ -24,16 +35,20 @@ const CharacterArea = (props) => {
     return (
         <div className="character-area">
             <div className="border" id={`Characters(${props.cards.length})`} style={gridStyle}>
-                {cards.length && cards.length > 0 ? cards : <NoCards/>}
+                {cards && cards.length > 0 ? cards : <NoCards/>}
             </div>
             {contextMenuPos && (
                 <ContextMenu
                     pos={contextMenuPos}
                     handleClose={() => toggleShowContextMenu(null)}
-                    options={[
-                        'one'
-                    ]}
-                />
+                >
+                    <OptionsContainer
+                        card={focusCard}
+                        context="character"
+                        handleCardMove={handleCardMove}
+                        handleKneel={() => props.handleKneel(focusCard)}
+                    />
+                </ContextMenu>
             )}
         </div>
     );

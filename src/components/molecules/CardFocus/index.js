@@ -11,6 +11,7 @@ const CardFocus = (props) => {
                 card={props.card}
             />
             <OptionsContainer
+                context={props.context}
                 card={props.card}
                 handleCardMove={props.handleCardMove}
                 handleKneel={props.handleKneel}

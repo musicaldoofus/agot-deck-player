@@ -86,7 +86,8 @@ const cardFocusOptions = [
             'standing'
         ],
         availableContext: [ //need a convention for this
-            'inPlay'
+            'character',
+            'location'
         ]
     }
 ];
