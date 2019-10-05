@@ -18,7 +18,10 @@ const FactionArea = (props) => {
                         />
                     </div>
                 )}
-                <div onClick={() => setFocusCardKey(factionCard.cardKey)} className={`faction-card${focusCardKey === factionCard.cardKey ? ' focus' : ''}`}>
+                <div
+                    onClick={() => props.handleKneel(factionCard, 'factionArea')}
+                    className={`faction-card${focusCardKey === factionCard.cardKey ? ' focus' : ''}`}
+                >
                     <Card
                         card={factionCard}
                     />

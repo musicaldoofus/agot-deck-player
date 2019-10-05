@@ -83,6 +83,7 @@ const GameBoard = (props) => {
                     <FactionArea
                         cards={props.gameState.factionArea}
                         handleTokenMove={moveTokenTo}
+                        handleKneel={kneelToggle}
                     />
                     <DiscardArea
                         cards={props.gameState.discardPileArea}
