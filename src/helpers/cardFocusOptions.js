@@ -89,6 +89,24 @@ const cardFocusOptions = [
             'character',
             'location'
         ]
+    },
+    {
+        label: 'kill',
+        availableCards: [
+            'character'
+        ],
+        availablePhases: [
+            'plot',
+            'draw',
+            'marshal',
+            'challenges',
+            'domination',
+            'taxation',
+            'standing'
+        ],
+        availableContext: [
+            'character'
+        ]
     }
 ];
 

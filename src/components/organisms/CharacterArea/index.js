@@ -47,6 +47,7 @@ const CharacterArea = (props) => {
                         context="character"
                         handleCardMove={handleCardMove}
                         handleKneel={() => props.handleKneel(focusCard)}
+                        handleDismiss={() => toggleShowContextMenu(null)}
                     />
                 </ContextMenu>
             )}

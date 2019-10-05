@@ -34,7 +34,7 @@ const Play = () => {
         setGameState(gameState.concat(initGameState));
     }
 
-    const handleGameStateUpdate = (card, fromArea, targetArea) => {
+    const handleGameStateUpdate = (card, fromArea, targetArea) => { //extend - determine which type of game state update needs to take place; add a "commit message" i.e. ${actor} ${verb} ${subject}
         setGameState(gameState.concat(
             getNewGameState(card, fromArea, targetArea, gameState[gameState.length - 1])
         ));

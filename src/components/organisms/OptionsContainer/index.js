@@ -5,13 +5,10 @@ import cardFocusOptions from '../../../helpers/cardFocusOptions';
 const OptionsContainer = (props) => {
     const [showAttachmentOptions, setShowAttachmentOptions] = useState(false);
 
-    const { card, context, handleCardMove, handleKneel } = props;
-    console.log('OptionsContainer', props);
+    const { card, context, handleCardMove, handleKneel, handleDismiss } = props;
     //const inCurrentPhase = (opt) => opt.availablePhases.indexOf(props.phase) > -1;
     const inAvailableCards = (opt) => opt.availableCards.indexOf(card.type_code) > -1;
     const inAvailableContext = (opt) => opt.availableContext.indexOf(context) > -1;
-    console.log('inAvailableCards', cardFocusOptions.filter(inAvailableCards));
-    console.log('inAvailableContext', cardFocusOptions.filter(inAvailableContext));
     const typeCodeMap = {
         'faction' : 'factionArea',
         'deck' : 'drawPileArea',
@@ -30,12 +27,32 @@ const OptionsContainer = (props) => {
         //.filter(inCurrentPhase)
         .filter(inAvailableCards)
         .filter(inAvailableContext);
+    const tryHandleDismiss = () => {
+        if (handleDismiss) handleDismiss();
+    }
+    const basicMove = () => {
+        handleCardMove(handlerTypeCode);
+        tryHandleDismiss();
+    }
+    const kneelWrapper = () => {
+        handleKneel(card);
+        tryHandleDismiss();
+    }
+    const discardWrapper = () => {
+        handleCardMove('discardPileArea');
+        tryHandleDismiss();
+    }
+    const killWrapper = () => {
+        handleCardMove('deadArea');
+        tryHandleDismiss();
+    }
     const handlers = {
-        'marshal': () => handleCardMove(handlerTypeCode),
-        'put into play': () => handleCardMove(handlerTypeCode),
-        'play': () => handleCardMove(handlerTypeCode),
-        'discard': () => handleCardMove('discardPileArea'),
-        'kneel': () => handleKneel(card)
+        'marshal': basicMove,
+        'put into play': basicMove,
+        'play': basicMove,
+        'discard': discardWrapper,
+        'kneel': kneelWrapper,
+        'kill': killWrapper
     }
     const NoOptions = () => (
         <div>

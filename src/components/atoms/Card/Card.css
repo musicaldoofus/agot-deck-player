@@ -3,6 +3,9 @@
     display: flex;
     padding: 0.5em 0;
 }
+.card-img {
+    transition: all ease 0.4s;
+}
 .card.landscape > .card-img, .card.knelt > .card-img {
     transform: rotate(90deg);
 }
