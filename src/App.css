@@ -8,7 +8,6 @@
     --card-min-height: 11.25em;
     --card-min-width: 8em;
 }
-
 @font-face {
 	font-family: 'thronesdb';
 	src:url('./media/fonts/thronesdb.eot?#iefix') format('embedded-opentype'),
@@ -17,7 +16,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 html {
     font-size: 100%;
 }

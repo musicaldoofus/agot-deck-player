@@ -9,7 +9,6 @@ const Splash = (props) => {
                 <header>
                     <h1>A Game of Thrones LCG</h1>
                     <h2>Deck player</h2>
-                    <span class="icon icon-greyjoy"></span>
                 </header>
                 <section>
                     <Button to="/get">Get decks and cards.</Button>
