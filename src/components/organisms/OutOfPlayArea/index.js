@@ -1,55 +1,55 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import NoCards from '../../atoms/NoCards';
 import Card from '../../atoms/Card';
 import CardFocus from '../../molecules/CardFocus';
-import Modal from '../../molecules/Modal';
 
-const OutOfPlayArea = (props) => {
+const OutOfPlayInner = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [modalFocusedCard, setisModalFocused] = useState(false);
     
     const toggleShowModal = () => setShowModal(!showModal);
     const toggleModalFocus = (card) => setisModalFocused(card);
 
-    const displayCards = props.cards && props.cards.length ? props.cards.map(card => (
+    return !modalFocusedCard ? (
+        props.cards.map(card => (
+            <Card
+                card={card}
+                onClick={toggleShowModal}
+            />
+        ))
+    ) : (
+        <CardFocus
+            phase={props.phase}
+            card={modalFocusedCard}
+            context={props.areaReplace}
+            handleDismiss={() => toggleModalFocus(null)}
+        />
+    );
+}
+
+const OutOfPlayArea = (props) => {
+    const areaReplace = props.area.replace(/Area/g, '')
+    const outOfPlayInner = (
+        <OutOfPlayInner
+            {...props}
+            areaReplace={areaReplace}
+        />
+    );
+    const latestCard = props.cards && props.cards.length ? props.cards[props.cards.length - 1] : null;
+    const display = latestCard ? (
         <Card
             isLandscape={props.area === 'deadArea'}
-            key={card.cardKey}
-            card={card}
-            onClick={() => toggleShowModal(card)}
+            key={props.cards[props.cards.length - 1].cardKey}
+            card={props.cards[props.cards.length - 1]}
+            onClick={() => props.handleModalToggle(outOfPlayInner)}
         />
-    )).reverse() : [<NoCards/>]; //reverse() because each new addition is added to end of list
-    const display =  displayCards[0];
-    const areaReplace = props.area.replace(/Area/g, '')
+    ) : <NoCards/>;
     return (
-        <Fragment>
-            <div onClick={props.handleDraw} className={`${areaReplace}-pile`}>
-                <div className="border" id={`${props.area.slice(0, 1).toUpperCase().concat(props.area.slice(1).replace(/Area/g, ''))}(${props.cards ? props.cards.length : 0})`}>
-                    {display}
-                </div>
+        <div className={`${areaReplace}-pile`}>
+            <div className="border" id={`${props.area.slice(0, 1).toUpperCase().concat(props.area.slice(1).replace(/Area/g, ''))}(${props.cards ? props.cards.length : 0})`}>
+                {display}
             </div>
-            {showModal && (
-                <Modal
-                    handleClose={toggleShowModal}
-                >
-                    {!modalFocusedCard ? (
-                        props.cards.map(card => (
-                            <Card
-                                card={card}
-                                onClick={toggleShowModal}
-                            />
-                        ))
-                    ) : (
-                        <CardFocus
-                            phase={props.phase}
-                            card={modalFocusedCard}
-                            context={areaReplace}
-                            handleDismiss={() => toggleModalFocus(null)}
-                        />
-                    )}
-                </Modal>
-            )}
-        </Fragment>
+        </div>
     );
 }
 

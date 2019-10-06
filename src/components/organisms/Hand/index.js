@@ -7,11 +7,6 @@ import './Hand.css';
 const HandInner = (props) => {
     const [modalFocusedCard, setisModalFocused] = useState(false);
     
-    const toggleModalFocus = (card) => {
-        console.log('clicked', card);
-        setisModalFocused(card);
-    }
-
     const handleCardMove = (targetArea) => {
         const fromTarget = 'hand';
         setisModalFocused(false);
@@ -22,7 +17,7 @@ const HandInner = (props) => {
         <Card
             key={card.cardKey}
             card={card}
-            onClick={() => toggleModalFocus(card)}
+            onClick={() => setisModalFocused(card)}
         />
     ));
     return !modalFocusedCard ? cards : (
@@ -31,7 +26,7 @@ const HandInner = (props) => {
                 phase={props.phase}
                 card={modalFocusedCard}
                 context="hand"
-                handleDismiss={() => toggleModalFocus(null)}
+                handleDismiss={() => setisModalFocused(null)}
             />
         );
 }
