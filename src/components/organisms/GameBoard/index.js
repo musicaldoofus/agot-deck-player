@@ -10,9 +10,14 @@ import DiscardArea from '../DiscardArea';
 import DeadArea from '../DeadArea';
 import Hand from '../Hand';
 import ToggleShowButton from '../../atoms/ToggleShowButton';
+import Modal from '../../molecules/Modal';
 import './GameBoard.css';
 
 const GameBoard = (props) => {
+    const [modalChildren, setModalChildren] = useState(null);
+    const [isLefthandShowing, setIsLefthandShowing] = useState(true);
+    const [isRighthandShowing, setIsRighthandShowing] = useState(true);
+
     const handleRevertGameState = () => {
         if (props.gameState.length === 0) return;
         props.handleGameStateUpdate('revert');
@@ -34,8 +39,6 @@ const GameBoard = (props) => {
         console.log('advancePhase');
     }*/
 
-    const [isLefthandShowing, setIsLefthandShowing] = useState(true);
-    const [isRighthandShowing, setIsRighthandShowing] = useState(true);
     const handleToggle = (dir) => dir === 'left' ? setIsLefthandShowing(!isLefthandShowing) : setIsRighthandShowing(!isRighthandShowing)
 
     const gameBoardGridStyle = {
@@ -53,10 +56,12 @@ const GameBoard = (props) => {
                     <PlotDiscardArea
                         cards={props.gameState.plotDiscardArea}
                         handleCardMove={moveCardTo}
+                        handleModalToggle={setModalChildren}
                     />
                     <PlotArea
                         cards={props.gameState.plotArea}
                         handleCardMove={moveCardTo}
+                        handleModalToggle={setModalChildren}
                     />
                 </div>
                 <ToggleShowButton
@@ -89,10 +94,12 @@ const GameBoard = (props) => {
                     <DiscardArea
                         cards={props.gameState.discardPileArea}
                         handleCardMove={moveCardTo}
+                        handleModalToggle={setModalChildren}
                     />
                     <DeadArea
                         cards={props.gameState.deadArea}
                         handleCardMove={moveCardTo}
+                        handleModalToggle={setModalChildren}
                     />
                 </div>
                 <ToggleShowButton
@@ -105,12 +112,20 @@ const GameBoard = (props) => {
                     phase={props.gameState.phase ? props.gameState.phase : 'marshal'}
                     cards={props.gameState.hand}
                     handleCardMove={moveCardTo}
+                    handleModalToggle={setModalChildren}
                 />
                 <DrawPileArea
                     cards={props.gameState.drawPileArea}
                     handleDraw={handleDraw}
                 />
             </div>
+            {modalChildren && (
+                <Modal
+                    handleClose={() => setModalChildren(null)}
+                >
+                    {modalChildren}
+                </Modal>
+            )}
         </div>
     );
 }
