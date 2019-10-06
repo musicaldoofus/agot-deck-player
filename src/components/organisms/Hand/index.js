@@ -14,8 +14,9 @@ const HandInner = (props) => {
 
     const handleCardMove = (targetArea) => {
         const fromTarget = 'hand';
-        props.handleCardMove(modalFocusedCard, fromTarget, targetArea);
         setisModalFocused(false);
+        props.handleCardMove(modalFocusedCard, fromTarget, targetArea);
+        props.handleModalDismiss();
     }
     const cards = props.cards.map(card => (
         <Card
@@ -41,6 +42,7 @@ const Hand = (props) => {
             cards={props.cards}
             phase={props.phase}
             handleCardMove={props.handleCardMove}
+            handleModalDismiss={() => props.handleModalToggle(null)}
         />
     )
     return (

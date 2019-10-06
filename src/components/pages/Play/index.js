@@ -61,8 +61,8 @@ const Play = () => {
         const factionArea = deck.cards.filter(isAgenda).concat(factionCard); //check & improve
         const plotArea = deck.cards.filter(isPlot); //check & improve
         const shuffledDrawDeck = shuffle(deck.cards.filter(card => !isAgenda(card) && !isPlot(card)));
-        const autoSetupHand = shuffledDrawDeck.slice(0, 6);
-        const drawPileArea = shuffledDrawDeck.slice(7);
+        const autoSetupHand = shuffledDrawDeck.slice(0, 7);
+        const drawPileArea = shuffledDrawDeck.slice(8);
 
 
         const initGameStateProps = {
