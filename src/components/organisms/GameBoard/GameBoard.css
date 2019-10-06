@@ -2,15 +2,7 @@
 .game-board {
     display: grid;
     column-gap: 1em;
-}
-.plot-hud-display-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(50%);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin-top: 4em;
 }
 .area {
     display: grid;
@@ -42,7 +34,7 @@
     position: relative;
 }
 .lefthand-area .card-img {
-    max-width: calc(var(--card-min-height) - 1em);
+    max-width: var(--card-min-width);
 }
 .in-play-area {
     grid-template-rows: auto auto;

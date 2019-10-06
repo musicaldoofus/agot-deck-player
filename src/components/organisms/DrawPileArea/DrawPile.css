@@ -1,0 +1,4 @@
+/*DrawPile.css*/
+.draw-pile {
+    max-width: var(--card-min-width);
+}

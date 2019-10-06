@@ -8,6 +8,16 @@
     --card-min-height: 11.25em;
     --card-min-width: 8em;
 }
+
+@font-face {
+	font-family: 'thronesdb';
+	src:url('./media/fonts/thronesdb.eot?#iefix') format('embedded-opentype'),
+		  url('./media/fonts/thronesdb.woff') format('woff'),
+		  url('./media/fonts/thronesdb.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 html {
     font-size: 100%;
 }
@@ -35,6 +45,7 @@ a {
     text-decoration: none;
 }
 .hover-float {
+    cursor: pointer;
     transition: all ease 0.2s;
 }
 .hover-float:hover {

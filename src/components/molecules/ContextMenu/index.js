@@ -4,17 +4,16 @@ import './ContextMenu.css';
 const ContextMenu = (props) => {
     const containerRef = createRef();
 
-    const windowClickListener = (e) => {
-        if (!containerRef.current) {
-            window.removeEventListener('window', windowClickListener);
-            return;
-        }
-        if (!containerRef.current.contains(e.target)) props.handleClose();
-    }
-
     useEffect(() => {
+        const windowClickListener = (e) => {
+            if (!containerRef.current) {
+                window.removeEventListener('window', windowClickListener);
+                return;
+            }
+            if (!containerRef.current.contains(e.target)) props.handleClose();
+        }
         window.addEventListener('click', windowClickListener);
-    }, []);
+    }, [containerRef, props]);
 
     const posStyle = {
         top: props.pos.y,

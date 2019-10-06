@@ -13,9 +13,10 @@ implementations of Card
 */
 
 const Card = (props) => {
+	const className = `card${props.card ? ' '.concat(props.card.status) : ''} ${props.isLandscape ? 'landscape' : 'portrait'}${props.isBackside ? ' backside' : ''}${props.className ? ' '.concat(props.className) : ''}`
 	return (
 		<div
-			className={`card${props.card ? ' '.concat(props.card.status) : ''} ${props.isLandscape ? 'landscape' : 'portrait'}${props.isBackside ? ' backside' : ''}`}
+			className={className}
 			onClick={props.onClick}
 			onPress={props.onPress}
 			onContextMenu={props.onContextMenu}
