@@ -10,5 +10,5 @@
     transform: rotate(90deg);
 }
 .card-inplay-slot > .card {
-    padding: 0.5em 4em 0 0;
+    padding: 1em 4em 0 0;
 }

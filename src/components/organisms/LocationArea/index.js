@@ -5,7 +5,7 @@ import './LocationArea.css';
 const LocationArea = (props) => {
     return (
         <InPlayArea
-            area="characterArea"
+            area="locationArea"
             {...props}
         />
     );

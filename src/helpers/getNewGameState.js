@@ -1,5 +1,5 @@
 const getNewGameState = (params, gameState) => {
-    console.log('getNewGameState', params);
+    //console.log('getNewGameState', params);
     const updatedParams = () => {
         if (params.targetArea) {
             const updatedFromList = gameState[params.fromArea].filter(c => c.cardKey !== params.card.cardKey);
@@ -20,7 +20,7 @@ const getNewGameState = (params, gameState) => {
             };
         }
         if (params.drawAmt) {
-            console.log('drawAmt', params.drawAmt);
+            //console.log('drawAmt', params.drawAmt);
             const drawCards = gameState.drawPileArea.slice(0, params.drawAmt);
             const updatedDrawPileArea = gameState.drawPileArea.slice(params.drawAmt + 1);
             const updatedHand = gameState.hand.concat(drawCards).flat(); //test - may not need flat()

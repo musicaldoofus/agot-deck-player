@@ -21,9 +21,8 @@ const InPlayArea = (props) => {
         }
     }
     const cards = props.cards && props.cards.map(card => (
-        <div className="card-inplay-slot">
+        <div key={card.cardKey} className="card-inplay-slot">
             <Card
-                key={card.cardKey}
                 card={card}
                 onContextMenu={(e) => setContextMenuPos(e, card)}
                 onClick={() => props.handleKneel(card, props.area)}
