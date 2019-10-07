@@ -41,7 +41,18 @@ const cardFocusOptions = [
             PHASE_TYPES.allWithoutSetup
         ],
         availableContext: [
-            CONTEXT_TYPES.HAND,
+            CONTEXT_TYPES.HAND
+        ]
+    },
+    {
+        label: 'play from discard',
+        availableCards: [
+            CARD_TYPES.EVENT
+        ],
+        availablePhases: [
+            PHASE_TYPES.allWithoutSetup
+        ],
+        availableContext: [
             CONTEXT_TYPES.DISCARD
         ]
     },

@@ -95,7 +95,7 @@ const GameBoard = (props) => {
                         handleKneel={kneelToggle}
                     />
                     <DiscardArea
-                        cards={props.gameState.discardPileArea}
+                        cards={props.gameState.discardArea}
                         handleCardMove={moveCardTo}
                         handleModalToggle={setModalChildren}
                     />

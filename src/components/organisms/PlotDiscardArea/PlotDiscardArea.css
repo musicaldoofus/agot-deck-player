@@ -1,0 +1,7 @@
+/*PlotDiscardArea.css*/
+.plot > .card-img {
+    max-width: var(--card-min-height);
+}
+.plot-discard-area > div > .card {
+    padding: 2em 0;
+}

@@ -33,7 +33,7 @@
 .lefthand-area, .righthand-area {
     position: relative;
 }
-.lefthand-area .card-img {
+.lefthand-area .backside > .card-img {
     max-width: var(--card-min-width);
 }
 .in-play-area {

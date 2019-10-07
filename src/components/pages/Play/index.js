@@ -35,7 +35,7 @@ const Play = () => {
         characterArea: [],
         locationArea: [],
         plotDiscardArea: [],
-        discardPileArea: [],
+        discardArea: [],
         deadArea: [],
         tokenState: {
             gold: 0,

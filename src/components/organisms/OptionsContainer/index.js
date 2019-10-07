@@ -17,9 +17,9 @@ const OptionsContainer = (props) => {
         'character' : 'characterArea',
         'location' : 'locationArea',
         //'attachment': 'attachment',
-        'event': 'discardPileArea',
+        'event': 'discardArea',
         'plotDiscard' : 'plotDiscardArea',
-        'discard' : 'discardPileArea',
+        'discard' : 'discardArea',
         'dead' : 'deadArea'
     };
     const handlerTypeCode = typeCodeMap[card.type_code];
@@ -39,7 +39,7 @@ const OptionsContainer = (props) => {
         tryHandleDismiss();
     }
     const discardWrapper = () => {
-        handleCardMove('discardPileArea');
+        handleCardMove('discardArea');
         tryHandleDismiss();
     }
     const killWrapper = () => {
