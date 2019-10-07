@@ -120,6 +120,19 @@ const cardFocusOptions = [
         availablePhases: [
             PHASE_TYPES.all
         ]
+    },
+    {
+        label: 'ambush',
+        availableCards: [
+            CARD_TYPES.CHARACTER,
+            CARD_TYPES.LOCATION
+        ],
+        availablePhases: [
+            PHASE_TYPES.CHALLENGES
+        ],
+        availableContext: [
+            CONTEXT_TYPES.HAND
+        ]
     }
 ];
 

@@ -7,7 +7,7 @@ const PlotDiscardArea = (props) => {
     const display = props.cards && props.cards.length > 0 ? (
         <Card
             card={props.cards[props.cards.length - 1]}
-            className="plot"
+            className="plot hover-float"
         />
     ) : <NoCards/>
     return (

@@ -19,6 +19,7 @@ const OutOfPlayArea = (props) => {
             key={props.cards[props.cards.length - 1].cardKey}
             card={props.cards[props.cards.length - 1]}
             onClick={() => props.handleModalToggle(outOfPlayInner)}
+            className="hover-float"
         />
     ) : <NoCards/>;
     return (

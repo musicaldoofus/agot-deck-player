@@ -25,6 +25,7 @@ const InPlayArea = (props) => {
                 card={card}
                 onContextMenu={(e) => setContextMenuPos(e, card)}
                 onClick={() => props.handleKneel(card, props.area)}
+                className="hover-rotate"
             />
         </div>
     ));

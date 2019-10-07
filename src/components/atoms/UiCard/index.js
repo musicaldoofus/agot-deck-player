@@ -2,7 +2,7 @@ import React from 'react';
 import './UiCard.css';
 
 const UiCard = (props) => {
-    const baseClassName = 'ui-card hover-float';
+    const baseClassName = 'ui-card';
     const className = props.className ? baseClassName.concat(' ').concat(props.className) : baseClassName;
     return (
         <div
@@ -12,7 +12,7 @@ const UiCard = (props) => {
         >
             {props.children}
         </div>
-    )
+    );
 }
 
 export default UiCard;

@@ -15,6 +15,7 @@ const InnerModal = (props) => {
     return !modalFocusedCard ? (
         props.cards.map(card => (
             <Card
+                className="hover-float"
                 key={card.cardKey}
                 card={card}
                 onClick={() => toggleModalFocus(card)}

@@ -19,12 +19,6 @@
 html {
     font-size: 16px;
 }
-@media screen and (max-width: 780px) {
-    html {
-        font-size: 12px;
-    }
-}
-
 html, body {
     height: 100vh;
     margin: 0;
@@ -49,15 +43,32 @@ a {
     text-decoration: none;
 }
 .hover-float {
-    cursor: pointer;
     transition: all ease 0.2s;
 }
 .hover-float:hover {
     transform: translateY(-0.1em);
-    box-shadow: 0px 3px 6px 0px var(--dark-main-low-opacity);
+    /*box-shadow: 0px 3px 6px 0px var(--dark-main-low-opacity);*/
 }
 .deck-results-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1em;
+}
+
+/*media queries*/
+@media screen and (max-width: 770px) {
+    html {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .app {
+        grid-template-rows: 1fr auto;
+    }
+    nav {
+        grid-row: 2 / 3;
+    }
+    .nav-controls-container {
+        grid-template-columns: auto auto auto;
+    }
 }

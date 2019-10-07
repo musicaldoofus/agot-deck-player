@@ -5,9 +5,10 @@ import factionCardImages from '../../../helpers/factionCardImages';
 
 const DeckUiCard = (props) => {
     const { name, description_md } = props.deck;
+    const className = 'deck-ui-card-container'.concat(props.className ? ' '.concat(props.className) : '');
     return (
         <UiCard
-            className="deck-ui-card-container"
+            className={className}
             onClick={props.onClick}
         >
             <div className="deck-ui-card-header-left">
@@ -18,7 +19,7 @@ const DeckUiCard = (props) => {
                     <h3>{name}</h3>
                 </div>
                 <div className="deck-ui-card-description">
-                        <p>{description_md}</p>
+                    <p>{description_md}</p>
                 </div>
             </div>
         </UiCard>

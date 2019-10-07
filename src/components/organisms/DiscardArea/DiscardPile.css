@@ -1,6 +1,6 @@
 /*DiscardPile.css*/
 .discard-pile > div > .card {
-    padding: 0.5em;
+    padding: 1em 0.5em;
 }
 .discard-pile .card-img {
     min-width: var(--card-min-width);

@@ -54,6 +54,9 @@
     height: 8em;
     width: 11.25em;
 }
+.area .card:hover {
+    cursor: pointer;
+}
 .character-area > .border, .location-area > .border {
     display: grid;
     grid-template-rows: auto auto;

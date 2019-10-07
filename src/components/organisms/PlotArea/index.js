@@ -16,6 +16,7 @@ const PlotArea = (props) => {
             <div className="border" id={`Plot(${props.cards.length})`}>
                 {props.cards.length > 0 ? (
                     <Card
+                        className="hover-float"
                         isBackside
                         isLandscape
                         onClick={() => props.handleModalToggle(plotAreaInner)}

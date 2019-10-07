@@ -6,6 +6,7 @@ const GameSetup = (props) => {
     const deckList = cardCache.get('decklist', null, 'all');
     const decks = deckList.map(deck => (
         <DeckUiCard
+            className="hover-float"
             deck={deck}
             key={deck.id}
             onClick={() => props.handleSelectDeck(deck)}
