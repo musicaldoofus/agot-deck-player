@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../atoms/Button';
 import cardFocusOptions from '../../../helpers/cardFocusOptions';
+import './OptionsContainer.css';
 
 const OptionsContainer = (props) => {
     const [showAttachmentOptions, setShowAttachmentOptions] = useState(false);

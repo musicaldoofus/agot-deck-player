@@ -1,0 +1,12 @@
+/*CardFocus.css*/
+.card-focus {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.card-focus > .btn {
+    width: 100%;
+}
+.card-focus > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
