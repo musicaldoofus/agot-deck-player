@@ -60,6 +60,9 @@ a {
     html {
         font-size: 14px;
     }
+    .deck-results-container {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 @media screen and (max-width: 770px) {
     html {
@@ -79,5 +82,8 @@ a {
     .card-focus > div {
         grid-template-rows: auto auto;
         grid-template-columns: auto;
+    }
+    .deck-results-container {
+        grid-template-columns: 1fr;
     }
 }
