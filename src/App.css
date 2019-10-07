@@ -74,10 +74,14 @@ a {
         grid-template-rows: 1fr auto;
     }
     nav {
-        grid-row: 2 / 3;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        height: 4em;
     }
     .nav-controls-container {
         grid-template-columns: auto auto auto;
+        margin: auto auto 0 auto;
     }
     .card-focus > div {
         grid-template-rows: auto auto;
@@ -85,5 +89,8 @@ a {
     }
     .deck-results-container {
         grid-template-columns: 1fr;
+    }
+    .page {
+        overflow-y: scroll;
     }
 }
