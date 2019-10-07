@@ -8,7 +8,6 @@ const PlotArea = (props) => {
         <InnerModal
             {...props}
             context="plot"
-            handleCardMove={props.handleCardMove}
             handleModalDismiss={() => props.handleModalToggle(null)}
         />
     );

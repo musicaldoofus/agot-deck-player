@@ -9,6 +9,7 @@ const OutOfPlayArea = (props) => {
         <InnerModal
             {...props}
             context={areaReplace}
+            handleModalDismiss={() => props.handleModalToggle(null)}
         />
     );
     const latestCard = props.cards && props.cards.length ? props.cards[props.cards.length - 1] : null;

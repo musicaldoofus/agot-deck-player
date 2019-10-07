@@ -23,7 +23,8 @@ const GameBoard = (props) => {
         props.handleGameStateUpdate('revert');
     }
     const moveCardTo = (card, fromArea, targetArea) => {
-        fromArea = fromArea === 'plot' ? 'plotArea' : fromArea; //shitty fix for now
+        console.log('moveCardTo', fromArea);
+        if (/(plot|dead|discard)/gi.test(fromArea)) fromArea = fromArea.concat('Area'); //shitty fix for now
         console.log('moveCardTo', card, fromArea, targetArea);
         props.handleGameStateUpdate({card, fromArea, targetArea});
     }
