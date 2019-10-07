@@ -46,13 +46,19 @@ const OptionsContainer = (props) => {
         handleCardMove('deadArea');
         tryHandleDismiss();
     }
+    const choosePlotWrapper = () => {
+        //console.log('choose plot wrapper');
+        handleCardMove('plotDiscardArea');
+        tryHandleDismiss();
+    }
     const handlers = {
         'marshal': basicMove,
         'put into play': basicMove,
         'play': basicMove,
         'discard': discardWrapper,
         'kneel': kneelWrapper,
-        'kill': killWrapper
+        'kill': killWrapper,
+        'choose plot': choosePlotWrapper
     }
     const NoOptions = () => (
         <div>

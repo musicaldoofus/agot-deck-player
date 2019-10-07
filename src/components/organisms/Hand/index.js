@@ -8,9 +8,9 @@ const HandInner = (props) => {
     const [modalFocusedCard, setisModalFocused] = useState(false);
     
     const handleCardMove = (targetArea) => {
-        const fromTarget = 'hand';
+        const fromArea = 'hand';
         setisModalFocused(false);
-        props.handleCardMove(modalFocusedCard, fromTarget, targetArea);
+        props.handleCardMove(modalFocusedCard, fromArea, targetArea);
         props.handleModalDismiss();
     }
     const cards = props.cards.map(card => (
@@ -21,14 +21,14 @@ const HandInner = (props) => {
         />
     ));
     return !modalFocusedCard ? cards : (
-            <CardFocus
-                handleCardMove={handleCardMove}
-                phase={props.phase}
-                card={modalFocusedCard}
-                context="hand"
-                handleDismiss={() => setisModalFocused(null)}
-            />
-        );
+        <CardFocus
+            handleCardMove={handleCardMove}
+            phase={props.phase}
+            card={modalFocusedCard}
+            context="hand"
+            handleDismiss={() => setisModalFocused(null)}
+        />
+    );
 }
 
 const Hand = (props) => {
@@ -39,7 +39,7 @@ const Hand = (props) => {
             handleCardMove={props.handleCardMove}
             handleModalDismiss={() => props.handleModalToggle(null)}
         />
-    )
+    );
     return (
         <div className="hand hover-float" onClick={() => props.handleModalToggle(handInner)}>
             {[1, 2, 3].map(i => <CardImg key={i} isBackside/>)}

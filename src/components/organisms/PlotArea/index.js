@@ -1,9 +1,17 @@
 import React from 'react';
 import Card from '../../atoms/Card';
 import NoCards from '../../atoms/NoCards';
+import InnerModal from '../InnerModal';
 
 const PlotArea = (props) => {
-    const cards = props.cards && props.cards.map(card => <Card key={card.cardKey} card={card}/>);
+    const plotAreaInner = () => (
+        <InnerModal
+            {...props}
+            context="plot"
+            handleCardMove={props.handleCardMove}
+            handleModalDismiss={() => props.handleModalToggle(null)}
+        />
+    );
     return (
         <div className="plot-area">
             <div className="border" id={`Plot(${props.cards.length})`}>
@@ -11,7 +19,7 @@ const PlotArea = (props) => {
                     <Card
                         isBackside
                         isLandscape
-                        onClick={() => props.handleModalToggle(cards)}
+                        onClick={() => props.handleModalToggle(plotAreaInner)}
                     />
                 ) : (
                     <NoCards isLandscape/>

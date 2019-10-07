@@ -1,111 +1,113 @@
+import CARD_TYPES, { PHASE_TYPES, CONTEXT_TYPES } from './constants/cardTypeConstants';
+
 const cardFocusOptions = [
     {
         label: 'marshal',
         availableCards: [
-            'character',
-            'location',
-            'attachment'
+            CARD_TYPES.CHARACTER,
+            CARD_TYPES.LOCATION,
+            CARD_TYPES.ATTACHMENT
         ],
         availablePhases: [
-            'marshal'
+            PHASE_TYPES.MARSHAL
         ],
         availableContext: [
-            'hand'
+            CONTEXT_TYPES.HAND
         ]
     },
     {
         label: 'put into play',
         availableCards: [
-            'character',
-            'location'
+            CARD_TYPES.CHARACTER,
+            CARD_TYPES.LOCATION
         ],
         availablePhases: [
-            'setup',
-            'challenges',
-            'domination'
+            PHASE_TYPES.SETUP,
+            PHASE_TYPES.CHALLENGES,
+            PHASE_TYPES.DOMINATION
         ],
         availableContext: [
-            'hand',
-            'discard',
-            'dead'
+            CONTEXT_TYPES.HAND,
+            CONTEXT_TYPES.DISCARD,
+            CONTEXT_TYPES.DEAD_AREA
         ]
     },
     {
         label: 'play',
         availableCards: [
-            'event'
+            CARD_TYPES.EVENT
         ],
         availablePhases: [
-            'plot',
-            'draw',
-            'marshal',
-            'challenges',
-            'domination',
-            'taxation',
-            'standing'
+            PHASE_TYPES.allWithoutSetup
         ],
         availableContext: [
-            'hand',
-            'discard'
+            CONTEXT_TYPES.HAND,
+            CONTEXT_TYPES.DISCARD
         ]
     },
     {
         label: 'discard',
         availableCards: [
-            'character',
-            'location',
-            'attachment',
-            'event'
+            CARD_TYPES.CHARACTER,
+            CARD_TYPES.LOCATION,
+            CARD_TYPES.ATTACHMENT,
+            CARD_TYPES.EVENT
         ],
         availablePhases: [
-            'plot',
-            'draw',
-            'marshal',
-            'challenges',
-            'domination',
-            'taxation',
-            'standing'
+            PHASE_TYPES.allWithoutSetup
         ],
         availableContext: [
-            'hand'
+            CONTEXT_TYPES.HAND
         ]
     },
     {
         label: 'kneel',
         availableCards: [
-            'character',
-            'location'
+            CARD_TYPES.CHARACTER,
+            CARD_TYPES.LOCATION
         ],
         availablePhases: [
-            'plot',
-            'draw',
-            'marshal',
-            'challenges',
-            'domination',
-            'taxation',
-            'standing'
+            PHASE_TYPES.allWithoutSetup
         ],
-        availableContext: [ //need a convention for this
-            'character',
-            'location'
+        availableContext: [
+            CONTEXT_TYPES.CHARACTER,
+            CONTEXT_TYPES.LOCATION
         ]
     },
     {
         label: 'kill',
         availableCards: [
-            'character'
+            CARD_TYPES.CHARACTER
         ],
         availablePhases: [
-            'plot',
-            'draw',
-            'marshal',
-            'challenges',
-            'domination',
-            'taxation',
-            'standing'
+            PHASE_TYPES.allWithoutSetup
         ],
         availableContext: [
-            'character'
+            CONTEXT_TYPES.CHARACTER
+        ]
+    },
+    {
+        label: 'choose plot',
+        availableCards: [
+            CARD_TYPES.PLOT
+        ],
+        availablePhases: [
+            PHASE_TYPES.PLOT
+        ],
+        availableContext: [
+            CONTEXT_TYPES.PLOT
+        ]
+    },
+    {
+        label: 'return to plot pile',
+        availableCards: [
+            CARD_TYPES.PLOT
+        ],
+        availableContext: [
+            CONTEXT_TYPES.PLOT_DISCARD
+        ],
+        availablePhases: [
+            PHASE_TYPES.all
         ]
     }
 ];

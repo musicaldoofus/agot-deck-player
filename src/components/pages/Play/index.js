@@ -25,7 +25,7 @@ const factions = {
 };
 
 const Play = () => {
-    const [gameState, setGameState] = useState([]); //extend: allow continue game option (use a getter instead of empty array)
+    const [gameStates, setGameState] = useState([]); //extend: allow continue game option (use a getter instead of empty array)
     
     const gameStateTemplate = {
         phase: 'plot',
@@ -63,8 +63,6 @@ const Play = () => {
         const shuffledDrawDeck = shuffle(deck.cards.filter(card => !isAgenda(card) && !isPlot(card)));
         const autoSetupHand = shuffledDrawDeck.slice(0, 7);
         const drawPileArea = shuffledDrawDeck.slice(8);
-
-
         const initGameStateProps = {
             factionArea,
             drawPileArea,
@@ -72,31 +70,31 @@ const Play = () => {
             hand: autoSetupHand //extend (user sets to auto-receive setup hand on start of game): settings.autoSetupHand ? autoSetupHand : []
         };
         const initGameState = Object.assign({}, gameStateTemplate, initGameStateProps);
-        setGameState(gameState.concat(initGameState));
+        setGameState(gameStates.concat(initGameState));
     }
-    const currentGameState = () => gameState[gameState.length - 1];
+    const getCurrentGameState = () => gameStates[gameStates.length - 1];
 
     const handleGameStateUpdate = (params) => { //extend - determine which type of game state update needs to take place; add a "commit message" i.e. ${actor} ${verb} ${subject}
         //doesn't work - troubleshoot
         if (params === 'revert') {
-            const updatedState = gameState.length === 1 ? [gameStateTemplate] : gameState.slice(0, gameState.length - 1);
-            console.log('new gameState arr should be', updatedState);
+            const updatedState = gameStates.length === 1 ? [gameStateTemplate] : gameStates.slice(0, gameStates.length - 1);
+            //console.log('new gameState arr should be', updatedState);
             setGameState(updatedState);
         }
-        setGameState(gameState.concat(
-            getNewGameState(params, currentGameState())
+        setGameState(gameStates.concat(
+            getNewGameState(params, getCurrentGameState())
         ));
     }
 
     return (
         <Page className="play-container">
-            {gameState.length === 0 ? (
+            {gameStates.length === 0 ? (
                 <GameSetup
                     handleSelectDeck={handleSelectDeck}
                 />
             ) : (
                 <GameBoard
-                    gameState={currentGameState()}
+                    gameState={getCurrentGameState()}
                     handleGameStateUpdate={handleGameStateUpdate}
                 />
             )}

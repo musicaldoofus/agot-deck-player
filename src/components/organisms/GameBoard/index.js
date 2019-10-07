@@ -23,6 +23,8 @@ const GameBoard = (props) => {
         props.handleGameStateUpdate('revert');
     }
     const moveCardTo = (card, fromArea, targetArea) => {
+        fromArea = fromArea === 'plot' ? 'plotArea' : fromArea; //shitty fix for now
+        console.log('moveCardTo', card, fromArea, targetArea);
         props.handleGameStateUpdate({card, fromArea, targetArea});
     }
     const moveTokenTo = (card, token, fromSource) => {

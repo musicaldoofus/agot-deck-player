@@ -12,7 +12,6 @@ const InPlayArea = (props) => {
         props.handleCardMove(focusCard, props.area, targetArea);
         setFocusCard(null);
     }
-
     const setContextMenuPos = (e, card) => {
         e.preventDefault();
         if (!contextMenuPos) {
