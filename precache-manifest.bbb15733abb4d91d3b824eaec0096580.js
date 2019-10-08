@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f7bf8f57a83ea1589848535234622818",
+    "revision": "cb5b24eac18b5bce1a1d939ee75c0ab7",
     "url": "/agot-deck-player/index.html"
   },
   {
-    "revision": "bebc94c7e274188df4fc",
-    "url": "/agot-deck-player/static/css/main.b04d8459.chunk.css"
+    "revision": "2a8cca3e5e41b6b2c988",
+    "url": "/agot-deck-player/static/css/main.55ebbca2.chunk.css"
   },
   {
-    "revision": "18cb88ed918049c06788",
-    "url": "/agot-deck-player/static/js/2.b59667b2.chunk.js"
+    "revision": "a137eb5a8b152e68f2c6",
+    "url": "/agot-deck-player/static/js/2.f603a059.chunk.js"
   },
   {
-    "revision": "bebc94c7e274188df4fc",
-    "url": "/agot-deck-player/static/js/main.57efa745.chunk.js"
+    "revision": "2a8cca3e5e41b6b2c988",
+    "url": "/agot-deck-player/static/js/main.05d6e9d2.chunk.js"
   },
   {
     "revision": "88cdf32a727b3cc42089",
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/agot-deck-player/static/media/baratheon-faction.f747f280.jpg"
   },
   {
-    "revision": "e3957e7bdde4794ee86ae8883305ba2b",
-    "url": "/agot-deck-player/static/media/card-back.e3957e7b.png"
+    "revision": "0c56143c658478966c0b5b98ec5d2fa4",
+    "url": "/agot-deck-player/static/media/card-back.0c56143c.png"
   },
   {
     "revision": "7736e9f86e96aeb2979cb190544c0ad3",
@@ -44,6 +44,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/agot-deck-player/static/media/nights-watch-faction.eacde39a.jpg"
   },
   {
+    "revision": "1aa22d93194fd95aff1c7507b97ba5fd",
+    "url": "/agot-deck-player/static/media/sprite-center.1aa22d93.png"
+  },
+  {
     "revision": "108159c34d8dbd9d2c196ae7d8e97e7d",
     "url": "/agot-deck-player/static/media/stark-faction.108159c3.jpg"
   },
@@ -52,7 +56,27 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/agot-deck-player/static/media/targaryen-faction.fb754a61.jpg"
   },
   {
+    "revision": "03fd23575419f6dfc4c9c09b5ba13786",
+    "url": "/agot-deck-player/static/media/thronesdb.03fd2357.woff"
+  },
+  {
+    "revision": "38dc412d66f5e33db912747e0b1a8d3d",
+    "url": "/agot-deck-player/static/media/thronesdb.38dc412d.eot"
+  },
+  {
+    "revision": "be033364c3f659b8336d20819dce2fab",
+    "url": "/agot-deck-player/static/media/thronesdb.be033364.ttf"
+  },
+  {
+    "revision": "731159fa3ab8ed7318e36ef0c0aacd89",
+    "url": "/agot-deck-player/static/media/tyrell-faction.731159fa.jpg"
+  },
+  {
     "revision": "dd85fbc04a531d7ed452fa6327710497",
     "url": "/agot-deck-player/static/media/tyrell-faction.dd85fbc0.jpg"
+  },
+  {
+    "revision": "b4066f24fabb995b68581e0f4a376ecd",
+    "url": "/agot-deck-player/static/media/winterfell.b4066f24.jpg"
   }
 ]);
