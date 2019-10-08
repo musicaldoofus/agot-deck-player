@@ -11,6 +11,8 @@ const reqAPI = ({type, id, scope = 'public', format = '.json'} = {}) => {
 		};
 		//add error handling using reject(err)
 		xhttp.open("GET", reqUrl);
+		xhttp.setRequestHeader('Access-Control-Allow-Origin', window.location.origin);
+		xhttp.setRequestHeader('Content-Type', 'application/json');
 		xhttp.send();
 	});
 };
