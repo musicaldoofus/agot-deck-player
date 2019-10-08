@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cb5b24eac18b5bce1a1d939ee75c0ab7",
+    "revision": "e6113f2352ac0d5910b1397cb57a8d8c",
     "url": "/agot-deck-player/index.html"
   },
   {
-    "revision": "2a8cca3e5e41b6b2c988",
+    "revision": "d624db886ca044d58207",
     "url": "/agot-deck-player/static/css/main.55ebbca2.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/agot-deck-player/static/js/2.f603a059.chunk.js"
   },
   {
-    "revision": "2a8cca3e5e41b6b2c988",
-    "url": "/agot-deck-player/static/js/main.05d6e9d2.chunk.js"
+    "revision": "d624db886ca044d58207",
+    "url": "/agot-deck-player/static/js/main.b40e6938.chunk.js"
   },
   {
     "revision": "88cdf32a727b3cc42089",
