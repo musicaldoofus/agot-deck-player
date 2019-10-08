@@ -14,7 +14,9 @@ const GameSetup = (props) => {
     ));
     return (
         <div className="game-setup">
-            <h1>Select a deck to play.</h1>
+            <header>
+                <h1>Select a deck to play.</h1>
+            </header>
             <div className="deck-results-container">
                 {decks}
             </div>

@@ -6,6 +6,7 @@ import Button from '../../../atoms/Button';
 import NoResults from '../../../atoms/NoResults';
 import DeckUiCard from '../../../molecules/DeckUiCard';
 import { getAllDecksLocal } from '../../../../helpers/getItems';
+import './GetRoot.css';
 
 class GetRoot extends Component {
     constructor(props) {
@@ -78,18 +79,18 @@ class GetRoot extends Component {
             <Page className="get-root">
                 <header>
                     <h1>Get decks and cards</h1>
+                    <div className="search">
+                        <SearchInput
+                            id="get-search-input"
+                            value={this.state.inputValue}
+                            handleOnChange={this.handleOnChange}
+                        />
+                        <Button
+                            title="Search"
+                            onClick={this.handleSearchInput}
+                        />
+                    </div>
                 </header>
-                <div className="search">
-                    <SearchInput
-                        id="get-search-input"
-                        value={this.state.inputValue}
-                        handleOnChange={this.handleOnChange}
-                    />
-                    <Button
-                        title="Search"
-                        onClick={this.handleSearchInput}
-                    />
-                </div>
                 <div className="search-results-container">
                     {(results && results.length > 0) ? results : <NoResults/>}
                 </div>

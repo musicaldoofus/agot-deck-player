@@ -19,3 +19,7 @@ button, .btn {
     margin: auto;
     color: var(--light-main);
 }
+.btn:active, .btn:focus {
+    outline: 2px solid var(--gold-one);
+    outline-offset: 0.25em;
+}

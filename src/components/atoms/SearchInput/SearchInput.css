@@ -2,6 +2,7 @@
 .search-input-container {
     width: 100%;
     display: flex;
+    margin-right: 1em;
 }
 input[type="text"] {
     width: 100%;

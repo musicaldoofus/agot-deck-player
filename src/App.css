@@ -31,6 +31,12 @@ div#root, .app {
     display: grid;
     grid-template-columns: auto 1fr;
 }
+header {
+    text-align: center;
+}
+header > h1 {
+    color: var(--dark-alt);
+}
 .light {
     color: var(--light-main);
 }
@@ -55,7 +61,21 @@ a {
     gap: 1em;
 }
 
-/*media queries*/
+/*media queries and mobile classes*/
+header.sticky {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    background-color: var(--dark-main-low-opacity);
+}
+header.sticky > div {
+    padding: 0 2em;
+}
+
 @media screen and (max-width: 1024px) {
     html {
         font-size: 14px;
